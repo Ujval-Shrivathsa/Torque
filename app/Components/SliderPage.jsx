@@ -15,7 +15,7 @@ const SliderPage = () => {
     ];
 
     return (
-        <div className='min-h-screen w-full bg-black py-12 px-4 sm:px-6 lg:px-8'>
+        <div className='min-h-fit w-full bg-black py-12 px-4 sm:px-6 lg:px-8'>
             <motion.div className="max-w-7xl mx-auto">
                 {/* Heading */}
                 <h1 className="text-white bebas text-4xl sm:text-5xl lg:text-4xl text-center leading-tight sm:leading-[66px] mb-8 sm:mb-12">

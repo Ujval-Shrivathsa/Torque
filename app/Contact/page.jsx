@@ -71,11 +71,11 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col overflow-hidden">
+    <div className="w-full min-h-screen flex flex-col   overflow-hidden">
       <Navlinks isComplete={true} />
-      <div className="flex-grow bg-black px-4 md:px-30 md:py-16 py-6">
+      <div className="flex-grow bg-black px-4 md:px-30 md:py-16 py-6 flex justify-center ">
         <div className="flex flex-col md:flex-row justify-between items-start pt-20 md:pt-15">
-          <div className="business-info text-zinc-200 px-4 md:px-20 space-y-4 text-center text-sm md:text-left mt-10 md:mt-20">
+          <div className="business-info text-zinc-200 px-4 md:px-20 space-y-4 text-center text-sm md:text-left mt-10 md:mt-20 ">
             <p className="font-bold text-3xl md:px-0 px-20 ">Business info</p>
             <p>
               29, 4th B Cross, 5th Block, Koramangala,
@@ -93,7 +93,7 @@ const Contact = () => {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <div className="w-full md:w-[700px] m-auto p-4 md:p-8 text-zinc-200">
+          <div className="w-full md:w-[700px] m-auto p-4 md:p-8 md:mx-12 text-zinc-200">
             <h2 className="text-[28px] md:text-[55px] font-bold py-1 text-center md:text-left -mt-13">
               CONTACT <span className="text-[#00DAFF]">US</span>
             </h2>
