@@ -155,9 +155,10 @@ const Page = () => {
         </div>
       )}
 
+      {/* Floating cursor dot */}
       <div
         ref={dotRef}
-        className="fixed z-[9998] w-3 h-3 rounded-full bg-[#496afa] pointer-events-none transition-all duration-300 ease-out"
+        className="cursor-dot fixed z-[9998] w-3 h-3 rounded-full bg-[#496afa] pointer-events-none transition-all duration-300 ease-out"
         style={{
           position: "fixed",
           transform: "translate(-50%, -50%)",
@@ -166,110 +167,151 @@ const Page = () => {
         }}
       />
 
+      {/* Add media query to hide dot on mobile */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .cursor-dot {
+            display: none;
+          }
+        }
+      `}</style>
+
       {!isLoading && (
         <>
-          <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth cursor-none relative">
-            {/* Floating cursor dot */}
-            <div
-              ref={dotRef}
-              className="fixed z-[9999] w-3 h-3 rounded-full bg-black pointer-events-none transition-all duration-300 ease-out"
-              style={{
-                position: "fixed",
-                transform: "translate(-50%, -50%)",
-                top: "0px",
-                left: "0px",
-              }}
-            />
-
+          <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth cursor-none relative ">
             <Navlinks isComplete={true} />
-            <div className="w-full m-auto overflow-x-hidden h-full py-32">
-              <div className="w-full h-[100vh] bg-black" id="main-carousel-section">
-                {/* Top Section */}
-                <div className="w-full h-[60%] flex bg-gray-800">
-                  {/* Main Carousel */}
+            <div className="w-full m-auto overflow-x-hidden h-full mt-32">
+              <div
+                className="w-full min-h-fit py-8 bg-black"
+                id="main-carousel-section"
+              >
+                {/* Top Section: Carousel + 4 Cars */}
+                <div className="w-full flex flex-col lg:flex-row h-auto lg:h-[50%] bg-gray-100">
+                  {/* Carousel Image */}
                   <motion.div
                     initial={{ opacity: 0.5 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="relative w-[45%] h-full bg-black/0 bg-no-repeat bg-cover bg-center bg-blend-multiply transition-all duration-700 ease-in-out"
-                    style={{ backgroundImage: `url(${carouselImages[carouselIndex]})` }}
+                    className="relative w-full lg:w-[45%] h-[300px] sm:h-[400px] lg:h-[400px] bg-black/0 bg-no-repeat bg-cover bg-center bg-blend-multiply transition-all duration-700 ease-in-out"
+                    style={{
+                      backgroundImage: `url(${carouselImages[carouselIndex]})`,
+                    }}
                   >
-                    <div className="mt-[53%] ml-[88%]">
+                    <div className="absolute bottom-4 right-4">
                       <motion.button
                         ref={(el) => clickableElements.current.push(el)}
-                        onClick={handleNextImage} // Add click handler here
-                        className="w-10 hover-target ml-[2%] lg:mt-[10%] mt-[10%] gap-2 flex justify-center items-center font-medium h-10 rounded-full border-[1px] border-transparent bg-black text-white uppercase cursor-pointer"
+                        onClick={handleNextImage}
+                        className="w-10 hover-target gap-2 flex justify-center items-center font-medium h-10 rounded-full border border-transparent bg-black text-white uppercase cursor-pointer"
                       >
-                        <motion.img 
-                          whileHover={{ rotate: 15 }} 
+                        <motion.img
+                          whileHover={{ rotate: 15 }}
                           whileTap={{ rotate: -15 }}
                           transition={{ stiffness: 300 }}
-                          src="download-removebg-preview.png" 
-                          className="h-5 lg:mt-[10%]" 
-                          alt="" 
+                          src="download-removebg-preview.png"
+                          className="h-5"
+                          alt=""
                         />
                       </motion.button>
                     </div>
 
-                    {/* Dots */}
+                    {/* Carousel Dots */}
                     <div className="absolute bottom-5 left-[10%] flex space-x-2">
                       {carouselImages.map((_, index) => (
                         <div
                           key={index}
-                          className={`w-3 h-3 rounded-full ${index === carouselIndex ? "bg-white" : "bg-white/40"}`}
+                          className={`w-3 h-3 rounded-full ${
+                            index === carouselIndex ? "bg-white" : "bg-white/40"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    {/* </motion.div> */}
+
+                    <div className="absolute bottom-4 right-4">
+                      <motion.button
+                        ref={(el) => clickableElements.current.push(el)}
+                        onClick={handleNextImage}
+                        className="w-10 hover-target gap-2 flex justify-center items-center font-medium h-10 rounded-full border border-transparent bg-black text-white uppercase cursor-pointer"
+                      >
+                        <motion.img
+                          whileHover={{ rotate: 15 }}
+                          whileTap={{ rotate: -15 }}
+                          transition={{ stiffness: 300 }}
+                          src="download-removebg-preview.png"
+                          className="h-5"
+                          alt=""
+                        />
+                      </motion.button>
+                    </div>
+
+                    {/* Carousel Dots */}
+                    <div className="absolute bottom-5 left-[10%] flex space-x-2">
+                      {carouselImages.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`w-3 h-3 rounded-full ${
+                            index === carouselIndex ? "bg-white" : "bg-white/40"
+                          }`}
                         />
                       ))}
                     </div>
                   </motion.div>
 
-                  {/* 4 Small Cars */}
-                  <div className="w-[55%] h-full">
+                  {/* Top 4 Cars */}
+                  <div className="w-full lg:w-[55%] flex flex-wrap">
                     {[0, 1, 2, 3].map((i) => (
                       <motion.div
                         key={otherCars[i].id}
                         ref={(el) => clickableElements.current.push(el)}
                         onClick={() => swapCar(otherCars[i])}
-                        className="hover-target w-[50%] h-[50%] float-left bg-black/60 bg-cover bg-center bg-blend-multiply bg-no-repeat transition-all duration-300"
+                        className="hover-target w-1/2 h-[150px] sm:h-[200px] bg-black/60 bg-cover bg-center bg-blend-multiply bg-no-repeat transition-all duration-300"
                         style={{ backgroundImage: `url(${otherCars[i].url})` }}
                       >
-                        <h1 className="text-white text-2xl ml-[10%] pt-[5%] font-medium">{otherCars[i].title}</h1>
+                        <h1 className="text-white text-base sm:text-lg lg:text-2xl ml-4 pt-4 font-medium">
+                          {otherCars[i].title}
+                        </h1>
                       </motion.div>
                     ))}
                   </div>
                 </div>
 
-                {/* Bottom Section */}
-                <div className="w-full h-[40%] flex bg-gray-800">
-                  <div className="w-[45%] h-full flex">
+                {/* Bottom Section: 2 Cars + Text Block */}
+                <div className="w-full flex flex-col lg:flex-row h-auto lg:h-[40%] bg-gray-800">
+                  {/* Bottom 2 Cars */}
+                  <div className="w-full lg:w-[45%] flex flex-wrap">
                     {otherCars.slice(4).map((car) => (
                       <motion.div
                         key={car.id}
                         ref={(el) => clickableElements.current.push(el)}
                         onClick={() => swapCar(car)}
-                        className="hover-target w-[50%] h-full bg-center bg-black/60 bg-cover bg-blend-multiply bg-no-repeat"
+                        className="hover-target w-1/2 h-[150px] sm:h-[200px] bg-black/60 bg-cover bg-center bg-blend-multiply bg-no-repeat"
                         style={{ backgroundImage: `url(${car.url})` }}
                       >
-                        <h1 className="text-white text-2xl ml-[10%] pt-[5%] font-medium">{car.title}</h1>
+                        <h1 className="text-white text-base sm:text-lg lg:text-2xl ml-4 pt-4 font-medium">
+                          {car.title}
+                        </h1>
                       </motion.div>
                     ))}
                   </div>
 
+                  {/* Text Block */}
                   <motion.div
                     initial={{ opacity: 0.5, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="w-[55%] h-full bg-[#00a2ff]"
+                    className="w-full lg:w-[55%] h-auto lg:h-full bg-[#00a2ff] p-6"
                   >
-                    <h1 className="text-white text-3xl ml-[5%] pt-[5%] font-medium uppercase">
+                    <h1 className="text-white text-xl sm:text-2xl lg:text-3xl font-medium uppercase">
                       Welcome!
                     </h1>
-                    <p className="text-white text-sm ml-[5%] pt-[2%] w-xl">
-                      For more than 35 years, we have been bringing ambitious projects to life. The pride
-                      of our work, the rigor in the execution, the spirit of team, and integrity are the
+                    <p className="text-white text-sm sm:text-base mt-2 max-w-2xl">
+                      For more than 35 years, we have been bringing ambitious
+                      projects to life. The pride of our work, the rigor in the
+                      execution, the spirit of team, and integrity are the
                       values that animate us on a daily basis.
                     </p>
                     <a href="#main-carousel-section">
-                      <button className="hover-target w-40 ml-[2%] mt-[4%] gap-2 flex justify-center items-center font-medium h-15 bg-transparent border-[1px] text-white border-white rounded-full uppercase">
+                      <button className="hover-target mt-4 px-6 py-2 border border-white text-white rounded-full uppercase">
                         Read More
                       </button>
                     </a>
@@ -278,7 +320,7 @@ const Page = () => {
               </div>
             </div>
             <Footer />
-            </div>
+          </div>
         </>
       )}
     </div>
@@ -286,4 +328,3 @@ const Page = () => {
 };
 
 export default Page;
-

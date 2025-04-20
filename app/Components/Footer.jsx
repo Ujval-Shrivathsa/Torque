@@ -27,7 +27,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white py-16 px-4 sm:px-6 lg:px-20 w-full">
+    <footer className="bg-black text-white py-5 md:py-10 px-4 sm:px-6 lg:px-10 w-full ">
       {/* Top Border Animation */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
