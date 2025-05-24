@@ -92,7 +92,7 @@ const SlidingPage = () => {
           <Link href="/PPF" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-full h-96 sm:h-[28rem] bg-[url('https://media.istockphoto.com/id/1494849821/nl/foto/wrapping-car-paint-protection-films.jpg?s=612x612&w=0&k=20&c=5YRNvejX8l-fXf4ZaTzAvJC8Q4NQcpxMjZrNJ3UJI7s=')] bg-cover bg-center cursor-pointer relative"
+              className="w-full h-96 sm:h-[28rem] bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1748071249/transparent-film-car-paint-protection-wrapping-specialis_doute4.jpg')] bg-cover bg-center cursor-pointer relative"
             >
               <motion.div className="absolute bottom-0 left-0 right-0 h-[15%] lg:mt-10 flex justify-center items-center bg-black bg-opacity-80">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white">Paint Protection Film</h1>
