@@ -94,7 +94,7 @@ const SlidingPage = () => {
               whileHover={{ scale: 1.05 }}
               className="w-full h-64 sm:h-80 bg-[url('https://media.istockphoto.com/id/1494849821/nl/foto/wrapping-car-paint-protection-films.jpg?s=612x612&w=0&k=20&c=5YRNvejX8l-fXf4ZaTzAvJC8Q4NQcpxMjZrNJ3UJI7s=')] bg-cover bg-center cursor-pointer relative"
             >
-             <motion.div className="absolute bottom-0 left-0 right-0 h-[25%] flex justify-center items-center bg-black bg-opacity-80">
+             <motion.div className="absolute bottom-0 left-0 right-0 h-[15%] lg:mt-10 flex justify-center items-center bg-black bg-opacity-80">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white">Paint Protection Film</h1>
               </motion.div>
             </motion.div>
@@ -105,7 +105,7 @@ const SlidingPage = () => {
               whileHover={{ scale: 1.05 }}
               className="w-full h-64 sm:h-80 bg-[url('https://media.istockphoto.com/id/2199760696/photo/ceramic-or-graphene-coating-applied-on-black-paint.jpg?s=612x612&w=0&k=20&c=VojxYpwi-hSXdjlfIeKd5z9iTgK048-KYkVawcvKGnI=')] bg-cover bg-center cursor-pointer relative"
             >
-              <motion.div className="absolute bottom-0 left-0 right-0 h-[25%] flex justify-center items-center bg-black bg-opacity-80">
+              <motion.div className="absolute bottom-0 left-0 right-0 h-[15%] lg:mt-10 flex justify-center items-center bg-black bg-opacity-80">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white">Graphene Coating</h1>
               </motion.div>
             </motion.div>
@@ -116,7 +116,7 @@ const SlidingPage = () => {
               whileHover={{ scale: 1.05 }}
               className="w-full h-64 sm:h-80 bg-[url('https://media.istockphoto.com/id/1178049623/photo/applying-a-nano-ceramic-coating-for-interior-leather-on-the-cars-seat-brown-upholstery-by-a.jpg?s=612x612&w=0&k=20&c=YaESNLfFfdIZmO7-qdLygiWqioy2kDGOR9C6OBv1Vvg=')] bg-cover bg-center cursor-pointer relative"
             >
-              <motion.div className="absolute bottom-0 left-0 right-0 h-[25%] flex justify-center items-center bg-black bg-opacity-80">
+              <motion.div className="absolute bottom-0 left-0 right-0 h-[15%] lg:mt-10 flex justify-center items-center bg-black bg-opacity-80">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white">Ceramic Coating</h1>
               </motion.div>
             </motion.div>
