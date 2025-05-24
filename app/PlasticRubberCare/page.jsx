@@ -6,13 +6,13 @@ import Footer from "../Components/Footer";
 
 const page = () => {
   const images = [
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR2_az9js5.jpg"
+    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR5_kzonyn.jpg"
   ];
 
   const [mainImage, setMainImage] = useState(images[0]);
 
   const handleCheckout = () => {
-    const message = `*Product:* Engine Coating\n*Price:* ₹500.00`;
+    const message = `*Product:* Plastic & Rubber Care\n*Price:* ₹399.00`;
     const finalMessage = encodeURIComponent(message);
     const whatsappNumber = "9686968315";
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${finalMessage}`;
@@ -74,21 +74,21 @@ const page = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-2xl md:text-4xl font-bold tracking-wide">
-              Engine Coating
+             Plastic & Rubber Care
             </h1>
 
             <p className="text-lg md:text-4xl font-semibold mt-7 mb-10">
-              MRP - <span className=" text-[#00DAFF]"> ₹500.00</span>
+              MRP - <span className=" text-[#00DAFF]"> ₹410.00</span>
             </p>
 
             {/* Features */}
             <div className="space-y-5">
               {[
-                "ENGINE PROTECTION – Forms a protective layer that guards engine components against corrosion and wear.",
-                "HEAT RESISTANT – Designed to withstand high temperatures typically found in engine bays.",
-                "ENHANCED PERFORMANCE – Reduces friction and improves engine efficiency over time.",
-                "EASY TO APPLY – Spray-on or brush-on formula allows for quick and hassle-free application.",
-                "LONG-LASTING SHIELD – Provides durable protection, extending the life of your engine components.",
+                "RESTORES FADED SURFACES – Revives dull plastic and rubber, bringing back deep, rich color.",
+                "UV PROTECTION – Shields surfaces from sun damage, cracking, and fading.",
+                "NON-GREASY FINISH – Leaves a clean, satin look without oily residue.",
+                "VERSATILE USE – Ideal for interior trims, exterior plastics, rubber seals, and tires.",
+                "EASY TO APPLY – Quick spray or wipe-on formula for effortless detailing.",
               ].map((feature, index) => (
                 <motion.p
                   key={index}

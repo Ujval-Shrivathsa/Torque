@@ -27,7 +27,7 @@ const SliderPage = () => {
                     initial={{ width: "90%", height: '50%', borderRadius: '20px' }}
                     whileInView={{ borderRadius: '30px' }}
                     transition={{ duration: 1, delay: 0.5, ease: 'circInOut' }}
-                    className="lg:ml-[4%] rounded-2xl overflow-hidden"
+                    className="lg:ml-[16%] rounded-2xl overflow-hidden"
                 >
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -35,17 +35,13 @@ const SliderPage = () => {
                         transition={{ delay: 1.2 }}
                     >
                         <ImageSlider
-                            beforeImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745071762/BEFORE_djbit3.png"
-                            afterImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745071756/AFTER_lixwgl.png"
+                            beforeImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1747657651/Ceramic-Pro-Pompano-by-Ceramic-Pro-Pompano-Elite-Dealer-scaled-1-1024x576_vskumx.png"
                         />
                     </motion.div>
                 </motion.div>
 
-                {/* Features Grid */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1, type: 'spring' }}
+                {/* Features Grid 
+                <motion.div
                     className="mt-12 sm:mt-16"
                 >
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-12">
@@ -53,9 +49,6 @@ const SliderPage = () => {
                             <motion.div 
                                 key={index}
                                 className="flex flex-col items-center"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 + 0.5 }}
                             >
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
                                     <img 
@@ -72,6 +65,7 @@ const SliderPage = () => {
                         ))}
                     </div>
                 </motion.div>
+                */}
             </motion.div>
         </div>
     );

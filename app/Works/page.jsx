@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
 import Footer from "../Components/Footer";
+import Image from "next/image";
+import Link from "next/link";
 
 const Page = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mainCar, setMainCar] = useState({
     id: "main",
-    title: "BMW 7 Series",
+    title: "Porsche 911",
     url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg",
   });
 
@@ -88,11 +90,6 @@ const Page = () => {
     "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg",
   ];
 
-  const handleNextImage = () => {
-    const nextIndex = (carouselIndex + 1) % carouselImages.length;
-    setCarouselIndex(nextIndex);
-  };
-
   const [otherCars, setOtherCars] = useState([
     {
       id: "1",
@@ -117,7 +114,7 @@ const Page = () => {
     {
       id: "5",
       title: "Mercedes Benz",
-      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896503/unnamed_tqnwac.jpg",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823189/Mercedez_Benz_n2hhz2.jpg",
     },
     {
       id: "6",
@@ -135,50 +132,9 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth cursor-none relative">
-      {isLoading && (
-        <div className="fixed z-[9999] inset-0 bg-black flex flex-col justify-center items-center">
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="text-cyan-200 text-8xl font-bold"
-          >
-            WORK
-          </motion.h1>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "80%" }}
-            transition={{ duration: 2.5, ease: "easeInOut" }}
-            className="mt-6 h-1 bg-cyan-500 rounded-full"
-          />
-        </div>
-      )}
-
-      {/* Floating cursor dot */}
-      <div
-        ref={dotRef}
-        className="cursor-dot fixed z-[9998] w-3 h-3 rounded-full bg-[#496afa] pointer-events-none transition-all duration-300 ease-out"
-        style={{
-          position: "fixed",
-          transform: "translate(-50%, -50%)",
-          top: "0px",
-          left: "0px",
-        }}
-      />
-
-      {/* Add media query to hide dot on mobile */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .cursor-dot {
-            display: none;
-          }
-        }
-      `}</style>
-
-      {!isLoading && (
+    <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth relative">
         <>
-          <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth cursor-none relative ">
+          <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth relative ">
             <Navlinks isComplete={true} />
             <div className="w-full m-auto overflow-x-hidden h-full mt-32">
               <div
@@ -197,64 +153,10 @@ const Page = () => {
                       backgroundImage: `url(${carouselImages[carouselIndex]})`,
                     }}
                   >
-                    <div className="absolute bottom-4 right-4">
-                      <motion.button
-                        ref={(el) => clickableElements.current.push(el)}
-                        onClick={handleNextImage}
-                        className="w-10 hover-target gap-2 flex justify-center items-center font-medium h-10 rounded-full border border-transparent bg-black text-white uppercase cursor-pointer"
-                      >
-                        <motion.img
-                          whileHover={{ rotate: 15 }}
-                          whileTap={{ rotate: -15 }}
-                          transition={{ stiffness: 300 }}
-                          src="download-removebg-preview.png"
-                          className="h-5"
-                          alt=""
-                        />
-                      </motion.button>
-                    </div>
 
-                    {/* Carousel Dots */}
-                    <div className="absolute bottom-5 left-[10%] flex space-x-2">
-                      {carouselImages.map((_, index) => (
-                        <div
-                          key={index}
-                          className={`w-3 h-3 rounded-full ${
-                            index === carouselIndex ? "bg-white" : "bg-white/40"
-                          }`}
-                        />
-                      ))}
-                    </div>
+
                     {/* </motion.div> */}
 
-                    <div className="absolute bottom-4 right-4">
-                      <motion.button
-                        ref={(el) => clickableElements.current.push(el)}
-                        onClick={handleNextImage}
-                        className="w-10 hover-target gap-2 flex justify-center items-center font-medium h-10 rounded-full border border-transparent bg-black text-white uppercase cursor-pointer"
-                      >
-                        <motion.img
-                          whileHover={{ rotate: 15 }}
-                          whileTap={{ rotate: -15 }}
-                          transition={{ stiffness: 300 }}
-                          src="download-removebg-preview.png"
-                          className="h-5"
-                          alt=""
-                        />
-                      </motion.button>
-                    </div>
-
-                    {/* Carousel Dots */}
-                    <div className="absolute bottom-5 left-[10%] flex space-x-2">
-                      {carouselImages.map((_, index) => (
-                        <div
-                          key={index}
-                          className={`w-3 h-3 rounded-full ${
-                            index === carouselIndex ? "bg-white" : "bg-white/40"
-                          }`}
-                        />
-                      ))}
-                    </div>
                   </motion.div>
 
                   {/* Top 4 Cars */}
@@ -299,7 +201,7 @@ const Page = () => {
                     initial={{ opacity: 0.5, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="w-full lg:w-[55%] h-auto lg:h-full bg-[#00a2ff] p-6"
+                    className="w-full lg:w-[55%] h-auto lg:h-full pb-7 bg-black p-6"
                   >
                     <h1 className="text-white text-xl sm:text-2xl lg:text-3xl font-medium uppercase">
                       Welcome!
@@ -310,11 +212,9 @@ const Page = () => {
                       execution, the spirit of team, and integrity are the
                       values that animate us on a daily basis.
                     </p>
-                    <a href="#main-carousel-section">
-                      <button className="hover-target mt-4 px-6 py-2 border border-white text-white rounded-full uppercase">
-                        Read More
+                      <button className="hover-target cursor-pointer bg-cyan-600 mt-4 px-6 py-2 border border-cyan-600 text-white rounded-full uppercase">
+                        <Link href="/AboutUs">Read More</Link>
                       </button>
-                    </a>
                   </motion.div>
                 </div>
               </div>
@@ -322,7 +222,6 @@ const Page = () => {
             <Footer />
           </div>
         </>
-      )}
     </div>
   );
 };

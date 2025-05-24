@@ -14,26 +14,34 @@ const products = [
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR2_az9js5.jpg",
     name: "Engine Coating",
-    mrp: "466",
+    mrp: 500,
+    discountedPrice: 760,
+    discountPercentage: 35,
     Link: "/Product",
   },
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR4_d5yk2s.jpg",
     name: "Tar & Adhesive Remover",
-    mrp: "466",
-    Link: "/Product",
+    mrp: 399,
+    discountedPrice: 540,
+    discountPercentage: 25,
+    Link: "/TarAdhesiveRemover",
   },
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR5_kzonyn.jpg",
     name: "Plastic & Rubber Care",
-    mrp: "466",
-    Link: "/Product",
+    mrp: 410,
+    discountedPrice: 540,
+    discountPercentage: 35,
+    Link: "/PlasticRubberCare",
   },
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR3_cp1stx.jpg",
-    name: "Air Conditioner Sanitizer",
-    mrp: "466",
-    Link: "/Product",
+    name: "Upholstery Cleaner",
+    mrp: 390,
+    discountedPrice: 590,
+    discountPercentage: 35,
+    Link: "/UpholsteryCleaner",
   },
 ];
 
@@ -44,14 +52,16 @@ const ProductPage = () => {
     const productToAdd = {
       ...product,
       quantity: 1,
-      mrp: parseInt(product.mrp, 10),
+      price: product.discountedPrice, // Use discounted price for cart
     };
     addToCart(productToAdd);
-    toast.success(`${product.name} added to cart! ✅`);
+    toast.success(`${product.name} added to cart! ✅`, {
+      className: "mt-[70px] z-[9999999999]",
+    });
   };
 
   return (
-    <div className="bg-black text-white w-[90%] m-auto min-h-full my-24 flex flex-col items-center">
+    <div className="bg-black z-0 text-white w-[90%] m-auto min-h-full my-24 flex flex-col items-center">
       <h1 className="text-3xl font-bold my-5 text-[#00DAFF]">Our Products</h1>
 
       {/* Slider Section */}
@@ -80,12 +90,18 @@ const ProductPage = () => {
                   className="w-full h-72 object-contain mb-4 rounded-md"
                 />
                 <h2 className="text-xl font-semibold">{product.name}</h2>
-                <p className="text-gray-600">₹{product.mrp}</p>
+                <div className="price-container flex items-center gap-2 mt-1">
+                  <p className="text-gray-800 font-bold text-lg">₹{product.mrp}</p>
+                  <p className="text-gray-500 line-through text-sm">₹{product.discountedPrice}</p>
+                  <span className="bg-green-100 text-green-700 px-2 py-0.5 text-xs font-medium rounded">
+                    {product.discountPercentage}% OFF
+                  </span>
+                </div>
               </Link>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 onClick={() => handleAddToCart(product)}
-                className="mt-4 bg-[#00DAFF] text-black font-semibold px-6 py-2 rounded-md text-sm hover:bg-[#00c8e0] flex items-center gap-2 shadow-md"
+                className="mt-[60px] bg-[#00DAFF] text-black font-semibold px-6 py-2 rounded-md text-sm hover:bg-[#00c8e0] flex items-center gap-2 shadow-md"
               >
                 <MdShoppingCart /> Add to Cart
               </motion.button>
@@ -93,6 +109,16 @@ const ProductPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="mt-14 px-6 py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-base sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white transition-all duration-300"
+      >
+        <Link href="/ShopPage">Our Products →</Link>
+      </motion.button>
     </div>
   );
 };

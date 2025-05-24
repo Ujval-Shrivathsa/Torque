@@ -27,21 +27,23 @@ const Navlinks = ({ isComplete }) => {
     <>
       {showNav && (
         <motion.nav
-          className={`fixed top-0  left-0 w-full z-30 transition-all duration-300 ${
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className={`fixed top-0 left-0 w-full z-[999999] transition-all duration-300 ${
             scrolled
-              ? "bg-black/70 backdrop-blur-sm shadow-md"
+              ? "bg-black/70  backdrop-blur-sm shadow-md"
               : "bg-transparent"
           }`}
         >
-          {/* Wrapper with fixed height to prevent scroll styles affecting layout */}
-          <div className="max-w-screen-xl mx-auto flex items-center justify-between px-5 md:py-14 h-[80px]">
+          <div className="max-w-screen-xl overflow-x-hidden mx-auto flex items-center justify-between px-4 md:px-6 h-[80px]">
             <GlitchLogo />
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <Cart />
               <button
                 onClick={() => setMenuOpen(true)}
-                className="text-white px-4 py-2 font-bold text-xl border rounded-2xl"
+                className="text-white px-4 py-2 font-semibold text-base md:text-lg border border-white rounded-xl hover:bg-white hover:text-black transition"
               >
                 Menu
               </button>

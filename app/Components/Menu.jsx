@@ -1,69 +1,151 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { X, Instagram, Facebook, Linkedin } from "lucide-react";
 
 const Menu = ({ onClose }) => {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [animateIn, setAnimateIn] = useState(false);
+  
+  useEffect(() => {
+    setAnimateIn(true);
+    return () => setAnimateIn(false);
+  }, []);
+  
+  const menuItems = [
+    { name: "Home", link: "/" },
+    { name: "Work", link: "/Works" },
+    { name: "Service", link: "/Services" },
+    { name: "Shop", link: "/ShopPage" },
+    { name: "About", link: "/AboutUs" },
+    { name: "Contact", link: "/Contact" },
+  ];
+
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black text-white p-4 md:p-8 overflow-y-auto z-[99999999999999999999]">
+    <div 
+      className={`fixed top-0 right-0 h-full z-99999999 bg-[#1d1d1d] text-white flex flex-col overflow-y-auto ${animateIn ? 'opacity-100' : 'opacity-0'} 
+                 w-full sm:w-2/3 md:w-1/2 lg:w-1/3`} 
+      style={{ transition: "opacity 0.4s ease" }}
+    >
       {/* Header */}
-      <div className="flex justify-between items-center border-b border-gray-500 pb-4">
-        <img src="/Torque-PNG-02.png" alt="Torque Logo" className="h-10 md:h-12" />
+      <div className="flex justify-between items-center p-4">
+        <img 
+          src="/Torque-PNG-02.png" 
+          alt="Torque Logo" 
+          className="h-5 sm:h-6 ml-2 sm:ml-4 md:ml-6" 
+        />
         <button
           onClick={onClose}
-          className="px-3 py-1 text-white hover:bg-gray-800 rounded"
+          className="text-white cursor-pointer lg:w-15 lg:h-15 md:w-8 md:h-8 sm:h-8 sm:w-8 flex justify-center items-center rounded-full bg-cyan-600 hover:bg-cyan-700 transition-all duration-300 transform hover:rotate-90 mr-2 sm:mr-4"
+          aria-label="Close menu"
         >
-          Close
+          <X size={16} className="sm:w-5 sm:h-5 lg:w-28" />
         </button>
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col lg:flex-row items-start lg:items-center mt-8 space-y-6 lg:space-y-0 lg:space-x-12 w-full">
-        {/* Video Section */}
-        <div className="w-full lg:w-1/2 border border-gray-500 p-4 rounded-md flex flex-col items-start">
-          <div className="w-full rounded-md overflow-hidden md:aspect-video h-40 md:h-auto">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              src="https://res.cloudinary.com/dycm7vkuq/video/upload/v1744367852/100_MB_skq4tw.mp4"
-              className="w-full h-full object-cover rounded-md"
-            />
-          </div>
-          <p className="text-sm text-white mt-3">Play Reel</p>
-        </div>
-
-        {/* Navigation */}
-        <div className="w-full lg:w-1/2 font-bold">
-          <nav className="space-y-4 text-2xl">
-            {[
-              { name: "Home", link: "/" },
-              { name: "Work", link: "/OurWorks" },
-              { name: "Service", link: "/OurServices" },
-              { name: "About", link: "/AboutUs" },
-              { name: "Contact", link: "/Contact" },
-            ].map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                className="block border-b border-gray-500 pb-2 hover:text-gray-400"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
+      {/* Stylish HR */}
+      <div className="px-4">
+        <div className="relative h-px w-full">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-600 to-transparent opacity-50"></div>
         </div>
       </div>
 
-      {/* Footer */}
-      {/* <div className="fixed bottom-0 left-0 w-full border-t border-gray-500 p-4 flex flex-col md:flex-row justify-center md:justify-between items-center bg-black">
-        <div className="flex space-x-6 mb-2 md:mb-0">
-          <a href="#" className="hover:text-gray-400">
-            Instagram
+      {/* Content */}
+      <div className="flex-1 lg:mt- flex flex-col">
+        {/* Navigation */}
+        <nav className="w-full px-6 lg:leading-tight sm:px-8 md:px-10 mt-4 sm:mt-6 md:mt-8">
+          {menuItems.map((item, index) => (
+            <div 
+              key={index}
+              className="overflow-hidden py-2"
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+            >
+              <a
+                href={item.link}
+                className="relative anek lg:-mt-5 lg:text-[55px] tracking-tight inline-block text-2xl sm:text-3xl md:text-4xl font-normal leading-tight transition-all duration-300 hover:text-gray-400"
+              >
+                <span className="block truncate">{item.name}</span>
+              </a>
+            </div>
+          ))}
+        </nav>
+      </div>
+
+      {/* Social Media Section */}
+      <div className="pb-4 sm:pb-6 lg:ml-2 px-6 sm:px-8 md:px-10 mt-2">
+        <h3 className="text-xs font-medium mb-2 opacity-80 uppercase">Socials</h3>
+        <div className="flex lg:gap-6 gap-4">
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group p-1 transition-all duration-300 hover:text-cyan-500"
+          >
+            <Instagram 
+              size={14}
+              className="transition-all duration-300 group-hover:scale-110" 
+            />
           </a>
-          <a href="#" className="hover:text-gray-400">
-            LinkedIn
+          <a 
+            href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group p-1 transition-all duration-300 hover:text-cyan-500"
+          >
+            <Facebook 
+              size={14} 
+              className="transition-all duration-300 group-hover:scale-110" 
+            />
+          </a>
+          <a 
+            href="https://linkedin.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group p-1 transition-all duration-300 hover:text-cyan-500"
+          >
+            <Linkedin 
+              size={14} 
+              className="transition-all duration-300 group-hover:scale-110" 
+            />
           </a>
         </div>
-      </div> */}
+      </div>
+
+      <style jsx>{`
+        @keyframes expandLine {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        nav > div {
+          animation: fadeInUp 0.5s forwards;
+          animation-delay: calc(0.1s * var(--index));
+          opacity: 0;
+        }
+
+        nav > div:nth-child(1) { --index: 1; }
+        nav > div:nth-child(2) { --index: 2; }
+        nav > div:nth-child(3) { --index: 3; }
+        nav > div:nth-child(4) { --index: 4; }
+        nav > div:nth-child(5) { --index: 5; }
+        nav > div:nth-child(6) { --index: 6; }
+        
+        @media (max-width: 640px) {
+          nav > div {
+            animation-delay: calc(0.05s * var(--index));
+          }
+        }
+      `}</style>
     </div>
   );
 };

@@ -1,33 +1,17 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const logos = [
-  { src: "/Images/onyx_logo_-_new-copy.png", alt: "Groupe Lauzon" },
-  { src: "/Images/onyx_logo_-1.png", alt: "Arbour Volkswagen" },
-  { src: "/Images/onyx_logo2 (1).png", alt: "Mercedes-Benz" },
-  { src: "/Images/onyx_logo3 (1).png", alt: "Mazda" },
-];
-
-const dealerships = [
-  {
-    src: "/applying-nanoceramics-cars-car-paint-protection-concept.jpg",
-    name: "Paint Protection Film",
-    link: "/graphene-coating",
-  },
-  {
-    src: "/car-wash-detailing-station.jpg",
-    name: "Graphene Coating",
-    link: "/graphene-coating",
-  },
-  {
-    src: "/male-worker-wrapping-car-with-ptotective-foil.jpg",
-    name: "Ceramic Coating",
-    link: "/graphene-coating",
-  },
+  { src: "/Images/logo.png", alt: "Groupe Lauzon" },
+  { src: "/Images/onyx_logo_-_new-copy.png", alt: "Mercedes-Benz" },
+  { src: "/Images/onyx_logo_-1.png", alt: "Groupe Lauzon" },
+  { src: "/Images/hlogo.png", alt: "Mercedes-Benz" },
+  { src: "/Images/onyx_logo2 (1).png", alt: "Groupe Lauzon" },
+  { src: "/Images/onyx_logo3 (1).png", alt: "Mercedes-Benz" },
 ];
 
 const SlidingPage = () => {
@@ -51,9 +35,9 @@ const SlidingPage = () => {
             transition={{ duration: 1 }}
             className="flex justify-center md:justify-start items-center text-center md:text-left"
           >
-            <h3 className="text-2xl sm:text-3xl md:text-4xl px-20">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl px-4 md:px-20">
               Leading car care & <br />
-              <span className="text-[#00DAFF] text-3xl sm:text-4xl lg:text-4xl font-bold whitespace-nowrap">
+              <span className="text-[#00DAFF] text-3xl sm:text-4xl font-bold whitespace-nowrap">
                 Paint Protection Brands
               </span>
             </h3>
@@ -78,14 +62,14 @@ const SlidingPage = () => {
       </motion.div>
 
       {/* Section 2: Dealership Info */}
-      <div  className="w-full flex flex-col items-center justify-center my-10 p-4 sm:p-6 md:p-12 ">
+      <div className="w-full flex flex-col items-center justify-center my-10 p-4 sm:p-6 md:p-12">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl lg:mt-5 md:text-6xl text-center relative font-medium"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-center font-medium"
         >
           Quality & Sustainable{" "}
           <span className="font-bold text-[#00DAFF]">Car Care</span>
@@ -97,11 +81,47 @@ const SlidingPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center px-4 text-[12px] sm:text-[14px] md:text-xl max-w-2xl mt-2 text-gray-300"
+          className="text-center px-4 text-sm sm:text-base md:text-xl max-w-2xl mt-2 text-gray-300"
         >
-          We’re committed to creating car care solutions that are effective,
+          We're committed to creating car care solutions that are effective,
           affordable, and sustainable for a cleaner car and a cleaner world.
         </motion.p>
+
+        {/* Responsive Image Cards */}
+        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-6 mt-10 md:mt-20">
+          <Link href="/PPF" className="w-full md:w-[30%] overflow-hidden">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="w-full h-64 sm:h-80 bg-[url('https://media.istockphoto.com/id/1494849821/nl/foto/wrapping-car-paint-protection-films.jpg?s=612x612&w=0&k=20&c=5YRNvejX8l-fXf4ZaTzAvJC8Q4NQcpxMjZrNJ3UJI7s=')] bg-cover bg-center cursor-pointer relative"
+            >
+             <motion.div className="absolute bottom-0 left-0 right-0 h-[40%] flex justify-center items-center bg-black bg-opacity-80">
+                <h1 className="text-xl sm:text-2xl font-semibold text-white">Paint Protection Film</h1>
+              </motion.div>
+            </motion.div>
+          </Link>
+
+          <Link href="/GC" className="w-full md:w-[30%] overflow-hidden">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="w-full h-64 sm:h-80 bg-[url('https://media.istockphoto.com/id/2199760696/photo/ceramic-or-graphene-coating-applied-on-black-paint.jpg?s=612x612&w=0&k=20&c=VojxYpwi-hSXdjlfIeKd5z9iTgK048-KYkVawcvKGnI=')] bg-cover bg-center cursor-pointer relative"
+            >
+              <motion.div className="absolute bottom-0 left-0 right-0 h-[40%] flex justify-center items-center bg-black bg-opacity-80">
+                <h1 className="text-xl sm:text-2xl font-semibold text-white">Graphene Coating</h1>
+              </motion.div>
+            </motion.div>
+          </Link>
+          
+          <Link href="/CC" className="w-full md:w-[30%] overflow-hidden">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="w-full h-64 sm:h-80 bg-[url('https://media.istockphoto.com/id/1178049623/photo/applying-a-nano-ceramic-coating-for-interior-leather-on-the-cars-seat-brown-upholstery-by-a.jpg?s=612x612&w=0&k=20&c=YaESNLfFfdIZmO7-qdLygiWqioy2kDGOR9C6OBv1Vvg=')] bg-cover bg-center cursor-pointer relative"
+            >
+              <motion.div className="absolute bottom-0 left-0 right-0 h-[40%] flex justify-center items-center bg-black bg-opacity-80">
+                <h1 className="text-xl sm:text-2xl font-semibold text-white">Ceramic Coating</h1>
+              </motion.div>
+            </motion.div>
+          </Link>
+        </div>
 
         {/* Button */}
         <motion.button
@@ -109,13 +129,11 @@ const SlidingPage = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mt-14 px-4 sm:px-6 py-2 sm:py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-md sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white hover:font-bold transition-all duration-300"
+          className="mt-11 z-99 px-6 py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-base sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white transition-all duration-300"
         >
-          <Link href={`/OurServices`} >Our services →</Link>
+          <Link href="/Services">Our services →</Link>
         </motion.button>
       </div>
-
-      
 
       {/* CSS for Animation */}
       <style jsx>{`

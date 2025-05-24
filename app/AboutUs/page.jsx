@@ -44,7 +44,7 @@ const Page = () => {
         <div
           className="relative w-full max-w-[1200px] h-[600px] top-20 rounded-[30px] overflow-hidden bg-cover bg-center shadow-2xl transition-all duration-500"
           style={{
-            backgroundImage: `url(https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg)`,
+            backgroundImage: `url(https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823559/aboutuspageherobg_yoyu3s.jpg)`,
             transition: "transform 0.6s ease-out",
           }}
         >

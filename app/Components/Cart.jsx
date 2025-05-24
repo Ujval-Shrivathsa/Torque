@@ -41,7 +41,7 @@ const Cart = () => {
       >
         <MdShoppingCart />
         {cart.length > 0 && (
-          <span className="absolute right-0 top-0 bg-red-500 text-white text-xs rounded-full px-2">
+          <span className="absolute z-9999999 right-0 top-0 bg-red-500 text-white text-xs rounded-full px-2">
             {cart.length}
           </span>
         )}
@@ -54,14 +54,16 @@ const Cart = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.5 }}
-            className="fixed right-0 top-0 h-screen w-[400px] bg-black text-white z-[100] overflow-y-auto shadow-xl px-5">
-            <div>
+           style={{ zIndex: 999999999999 }}
+            className="fixed top-0 right-0 bottom-0 left-0 md:left-auto h-screen w-full md:w-[350px] lg:w-[400px] bg-black text-white overflow-y-auto shadow-xl px-3 md:px-5"
+          >
+            <div className="flex flex-col h-full">
               {/* Header */}
-              <div className="flex justify-between items-center border-b border-white pb-10 py-10 px-5">
+              <div className="flex justify-between items-center border-b border-white pb-6 md:pb-10 py-6 md:py-10 px-2 md:px-5">
                 <h2 className="text-lg font-bold">Cart</h2>
                 <motion.button
                   onClick={() => setIsCartOpen(false)}
-                  className="text-xl border border-white px-4 py-1 rounded-md"
+                  className="text-sm md:text-xl border border-white px-3 md:px-4 py-1 rounded-md"
                 >
                   Close
                 </motion.button>
@@ -78,30 +80,30 @@ const Cart = () => {
                       <img
                         src={item.img}
                         alt={item.name}
-                        className="w-14 h-14 object-cover rounded mr-3"
+                        className="w-12 h-12 md:w-14 md:h-14 object-cover rounded mr-2 md:mr-3"
                       />
                       <div className="flex-1">
-                        <p className="text-sm">{item.name}</p>
+                        <p className="text-xs md:text-sm">{item.name}</p>
                         <p className="text-xs text-gray-400">
                           ₹{item.mrp * item.quantity}
                         </p>
-                        <div className="flex items-center mt-2">
+                        <div className="flex items-center mt-1 md:mt-2">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               updateQuantity(index, -1);
                             }}
-                            className="px-2 py-1 border border-white rounded text-sm"
+                            className="px-2 py-0.5 md:py-1 border border-white rounded text-xs md:text-sm"
                           >
                             -
                           </button>
-                          <span className="mx-2">{item.quantity}</span>
+                          <span className="mx-2 text-sm">{item.quantity}</span>
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               updateQuantity(index, 1);
                             }}
-                            className="px-2 py-1 border border-white rounded text-sm"
+                            className="px-2 py-0.5 md:py-1 border border-white rounded text-xs md:text-sm"
                           >
                             +
                           </button>
@@ -111,27 +113,28 @@ const Cart = () => {
                         onClick={() => removeFromCart(index)}
                         whileTap={{ scale: 0.8 }}
                         transition={{ duration: 0.2 }}
-                        className="text-red-500 text-xl ml-2"
+                        className="text-red-500 text-lg md:text-xl ml-1 md:ml-2"
                       >
                         <MdDelete />
                       </motion.button>
                     </div>
                   ))
                 ) : (
-                  <p className="text-gray-400 mt-4">Cart is empty.</p>
+                  <p className="text-gray-400 mt-4 text-center">Cart is empty.</p>
                 )}
               </div>
-            </div>
 
-            {/* Footer */}
-            <div className="border-t border-white pt-4 z-50">
-              <h3 className="text-lg font-semibold">Total: ₹{totalPrice}</h3>
-              <button
-                onClick={handleCheckout}
-                className="mt-3 w-full bg-[#00DAFF] text-white py-2 rounded-md transition"
-              >
-                Checkout
-              </button>
+              {/* Footer */}
+              <div className="border-t border-white pt-4 mt-auto sticky bottom-0 bg-black pb-4">
+                <h3 className="text-base md:text-lg font-semibold">Total: ₹{totalPrice}</h3>
+                <button
+                  onClick={handleCheckout}
+                  className="mt-3 w-full bg-[#00DAFF] text-white py-2 rounded-md transition"
+                  disabled={cart.length === 0}
+                >
+                  Checkout
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

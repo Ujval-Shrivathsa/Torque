@@ -9,21 +9,21 @@ const Footer = () => {
   const pathname = usePathname();
 
   const quickLinks = [
-    { name: "Services", link: "/OurServices" },
+    { name: "Services", link: "/Services" },
     { name: "Contact", link: "/Contact" },
     { name: "About Us", link: "/AboutUs" },
   ];
 
   const services = [
-    { name: "Windshield Coating", link: "/windshield-coating" },
-    { name: "Interior Detailing", link: "/interior-detailing" },
-    { name: "Exterior Detailing", link: "/exterior-detailing" },
+    { name: "Windshield Coating", link: "/WC" },
+    { name: "Interior Detailing", link: "/ID" },
+    { name: "Exterior Detailing", link: "/ED" },
   ];
 
   const specialServices = [
-    { name: "Graphene Coating", link: "/graphene-coating" },
-    { name: "Ceramic Coating", link: "/ceramic-coating" },
-    { name: "Paint Protection", link: "/paint-protection" },
+    { name: "Graphene Coating", link: "/GC" },
+    { name: "Ceramic Coating", link: "/CC" },
+    { name: "Paint Protection", link: "/PPF" },
   ];
 
   return (
@@ -33,6 +33,7 @@ const Footer = () => {
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
+          viewport={{ once: true }}
         className="border-b border-gray-700"
       />
 
@@ -43,6 +44,7 @@ const Footer = () => {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
           className="space-y-3"
         >
           <p className="text-xl font-semibold">Quick Links</p>
@@ -65,6 +67,8 @@ const Footer = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+
           className="space-y-3"
         >
           <p className="text-xl font-semibold">Services</p>
@@ -86,6 +90,7 @@ const Footer = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="space-y-3"
         >
@@ -109,6 +114,7 @@ const Footer = () => {
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
           className="space-y-4"
         >
           <p className="text-xl font-semibold">Contact Us</p>
@@ -153,6 +159,7 @@ const Footer = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
+          viewport={{ once: true }}
         className="border-t border-gray-700 mt-10 pt-4 flex flex-col sm:flex-row justify-center sm:justify-between items-center text-sm text-gray-400 max-w-7xl mx-auto px-4"
       >
         <p className="mb-2 sm:mb-0 text-center sm:text-left">

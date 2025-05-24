@@ -36,7 +36,7 @@ const Instagrampost = () => {
         href="https://www.instagram.com/torquedetailingstudio"
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-[99999] -top-20 rounded-full mt-10 bg-cyan-500 text-black font-semibold text-lg flex items-center hover:bg-white transition duration-300 px-5 py-3"
+        className="relative -top-30 z-99999 rounded-full mt-10 bg-cyan-500 text-black font-semibold text-lg flex items-center hover:bg-white transition duration-300 px-5 py-3"
       >
         <FontAwesomeIcon icon={faInstagram} className="mr-2" />
         Follow on Instagram

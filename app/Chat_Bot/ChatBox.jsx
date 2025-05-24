@@ -9,32 +9,32 @@ import {
   faCheck,
   faRotateRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, motion } from "framer-motion";
+import { useAnimation, AnimatePresence, motion } from "framer-motion";
 
 const OptionCard = ({ option, selected, onClick }) => (
   <label className="cursor-pointer">
     <motion.div
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.2, delay: 0.5 }}
+      transition={{ duration: 0.2, delay: 0.3 }}
       onClick={onClick}
-      className={`px-6 py-3 rounded-full tracking-[0.5px] text-[14px] font-medium transition-all border flex items-center gap-3 mt-0 ${
+      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full tracking-[0.3px] text-[11px] sm:text-[13px] font-medium transition-all border flex items-center gap-1.5 sm:gap-2 mt-0 ${
         selected
           ? "border-transparent bg-[black] text-white"
           : "bg-[black] text-white border-transparent"
       }`}
     >
       <div
-        className={`w-4 h-4 rounded-sm transition-all ${
+        className={`w-3 h-3 rounded-sm transition-all ${
           selected
             ? "border-transparent text-white bg-[black] flex justify-center items-center"
             : "bg-[white]"
         }`}
       >
         {selected && (
-          <FontAwesomeIcon icon={faCheck} className="text-white text-md" />
+          <FontAwesomeIcon icon={faCheck} className="text-white text-xs" />
         )}
       </div>
       {option}
@@ -43,14 +43,14 @@ const OptionCard = ({ option, selected, onClick }) => (
 );
 
 const TypingDots = () => (
-  <div className="flex space-x-1 pl-2 items-center h-5 mt-0">
+  <div className="flex space-x-1 pl-1 items-center h-4">
     {[0, 1, 2].map((i) => (
       <motion.span
         key={i}
-        className="w-2 h-2 bg-black rounded-full"
+        className="w-1.5 h-1.5 bg-black rounded-full"
         animate={{
           opacity: [0.3, 1, 0.3],
-          y: [0, -3, 0],
+          y: [0, -2, 0],
         }}
         transition={{
           duration: 0.6,
@@ -63,8 +63,10 @@ const TypingDots = () => (
   </div>
 );
 
+  
 const ChatBox = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [hasBeenClicked, setHasBeenClicked] = useState(false);
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [step, setStep] = useState(-1);
@@ -79,7 +81,23 @@ const ChatBox = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isMobileNumberValid, setIsMobileNumberValid] = useState(true);
   const [isChatEnded, setIsChatEnded] = useState(false);
+  const [showChatTooltip, setShowChatTooltip] = useState(false);
   const messagesEndRef = useRef(null);
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const sequence = async () => {
+      // Fade in
+      await controls.start({ opacity: 1, transition: { duration: 3 } });
+      // Wait 3 seconds
+      await new Promise((res) => setTimeout(res, 3000));
+      // Fade out
+      await controls.start({ opacity: 0, transition: { duration: 1 } });
+    };
+
+    sequence();
+  }, [controls]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -88,6 +106,19 @@ const ChatBox = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Add tooltip effect when page loads
+  useEffect(() => {
+    // Show tooltip after page loads
+    setShowChatTooltip(true);
+    
+    // Hide tooltip after 3 seconds
+    const timer = setTimeout(() => {
+      setShowChatTooltip(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const options = [
     ["Ceramic Coating", "PPF", "Car Detailing", "Sunfilms"],
@@ -103,11 +134,11 @@ const ChatBox = () => {
         setMessages([
           { sender: "bot", text: "Hello, I am Saanvi" }
         ]);
-      }, 1000);
+      }, 800);
       
       const timer2 = setTimeout(() => {
         setMessages(prev => [...prev, { sender: "bot", text: "May I know your name?" }]);
-      }, 2000);
+      }, 1500);
       
       return () => {
         clearTimeout(timer1);
@@ -121,15 +152,24 @@ const ChatBox = () => {
     setTimeout(() => {
       setMessages([
         { sender: "bot", text: "Hello, I am Saanvi" },
-        { sender: "bot", text: "May I know your name?", style: { marginTop: "-100px" } }
+        { sender: "bot", text: "May I know your name?", style: { marginTop: "-80px" } }
       ]);
-    }, 1000);
+    }, 800);
     setStep(-1);
     setChatData({ name: "", service: [], vehicleType: [], model: "", mobile: "" });
     setSelectedOptions([]);
     setUserInput("");
     setShowForm(false);
     setIsChatEnded(false);
+  };
+
+  const handleOpenChat = () => {
+    setIsChatOpen(true);
+    setHasBeenClicked(true);
+  };
+
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
   };
 
   const handleSend = () => {
@@ -147,7 +187,7 @@ const ChatBox = () => {
           { sender: "bot", text: `Nice to meet you, ${name}! Please select a service.` }
         ]);
         setStep(0);
-      }, 1000);
+      }, 800);
       
       setUserInput("");
       return;
@@ -185,7 +225,7 @@ const ChatBox = () => {
         ]);
         setStep(nextStep);
         setSelectedOptions([]);
-      }, 1000);
+      }, 800);
     } else if (step === 2) {
       if (!userInput.trim()) return;
       const userMessage = { sender: "user", text: userInput };
@@ -204,18 +244,18 @@ const ChatBox = () => {
           ...prev.slice(0, -1),
           { sender: "bot", text: botReply },
         ]);
-      }, 1000);
+      }, 800);
 
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           {
             sender: "bot",
-            text: "I will call you in some time to discuss in detail, Can I have your mobile number?",
+            text: "I will call you soon to discuss details. Can I have your mobile number?",
           },
           { sender: "bot", text: "Please type your phone number ️😊" },
         ]);
-      }, 1500);
+      }, 1200);
 
       setUserInput("");
       setStep(3);
@@ -231,7 +271,7 @@ const ChatBox = () => {
 
     const botReply = {
       sender: "bot",
-      text: "Thanks for contacting us! We'll connect with you as soon as possible.",
+      text: "Thanks for contacting us! We'll connect with you soon.",
     };
 
     setMessages((prev) => [...prev, userReply, { sender: "bot", text: null }]);
@@ -239,7 +279,7 @@ const ChatBox = () => {
       setMessages((prev) => [...prev.slice(0, -1), botReply]);
       setShowForm(false);
       setIsChatEnded(true);
-    }, 1000);
+    }, 800);
   };
 
   const validatePhoneNumber = (number) => /^[0-9]{10}$/.test(number);
@@ -252,62 +292,87 @@ const ChatBox = () => {
     }
   }, [chatData.mobile]);
 
+  // Bouncing animation variants
+  const bounceVariants = {
+    bounce: {
+      y: [0, -8, 0],
+      transition: {
+        duration: 1,
+        repeat: Infinity,
+        repeatType: "loop",
+      }
+    },
+    still: {
+      y: 0,
+      transition: {
+        duration: 0.2
+      }
+    }
+  };
+
+  // Tooltip animation variants
+  const tooltipVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 10 }
+  };
+
   return (
-    <div className="relative min-h-full w-[5%] bg-white">
+    <div className="relative z-9999999 min-h-full w-[full]">
       <AnimatePresence>
         {isChatOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+            exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-24 right-4 w-[28%] max-w-md sm:right-11 md:right-12 lg:right-16 h-[80vh] rounded-2xl shadow-xl bg-white flex flex-col z-50"
+           className="fixed bottom-24 right-3 lg:left-253 w-[25%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
           >
             {/* Header */}
-            <div className="relative flex items-center w-[100%] h-[12%] bg-white rounded-t-2xl px-6 overflow-hidden">
-              <div className="absolute left-4 top-1/2 lg:mt-2 -translate-y-1/2 w-12 h-12 rounded-full overflow-hidden z-20 bg-white p-1">
+            <div className="relative flex items-center w-[full] h-[8%] sm:h-[10%] bg-white rounded-t-xl px-2 sm:px-4 overflow-hidden">
+              <div className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden z-20 bg-white p-1">
                 <img
-                  src='Untitled.png'
+                  src='https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg'
                   alt="Chat Icon"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full object-top h-full object-cover rounded-full"
                 />
               </div>
-              <div className="flex-1 ml-13 lg:mt-[8px] relative z-10">
-                <h1 className="text-black font-semibold tracking-wide anek lg:text-md lg:mt-2 sm:text-lg">
+              <div className="flex-1 ml-10 sm:ml-12 relative z-10">
+                <h1 className="text-black font-semibold tracking-wide text-sm">
                   Hi, Saanvi Here!
                 </h1>
-                <p className="text-gray-400 mt-[-5px] text-sm">
+                <p className="text-gray-400 mt-[-3px] text-xs">
                   How may I assist you today?
                 </p>
               </div>
-              <div className="flex gap-3 lg:mt-5 items-center z-10">
+              <div className="flex gap-1 items-center z-10">
                 <button
                   onClick={resetChat}
-                  className="text-black p-2 rounded-full"
+                  className="text-black p-1 rounded-full"
                 >
-                  <FontAwesomeIcon icon={faRotateRight} className="text-md hover:text-cyan-700" />
+                  <FontAwesomeIcon icon={faRotateRight} className="text-sm hover:text-cyan-700" />
                 </button>
                 <button
-                  onClick={() => setIsChatOpen(false)}
-                  className="pt-3 pb-3 pl-4 pr-4 lg:ml-[-10px] flex justify-center items-center rounded-full"
+                  onClick={handleCloseChat}
+                  className="p-1.5 sm:p-2 flex justify-center items-center rounded-full"
                 >
-                  <FontAwesomeIcon icon={faXmark} className="text-black text-xl hover:text-cyan-700" />
+                  <FontAwesomeIcon icon={faXmark} className="text-black text-lg hover:text-cyan-700" />
                 </button>
               </div>  
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 bg-[#f5f5f5] rounded-lg p-4 mt-5 overflow-y-auto scroll-smooth sm:text-sm text-xs">
+            <div className="flex-1 bg-[#f5f5f5] rounded-lg p-2 sm:p-3 mt-1 sm:mt-2 overflow-y-auto scroll-smooth text-xs">
             <style jsx>{`
               div::-webkit-scrollbar {
                 display: none;
               }
             `}</style>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 {messages.map((msg, index) => (
-                  <div key={index} className="flex flex-col gap-2">
+                  <div key={index} className="flex flex-col gap-1">
                     <div
-                      className={`max-w-[80%] lg:mt-3 flex items-start gap-3 ${
+                      className={`max-w-[85%] flex items-start gap-1.5 ${
                         msg.sender === "user"
                           ? "self-end justify-end"
                           : "self-start justify-start"
@@ -315,16 +380,16 @@ const ChatBox = () => {
                     >
                       {msg.sender === "bot" && (
                         <img
-                          src='Untitled.png'
+                          src='https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg'
                           alt="Bot"
-                          className="w-8 h-8 rounded-full object-cover"
+                          className="w-6 h-6 rounded-full object-top object-cover"
                         />
                       )}
                       <div
-                        className={`p-3 pl-6 pr-6 lg:mt-[0px] rounded-xl  text-xl lg:text-[17px] sm:text-base ${
+                        className={`p-2 pl-3 pr-3 rounded-xl text-sm ${
                           msg.sender === "user"
                             ? "bg-[#131313] text-white"
-                            : "bg-[#ececec] text-[#272727]  tracking-wide"
+                            : "bg-[#ececec] text-[#272727] tracking-wide"
                         }`}
                       >
                         {msg.text !== null ? msg.text : <TypingDots />}
@@ -336,7 +401,7 @@ const ChatBox = () => {
                         msg.text?.includes("Please select a service")) ||
                         (step === 1 &&
                           msg.text === "Is it for a Car or Bike?")) && (
-                        <div className="flex text-2xl flex-wrap ml-11 gap-3 self-start">
+                        <div className="flex flex-wrap ml-7 gap-1.5 self-start">
                           {options[step].map((opt) => (
                             <OptionCard
                               key={opt}
@@ -361,48 +426,46 @@ const ChatBox = () => {
 
             {/* Footer Input */}
             {!isChatEnded && (
-              <div className="p-4 border-t border-gray-200">
+              <div className="p-2 sm:p-3 border-t border-gray-200">
                 {showForm ? (
-                  <div className="flex gap-3 items-center">
-                    <div className="flex items-center justify-center border border-gray-300 rounded-xl h-10 w-30">
+                  <div className="flex gap-2">
+                    <div className="flex items-center justify-center border border-gray-300 rounded-xl h-9 w-20">
                       <img
-                        src="data:image/png;base64,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"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAw1BMVEXncwAykgP///8AhgDlYgAIOZwANpsAM5oALpgAKZYAIZQAI5UAGpL1+Pzo7PW3wNzKzuPg5vLS2OoAFpEAJpWEkcKlrdBPZa0vSJ8AHZKRnckAB45GXKkkQJ3Ez+fw8/ni5/J5hruttdXX3Ou/xNxbbbBrfrk8VKalsdScps2Aj8EADo9mdrRoge9ue7mLkr81S59NXKamsNFSZqwZP59jfrx6kcZCU6K0utdgfr1Rcbc9Ya8rUKd/iLgI8DDHAAAIkklEQVR4nO2baZfiuBVAO0rkBRuwvIHBmEXewUttVKpIz8z//1V5sqFTUzr5kA+x58C957TLC9VH3BJe0+YfPxAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQf5H/oF85wdBvvPXcGJnvpu7fmaPXZCO8Z34q3WozjazOfxTw/XKH7tAYzvxoqk+VRRKqUK7owLXkTduoUZ14hfqExBhTkHGMdyJU3E90YtRK8uITuzzTAeD00nZzM+UhySYao1KJQlHDC3jOfG2Ks0m5q8plYkkauxmNFyNEFRGclLsVFpnyiZSatJMNHpzySyD0GpGL92BTqkSjFJVRnLiT1V6zbLraM76/a6qTzd6Qvt6V91IpLw+TrMISu8o5RvFCUQNpVBWbglBxS3kJDiVOZxFThhv2RnTGWkspw/vJIJ4od2/mpPx1RVR1VHcJvExOPlwlJXGGA/0CE4CaCZ0qe8Pzxnzt+TavOLTqbv/Ft9kG4/E3sFp9tFYbV8BW/zSO4hqjhCDh3cSLCF8bggtg5uLKT5XTJQcHKgp9zXkU3XgO0iruYkiYlLnCIEd3MlioVLTJZeJNYHfCDpPTYzA7VnsoZyTJpvs2THqLb4N33CGdjLrYoVJl6qDnNh8vsvLrjc1c11wTniRGScdvY/s0+6sSGiEI7jDO4nX6lM0MVY6J8HiOt/NYKJLCOvjKRUbEPnpNadgpTqpUdpJCE3FPXXiLYLUOCE6+wTnbsLbJO3i6pxtZTNRdjG8k8M6sVN1PfWySfNxtYZDNZmQQ3wtK/LAnbCsbtj2HB1ORCKRxHQyiqZDl3FgJ5lO1Ss2Yt5e+q3oZSQJY3hEG6/ZyvE+T1TJSVpkJvWEiTniXrQZZVAf2Ekgkox+hhMzxrGdYbYrZLGKYw9SqPpYmjQd20EzKDp0IYd1EkI3cd5000Zf6TY/6uY01hmhvePUODE2OrZN2+bhufrTNR1FLe2HLuSwTq6KcfMlvO6K18nEiR2HlFyLKfgzJ21vH9HpBLwUTcVN2nhUuJnM1GPgQg7qxF3QZ+lWdbsxDcnX8JIJu7E+9RrPCbt0LSfVAVsndyE97vXXQ1Xp4E6C4C87GdfhMfmQBSvNk5CQJyTKZEjydmw7RCl7qUfEPNnYw6zFDOpkp5iJV/5zJ79WgiZmmb7vJdOqvlSeL8xJndeTm3VXTOPNrjrSYuiKDeoko5aqCCx76bXu75A4y2HLSfvZbqiSbLIoYMvZkP/J8E4aJ36Z02XTRY5LtBNz4jHVJkWsXW1PZVxJpQgO6w9eyEGdBBFUkpqWF5Cfa9usLCfuBVbzb5vC9XfRWdcW2Luu6mw6+CxnWCdOQpX42RDKhY3LCUP2TqXkKDUZiZXudDO4mbBTsVcwvRv2GcrATmZUXaeXxGbDxuCkYwW3ntm3YrnP4S3OO0m6GvxBGdbJlKr7u91OG5fHa4bniyUxA14YCwmtG/yTk/hyvRx5wdlLpGozVOUGdZLP6f4aTTasgOkOCxKa9XJvTlTz7Hf8kh+NiU9P9eFQKtMthi/joE7SJVX/9alM5O3cTHxC0FyoPIB7VkZNJy5xsZtWzOhf6aGqNLCTMU/I6+Wc6nDu+h6cO/mtnhxEVprTKne9/0w6JvdcTyDXKLu1yw0/KF7eE8d2Dl3rcZ044fWKp2ie2Lnvr9Z3Hk9E4Vn/lXfsiC4sevxT6aHX1odYO8iJfd7F6Wk2u/1SCwn8jucg0T9Z9rMh8eq4nX92hjhLnQ4JrHPuOE4csT18zjwkh/eKObHve95le9f9E2gp+obgp199fiYnsW9SvCuDPTbFURxXvleT0uLmVEwjMMuvyvPoAo/x5/fcjxXj3fSwKK7jnSquS8/JzDxb+dkHP/kxPyqW6ovierZDNcpTHJf3PN7+2nMW8zPYr0hrBGxKajEqTl88xziY+242X3ptJf7JOyx2F3TM3HLIZUFTRkorZLRlIQkvXtTYiUUZyRKj+DV/Et73/Ek3z9b91dl5KbJy1exZ2eTJi21krYsjp6TURR6Q15pL2j1jfufzbF1/rNbCxU28vSs2ZprI9Hc+W/vbNGn8dvNMKqNLTaw+Q7ZxjbufDxbz9i+cZEW/K8l3gJ9Wv/iLJ3+RXKyEz01e8qbsrtr1M3uAeXuxvnNkSdR7M/YANSDenEmlO66e8M0OKva0LHsTDqp2kt///E63B3ibtlTUlrrhpN1wXw/IWrNDsoXxMAuvq2Lk0NzfHyDWk5t/3fVLXwVK4QYcd8uIpldQSTKQqstzo93HvsS6q7MpbPk+cjL9ps9UKyGEvvnnSjAwuV9LH2H/t9ylFJOmVSS3ajw8YjFYg2bjj+pe3Ed9Kpeb97BL19/JMvf5FMPBOGteD4o4i099NOZPH/wfOHXbT9UP2+97wEMtpebQuGbueRQRJ+tARQk8pO1sd1Yf4tln/3jkXKEENPaO01lPUUqZk8Q2D7uaoOpr/fvSL6/a++Bfu9ht5vRLz0664msxi5WLUmzias3O3czHaLv9/fmI9XFpNfG1PkzlTLPThpMqptfno+2sv/tFxPpYXCOkEOzzLtuGThXUhLKZL8bjwGdxb/es6Dyq4bmqawHQQn6rxF+nNMkuSvUoE/U4i3u8P1dC34/Zb9xTIcFp6P5gTVxBhlFzDWuFr/Rh76DkE6rfFgm3F6jJP/Y/pFPP/5sT/FyLCaPRiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmTQiQw6kUEnMuhEBp3IoBMZdCKDTmT+DaogfHLC2R9SAAAAAElFTkSuQmCC"
                         alt="Indian Flag"
-                        className="w-6 h-4 mr-2"
+                        className="w-3 h-2 mr-1"
                       />
-                      <span className="text-gray-600">+91</span>
+                      <span className="text-gray-600 text-xs">+91</span>
                     </div>
-                    {showForm && (
-                      <div className="relative gap-5 flex justify-center items-center ">
-                        <input
-                          type="text"
-                          placeholder="Enter your phone number"
-                          value={chatData.mobile}
-                          onChange={(e) =>
-                            setChatData({ ...chatData, mobile: e.target.value })
-                          }
-                          className=" px-4 py-2 text-[16px] rounded-xl text-gray-800"
-                        />
-                        <button
-                          onClick={handleSubmitForm}
-                          className={` text-black rounded-full flex items-center gap-2 ${
-                            !isMobileNumberValid ? "opacity-50 cursor-not-allowed" : ""
-                          }`}
-                          disabled={!isMobileNumberValid}
-                        >
-                          <FontAwesomeIcon icon={faPaperPlane} />
-                        </button>
-                      </div>
-                    )}
+                    <div className="relative w-full flex justify-center items-center">
+                      <input
+                        type="text"
+                        placeholder="Enter your phone number"
+                        value={chatData.mobile}
+                        onChange={(e) =>
+                          setChatData({ ...chatData, mobile: e.target.value })
+                        }
+                        className="w-full px-3 py-1.5 text-sm rounded-xl text-gray-800"
+                      />
+                      <button
+                        onClick={handleSubmitForm}
+                        className={`absolute right-3 text-black rounded-full flex items-center ${
+                          !isMobileNumberValid ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
+                        disabled={!isMobileNumberValid}
+                      >
+                        <FontAwesomeIcon icon={faPaperPlane} />
+                      </button>
+                    </div>
                   </div>
                 ) : (
-                  <div className="flex gap-3">
+                  <div className="flex gap-2">
                     <input
                       type="text"
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                      className={`flex-1 px-4 py-2 border rounded-xl text-[16px] ${
+                      className={`flex-1 px-3 py-1.5 border rounded-xl text-sm ${
                         step > -1 && step <= 1
                           ? "bg-gray-200 cursor-not-allowed text-gray-500"
                           : "focus:outline-none focus:border-black"
@@ -416,11 +479,12 @@ const ChatBox = () => {
                       }
                       disabled={step > -1 && step <= 1}
                     />
-                    <FontAwesomeIcon
-                      icon={faPaperPlane}
+                    <button
                       onClick={handleSend}
-                      className="p-3 cursor-pointer rounded-full hover:opacity-90 transition-opacity"
-                    />
+                      className="p-2 rounded-full hover:opacity-90 transition-opacity"
+                    >
+                      <FontAwesomeIcon icon={faPaperPlane} />
+                    </button>
                   </div>
                 )}
               </div>
@@ -429,16 +493,26 @@ const ChatBox = () => {
         )}
       </AnimatePresence>
 
-      <button
-        onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full text-white flex justify-center items-center z-50 shadow-lg"
+      {/* Chat Button - Only bounces if it has never been clicked */}
+      <motion.button
+        onClick={handleOpenChat}
+        animate={!hasBeenClicked ? "bounce" : "still"}
+        variants={bounceVariants}
+        className="fixed bottom-3 right-3 w-18 h-18 rounded-full text-white flex justify-center items-center z-50 shadow-lg"
       >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={controls}
+          className="absolute lg:w-60 lg:h-10 lg:text-lg right-24 mr-2 bg-cyan-600 text-white text-xs px-2 py-1 rounded-md"
+        >
+          Hello, how may I help you?
+        </motion.div>
         <img
-          src='Untitled.png'
+          src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg"
           alt="Chat"
-          className="w-full h-full object-cover rounded-full"
+          className="w-full h-full object-cover object-top rounded-full"
         />
-      </button>
+      </motion.button>
     </div>
   );
 };

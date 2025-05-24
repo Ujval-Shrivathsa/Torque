@@ -115,7 +115,7 @@ const ImageSlider = ({
         <img
           src={beforeImage}
           alt="Before"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-[80%] h-full object-cover"
           loading="lazy"
         />
       </div>
@@ -133,7 +133,7 @@ const ImageSlider = ({
         />
       </div>
 
-      {/* Slider Handle */}
+      {/* Slider Handle 
       <div
         className="absolute top-[10%] bottom-[10%] w-0.5 bg-white cursor-ew-resize select-none touch-none"
         style={{ left: `${position}%` }}
@@ -144,6 +144,7 @@ const ImageSlider = ({
           <GripVertical className="w-4 h-4 text-gray-600" />
         </div>
       </div>
+      */}
     </div>
   );
 };
