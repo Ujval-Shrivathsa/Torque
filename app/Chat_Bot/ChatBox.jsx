@@ -326,7 +326,7 @@ const ChatBox = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.3 }}
-           className="fixed bottom-24 right-3 lg:left-253 w-[25%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
+           className="fixed lg:bottom-25 right-3 md:bottom-25 md:w-[40%] bottom-15 lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
           >
             {/* Header */}
             <div className="relative flex items-center w-[full] h-[8%] sm:h-[10%] bg-white rounded-t-xl px-2 sm:px-4 overflow-hidden">
@@ -498,7 +498,7 @@ const ChatBox = () => {
         onClick={handleOpenChat}
         animate={!hasBeenClicked ? "bounce" : "still"}
         variants={bounceVariants}
-        className="fixed bottom-3 right-3 w-18 h-18 rounded-full text-white flex justify-center items-center z-50 shadow-lg"
+        className="fixed bottom-3 right-3 w-10 h-10 lg:w-18 lg:h-18 md:w-18 md:h-18 rounded-full text-white flex justify-center items-center z-50 shadow-lg"
       >
         <motion.div
           initial={{ opacity: 0 }}

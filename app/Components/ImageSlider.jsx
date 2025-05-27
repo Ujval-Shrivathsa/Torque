@@ -115,7 +115,7 @@ const ImageSlider = ({
         <img
           src={beforeImage}
           alt="Before"
-          className="absolute inset-0 w-[80%] h-full object-cover"
+          className="absolute inset-0 w-[100%] h-full object-cover"
           loading="lazy"
         />
       </div>

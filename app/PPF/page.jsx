@@ -1,213 +1,200 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
 import Navlinks from "../Navlinks/Navlinks";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Footer from "../Components/Footer";
-import Link from "next/link";
 
-const page = () => {
-    const benefits = [
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746688289/images-removebg-preview3_kesmfm.png",
-          title: "Instant healing properties",
-          description:
-            "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing,x have the ability to repair minor scratches and imperfections without external heat application",
-        },
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746688802/download_offfrq.png",
-          title: "Extreme high gloss finish",
-          description:
-            "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
-        },
-        {
-          icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_water.svg",
-          title: "Hydrophobic top coat",
-          description:
-            "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
-        },
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746689179/download_uyekd7.jpg",
-          title: "Advanced chemical resistance",
-          description:
-            "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
-        },
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746689326/download_1_h3p5df.png",
-          title: "High temperature resistance",
-          description:
-          "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
-        },
-        {
-          icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_car.svg",
-          title: "Seamless finishing",
-          description:
-          "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
-        },
-      ];
+const benefits = [
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Instant healing properties",
+    description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Extreme high gloss finish",
+    description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Hydrophobic top coat",
+    description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Advanced chemical resistance",
+    description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "High temperature resistance",
+    description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Seamless finishing",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
+  },
+];
+
+
+export default function page() {
+
+    const images = [
+    "https://img.freepik.com/premium-photo/application-ceramic-coating-car_235347-1.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/man-working-car-detailing-coating-car_1303-30600.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/close-up-car-care-process_23-2149193581.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+  ];
+
+    const scrollRef1 = useRef(null);
+    const { scrollYProgress: progress1 } = useScroll({
+      target: scrollRef1,
+      offset: ["start end", "end start"],
+    });
+    const xRightToLeft = useTransform(progress1, [0, 1], ["40%", "0%"]);
+
     
-
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 640;
   return (
-    <div>
-      <>
-        <Navlinks isComplete={true} />
-        <div className="bg-black text-white py-10 pt-30 md:pt-30 lg:pt-30 px-6 md:py-15 flex flex-col items-center text-center ">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase ">
-            Paint Protection Film (PPF)
-          </h2>
-          <p className=" lg:px-50 text-center text-gray-300">
-            Paint Protection Film (PPF) is a virtually invisible, yet incredibly
-            durable layer applied to a vehicle's painted surfaces to shield it
-            from the daily wear and tear of the road. This thin film acts as a
-            sacrificial barrier, absorbing impacts from stone chips, bug
-            splatters, minor scratches, and other environmental hazards, thus
-            preserving the original factory paint and maintaining the vehicle's
-            pristine appearance and resale value for years to come.
+    <div className="bg-black text-white overflow-x-hidden min-h-screen">
+      <Navlinks isComplete={true} />
+      
+      {/* Hero Section */}
+      <div
+        className="w-full h-[100vh] flex items-center bg-cover"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593834.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740')`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover"
+        }}
+      >
+        <div className="text-left ml-[6%] mb-10 px-4 md:px-0">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
+            Paint Protection Film
+          </h1>
+          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+            PPF is a conformable and optically clear film available in a variety of thickness (measured in microns) and colours. They are multilayered and offer a self healing top coat capable of reforming itself after being scuffed or scratched, maintaining clarity and having hydrophobic properties, similar to ceramic coating. 
           </p>
+          <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
+            Book Now
+          </button>
         </div>
+      </div>
 
-        <div className="bg-black text-white  py-6 px-6 md:px-70">
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            {/* Left Text Section */}
-            <div className="md:col-span-1 text-sm md:px-6">
-              <h1 className="text-sm font-bold mb-2">About Services</h1>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 p-0">
-                What Is
-                <br />
-                <span className="text-[#00DAFF]">
-                  Paint Protection Film (PPF)?
-                </span>
-              </h2>
-              <p className="text-gray-300 mb-4">
-                PPF is a conformable and optically clear film available in a variety of thickness (measured in microns)
-                and colours. They are multilayered and offer a self healing top coat capable of reforming itself after
-                being scuffed or scratched, maintaining clarity and having hydrophobic properties, similar to ceramic
-                coating. 
-              </p>
-              <p  className="text-gray-300 mb-4">
-                The root cause of yellowing issue lies in the ultraviolet radiation. For a low quality TPU, the
-                manufacturer uses coatings or other technology to lock the ultraviolet rays to delay the yellowing, but
-                eventually, after a few years, it will show it will turn yellow. PPF is a product that relies on TPU
-                substrates. The use of different substrates determines PPF life and yellowing resistance.
-              </p>
-              {/* <p className="text-gray-300">
-                The technology behind PPF has evolved significantly since its
-                initial use by the military to protect helicopter rotor blades,
-                resulting in today's highly conformable, optically clear, and
-                incredibly durable automotive protection solutions.
-              </p> */}
-            </div>
-
-            {/* Middle Image Section */}
-            <div className="relative">
-              <img
-                src="https://ocdetailmn.com/wp-content/uploads/2024/02/img-10-min.jpg"
-                alt="Ceramic Coating"
-                className="rounded-lg h-111 object-cover"
-              />
-              <div className="md:absolute md:bottom-[-20px] md:left-[-40px] absolute bottom-[-20px] left-[80px] border-4 border-white rounded-lg">
+      {/* Image Gallery Section */}
+      <div className="w-full py-8 md:py-12 lg:h-[60vh]">
+        <div
+          ref={scrollRef1}
+          className="w-full lg:-mt-20 bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
+        >
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-6 items-center justify-center">
+            {images.map((img, index) => (
+              <motion.div
+                key={index}
+                style={{ x: isDesktop ? xRightToLeft : 0, transition: "transform 0.6s ease-out" }}
+                className="rounded-xl overflow-hidden shadow-lg w-full max-w-sm md:max-w-md lg:max-w-[400px] md:w-1/3"
+              >
                 <img
-                  src="https://ocdetailmn.com/wp-content/uploads/2024/02/img-11.jpg"
-                  alt="Detailing"
-                  className="w-32 md:w-40 rounded-lg"
+                  src={img}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-48 md:h-56 lg:h-[250px] object-cover rounded-xl"
                 />
-              </div>
-            </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-            {/* Right Text Section */}
-            <div className="md:col-span-1">
-              <div className="mb-8 ">
-                <h3 className="text-[18px] font-semibold mb-2">
-                  Invisible and Durable Protection:
-                </h3>
-                <p className="text-gray-300 text-xs mb-2">
+      {/* What Is Section */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
+        <div className="md:pl-[4%] lg:pl-0 mb-8 md:mb-16">
+          <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
+            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
+              Paint Protection Film?
+            </div>
+            <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
+              <p className="text-justify">
                 The top layer of the PPF is comprised of an elastomeric polymer substance that helps the material
-                maintain a natural shape once its been stretched or applied to something like a painted or clear
-                coated surface. This allows the PPF to “selfheal” when light scratches occur, and pretty much
-                eliminates any risk of swirl marks. 
-                </p>
-              </div>
-              <div className="">
-                <img
-                  src="https://ocdetailmn.com/wp-content/uploads/2024/02/men_bmw-min.jpg"
-                  className="rounded my-4 h-40 w-60 object-cover"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h3 className="text-[18px] font-semibold mb-2">
-                  Preserves Value and Appearance:{" "}
-                </h3>
-                <p className="text-gray-300 text-xs">
-                  By safeguarding the paint from damage, PPF helps maintain the
-                  vehicle's pristine condition, protecting its resale value and
-                  ensuring a consistently flawless aesthetic over time.
-                </p>
-              </div>
+ maintain a natural shape once its been stretched or applied to something like a painted or clear
+ coated surface. This allows the PPF to “selfheal” when light scratches occur, and pretty much
+ eliminates any risk of swirl marks. 
+              </p>
+              <p className="text-justify">
+                The root cause of yellowing issue lies in the ultraviolet radiation. For a low quality TPU, the
+ manufacturer uses coatings or other technology to lock the ultraviolet rays to delay the yellowing, but
+ eventually, after a few years, it will show it will turn yellow. PPF is a product that relies on TPU
+ substrates. The use of different substrates determines PPF life and yellowing resistance.
+              </p>
             </div>
           </div>
         </div>
-
-        <div className="bg-black text-white py-16 px-4 md:px-20 0 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Benefits Of<span className="text-[#00daff]"> PPF</span>
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 md:mt-20 md:py-6 py-4">
-            {benefits.slice(0, 3).map((benefit, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center"
-              >
-                <img src={benefit.icon} alt="icon" className="w-16 rounded-md mb-4" />
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 md:mt-20 ">
-            {benefits.slice(3).map((benefit, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center"
-              >
-                <img src={benefit.icon} alt="icon" className="w-16 rounded-md mb-4" />
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </>
-      <div className="w-full h-80 bg-[#000000] gap-10 pt-[5%] flex items-center justify-center flex-col md:flex-col lg:flex-row">
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745678458/paintprotection_ju2ue0.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823190/paintprotectionmask_i2mufm.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745924820/paint_jidkqf.jpg"
-            className="w-full h-full object-cover"
-            alt=""
+        
+        {/* Side Image */}
+        <div className="flex justify-center md:justify-start lg:block px-4 md:px-0">
+          <img 
+            src="https://img.freepik.com/free-photo/service-worker-painting-car-auto-service_23-2149486989.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740" 
+            className="w-full max-w-sm md:max-w-md lg:w-[60%] h-64 md:h-80 lg:h-[100%] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-[18%] rounded-2xl" 
+            alt="Car care process" 
           />
         </div>
       </div>
+
+      {/* Two Column Benefits */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[20vh] lg:-mt-8 md:pl-[4%] lg:pl-[6%]">
+        <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-25 bg-black">
+          <div className="flex-1">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+              Invisible and Durable Protection:
+            </h3>
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
+              It helps by shielding your car’s paint from scratches, rock chips, bird droppings, and UV rays — all without changing how it looks, ensuring long-term beauty and value
+            </p>
+          </div>
+          <div className="flex-1 lg:ml-[-50%]">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+              Preserves Value and Appearance:
+            </h3>
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-75">
+Paint Protection Film (PPF) keeps your car looking new by preventing damage. This helps maintain its resale value and showroom-like finish for years.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[40vh] md:pl-[4%] lg:pl-[6%]">
+        <div className="mt-8 md:mt-12 lg:mt-20">
+          <div className="mb-6 lg:mb-6">
+            <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
+            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
+              Paint Protection Film
+            </div>
+          </div>
+
+          {/* Benefits Icons Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex gap-4 md:gap-6 lg:gap-25 pt-2 lg:pt-3">
+            {benefits.slice(0, 5).map((benefit, index) => (
+              <div key={index} className="flex flex-col items-center text-center lg:flex-1 lg:min-w-33 lg:max-w-25">
+                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-26 flex mb-2 lg:mb-2 p-2">
+                  <img 
+                    src={benefit.icon} 
+                    alt={benefit.title}
+                    className="w-full h-full object-contain text-blue-400"
+                  />
+                </div>
+                <div className="text-xs md:text-sm lg:text-[16px] font-semibold text-white lg:-mt-2 leading-tight text-center">
+                  {benefit.title}
+                </div>
+              </div>
+            ))}
+          </div>          
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );
-};
-
-export default page;
+}

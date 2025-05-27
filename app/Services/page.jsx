@@ -167,14 +167,6 @@ const ComplexServices = () => {
         "https://media.istockphoto.com/id/1428271853/photo/mechanic-inspecting-engine-at-garage-workshop.jpg?s=612x612&w=0&k=20&c=dAkLigq3R9iJboJk5477d1gprZbv2IENLbjm5IYg_xI=",
       linkUrl: "/MEM"
     },
-    {
-      title: "CAR CARE KIT",
-      description:
-        "Car care kits are essential for maintaining your vehicle's appearance and performance. They typically include cleaning products, waxes, and tools to keep your car looking its best.",
-      image:
-        "https://media.istockphoto.com/id/2191048877/photo/close-up-view-of-socket-set-for-car-repair.jpg?s=612x612&w=0&k=20&c=J6XL69_Fv9L76Jx9nGZ1gaXoFfRQ4tRiETiNKCvlL4U=",
-      linkUrl: "/CT"
-    },
   ];
 
   return (

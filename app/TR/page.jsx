@@ -1,191 +1,196 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
 import Navlinks from "../Navlinks/Navlinks";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Footer from "../Components/Footer";
-import Link from "next/link";
 
-const page = () => {
-  const benefits = [
-    {
-      icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-      title: "Protects from Harmful UV Rays",
-      description:
-        "The sun's ultraviolet rays can cause paint to oxidize and fade over time. Ceramic coatings protect a vehicle’s paint from the sun’s harsh rays, thereby reducing the risk of oxidization.",
-    },
-    {
-      icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_water.svg",
-      title: "Hydrophobic Properties",
-      description:
-        "One of the most noteworthy features of ceramic coatings is their hydrophobic (water-repellent) quality. This means water beads up and rolls off the surface, picking up dirt and grime along the way.",
-    },
-    {
-      icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_cloud.svg",
-      title: "Chemical Stain Resistance",
-      description:
-        "Everyday contaminants like acid rain, bird droppings, and tree sap can mar a vehicle’s exterior. Ceramic coatings create a chemically resistant surface, ensuring that contaminants are easily washed away without leaving stains.",
-    },
-    {
-      icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_hand.svg",
-      title: "Enhanced Durability",
-      description:
-        "Unlike traditional waxes that need frequent reapplication, ceramic coatings are incredibly durable. They don’t wear off under normal atmospheric conditions, providing protection that lasts for years.",
-    },
-    {
-      icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_car.svg",
-      title: "Aesthetic Appeal",
-      description:
-        "Ceramic coating enhances the depth and clarity of the car’s paint, giving it a constant 'just-washed' glossy finish. This sheen is much coveted by car enthusiasts and everyday drivers alike.",
-    },
+const benefits = [
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Revives Faded Trim",
+    description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Enhances Vehicle Aesthetics",
+    description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Protects from UV Damage",
+    description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Prevents Cracking and Aging",
+    description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Improves Resale Value",
+    description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Water and Dirt Repellent",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
+  },
+];
+
+
+export default function page() {
+
+    const images = [
+    "https://img.freepik.com/free-photo/high-angle-hand-wrapping-car-with-blue-cover_23-2149385686.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
+    "https://img.freepik.com/free-photo/car-wrapping-with-foil-drying-with-fan-car-service_1303-32347.jpg?ga=GA1.1.1515336155.1743059816&w=740",
+    "https://img.freepik.com/free-photo/person-working-car-wrapping_23-2149342617.jpg?ga=GA1.1.1515336155.1743059816&w=740",
   ];
 
+    const scrollRef1 = useRef(null);
+    const { scrollYProgress: progress1 } = useScroll({
+      target: scrollRef1,
+      offset: ["start end", "end start"],
+    });
+    const xRightToLeft = useTransform(progress1, [0, 1], ["40%", "0%"]);
+
+    
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 640;
   return (
-    <div>
-       
-      <div className=""
+    <div className="bg-black text-white overflow-x-hidden min-h-screen">
+      <Navlinks isComplete={true} />
+      
+      {/* Hero Section */}
+      <div
+        className="w-full h-[100vh] flex items-center bg-cover"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,1.1), rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/medium-shot-man-wrapping-car-work_23-2149385696.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740')`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover"
+        }}
       >
-       <Navlinks isComplete={true} />
-        <div className="bg-black text-white py-10 pt-30 md:pt-30 lg:pt-30 px-6 md:py-15 flex flex-col items-center text-center ">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase ">
-          TRIM RESTORATION
-          </h2>
-          <p className=" lg:px-50 text-center text-gray-300">
-          Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!
+        <div className="text-left ml-[6%] mb-10 px-4 md:px-0">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
+            Trim Restoration
+          </h1>
+          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+           Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!
           </p>
+          <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
+            Book Now
+          </button>
         </div>
+      </div>
 
-        <div className="bg-black text-white  py-6 px-6 md:px-70">
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            {/* Left Text Section */}
-            <div className="md:col-span-1 text-sm md:px-6">
-              <h1 className="text-sm font-bold mb-2">About Services</h1>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 p-0">
-                What Is
-                <br />
-                <span className="text-[#00DAFF]">
-                Trim Restoration?
-                </span>
-              </h2>
-              <p className="text-gray-300 mb-4">
-              Trim restoration is the process of reviving faded, discolored, or weathered exterior plastic and rubber trim on a vehicle to restore its original color and finish. Over time, exposure to sunlight, UV rays, rain, and harsh environmental conditions causes trim pieces—such as bumpers, window seals, and door moldings—to lose their deep black color and turn gray or dull.
-              </p>
-              <p className="text-gray-300 mb-4">
-              Trim restoration involves thoroughly cleaning the surface and applying specialized products designed to recondition and protect the material. These products penetrate the trim, rejuvenating its appearance while adding a protective layer against future damage. Professional trim restoration not only improves the look of the vehicle but also helps maintain its resale value by enhancing the overall exterior finish. It’s a cost-effective alternative to replacing old trim and plays a key role in keeping the car looking well-maintained and polished.
-              </p>
-              {/* <p className="text-gray-300">
-                The technology behind PPF has evolved significantly since its
-                initial use by the military to protect helicopter rotor blades,
-                resulting in today's highly conformable, optically clear, and
-                incredibly durable automotive protection solutions.
-              </p> */}
-            </div>
-
-            {/* Middle Image Section */}
-            <div className="relative">
-              <img
-                src="https://media.istockphoto.com/id/2171665645/photo/the-master-polishes-a-part-of-the-steering-wheel-of-the-car-before-painting-and-tightening.jpg?s=612x612&w=0&k=20&c=Fzz4uQqqqZj5oBqFqWDEJ-5OXodCVXZwqxweaZ4WCIU="
-                alt="Ceramic Coating"
-                className="rounded-lg H-111 object-cover"
-              />
-              <div className="md:absolute md:bottom-[-20px] md:left-[-40px] absolute bottom-[-20px] left-[80px] border-4 border-white rounded-lg">
-                <img
-                  src="https://media.istockphoto.com/id/2169180609/photo/male-uses-a-modern-polishing-machine-in-the-detailing-process.jpg?s=612x612&w=0&k=20&c=6jbuOtGW__dmKFEnwg55dKQHg0QacyPNXv_tBOlKykk="
-                  alt="Detailing"
-                  className="w-32 md:w-40 lg:h-35 object-cover rounded-lg"
-                />
-              </div>
-            </div>
-
-            {/* Right Text Section */}
-            <div className="md:col-span-1">
-              <div className="mb-8 ">
-                <h3 className="text-[18px] font-semibold mb-2">
-                  Invisible and Durable Protection:
-                </h3>
-                <p className="text-gray-300 text-xs mb-2">
-                Trim restoration provides invisible and durable protection by deeply conditioning the plastic or rubber surfaces and sealing them with UV-resistant coatings. These treatments restore the trim’s original look while forming a clear, protective barrier that guards against fading, cracking, and environmental damage. Though not visible, this layer ensures the trim stays rich, dark, and resilient for an extended period.
-                </p>
-              </div>
-              <div className="">
-                <img
-                  src="https://media.istockphoto.com/id/2196308570/photo/skilled-technician-carefully-cutting-material-near-a-car-window-during-an-automotive-repair.jpg?s=612x612&w=0&k=20&c=LiEkOJlbbpddX-G3_MwvzGHgqA2QeUugGSmNLtvQve8="
-                  className="rounded my-4 w-60 h-40 object-cover"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h3 className="text-[18px] font-semibold mb-2">
-                  Preserves Value and Appearance:{" "}
-                </h3>
-                <p className="text-gray-300 text-xs">
-                Trim restoration helps preserve your vehicle’s value and enhances its overall appearance by restoring faded or dull plastic and rubber surfaces to a like-new condition. Well-maintained trim gives the exterior a cleaner, sharper look, which contributes to the car's curb appeal. This attention to detail reflects proper care, helping maintain resale value and leaving a lasting impression.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-black text-white py-16 px-4 md:px-20 0 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Benefits Of<span className="text-[#00daff]"> Ceramic Coating</span>
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 md:mt-20 md:py-6 py-4">
-            {benefits.slice(0, 3).map((benefit, index) => (
-              <div
+      {/* Image Gallery Section */}
+      <div className="w-full py-8 md:py-12 lg:h-[60vh]">
+        <div
+          ref={scrollRef1}
+          className="w-full lg:-mt-20 bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
+        >
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-6 items-center justify-center">
+            {images.map((img, index) => (
+              <motion.div
                 key={index}
-                className="flex flex-col items-center text-center"
+                style={{ x: isDesktop ? xRightToLeft : 0, transition: "transform 0.6s ease-out" }}
+                className="rounded-xl overflow-hidden shadow-lg w-full max-w-sm md:max-w-md lg:max-w-[400px] md:w-1/3"
               >
-                <img src={benefit.icon} alt="icon" className="w-16 mb-4" />
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 mt-8 w-3/4 mx-auto">
-            {benefits.slice(3).map((benefit, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center"
-              >
-                <img src={benefit.icon} alt="icon" className="w-16 mb-4" />
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {benefit.description}
-                </p>
-              </div>
+                <img
+                  src={img}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-48 md:h-56 lg:h-[250px] object-cover rounded-xl"
+                />
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-      <div className="w-full h-80 bg-[#000000] gap-10 pt-[5%] flex items-center justify-center flex-col md:flex-col lg:flex-row">
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823190/paintprotectionmask_i2mufm.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
+
+      {/* What Is Section */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
+        <div className="md:pl-[4%] lg:pl-0 mb-8 md:mb-16">
+          <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
+            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
+              Trim Restoration?
+            </div>
+            <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
+              <p className="text-justify">
+Trim Restoration is the process of reviving faded, oxidized, or damaged plastic and rubber trim on a vehicle’s exterior. Over time, UV rays, harsh weather, and car wash chemicals can cause trim pieces—such as bumper moldings, window seals, mirror housings, and fender arches—to lose their original color and luster, often turning gray or chalky. Trim restoration involves thoroughly cleaning these areas, removing oxidation, and applying specialized products designed to restore color and provide a layer of protection.
+              </p>
+              <p className="text-justify">
+Professional-grade trim restorers penetrate the material, rejuvenating the finish and often restoring it to a like-new appearance. Some treatments include long-lasting ceramic or graphene-based solutions that offer UV resistance and hydrophobic protection, helping to repel water and prevent future fading.
+
+Trim restoration not only enhances the overall aesthetics of the vehicle but also contributes to preserving its value by maintaining the factory-like appearance of the exterior components.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745678458/paintprotection_ju2ue0.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745924820/paint_jidkqf.jpg"
-            className="w-full h-full object-cover"
-            alt=""
+        
+        {/* Side Image */}
+        <div className="flex justify-center md:justify-start lg:block px-4 md:px-0">
+          <img 
+            src="https://img.freepik.com/free-photo/car-wrapping-with-foil-drying-with-fan-car-service_1303-32345.jpg?ga=GA1.1.1515336155.1743059816&w=740"
+            className="w-full max-w-sm md:max-w-md lg:w-[60%] h-64 md:h-80 lg:h-[100%] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-[18%] rounded-2xl" 
+            alt="Car care process" 
           />
         </div>
       </div>
+
+      {/* Two Column Benefits */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[20vh] md:pl-[4%] lg:pl-[6%]">
+        <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-25 bg-black">
+          <div className="flex-1">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+              Invisible and Durable Protection:
+            </h3>
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
+              Seamlessly shields your vehicle’s surfaces while maintaining original aesthetics and long-lasting resilience.
+            </p>
+          </div>
+          <div className="flex-1 lg:ml-[-50%]">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+              Preserves Value and Appearance:
+            </h3>
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-75">
+            Maintains your vehicle’s showroom look and resale value by preventing wear, fading, and damage.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[40vh] md:pl-[4%] lg:pl-[6%]">
+        <div className="mt-8 md:mt-12 lg:mt-20">
+          <div className="mb-6 lg:mb-6">
+            <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
+            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
+              Trim Restoration
+            </div>
+          </div>
+
+          {/* Benefits Icons Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex gap-4 md:gap-6 lg:gap-25 pt-2 lg:pt-3">
+            {benefits.slice(0, 5).map((benefit, index) => (
+              <div key={index} className="flex flex-col items-center text-center lg:flex-1 lg:min-w-33 lg:max-w-25">
+                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-26 flex mb-2 lg:mb-2 p-2">
+                  <img 
+                    src={benefit.icon} 
+                    alt={benefit.title}
+                    className="w-full h-full object-contain text-blue-400"
+                  />
+                </div>
+                <div className="text-xs md:text-sm lg:text-[16px] font-semibold text-white lg:-mt-2 leading-tight text-center">
+                  {benefit.title}
+                </div>
+              </div>
+            ))}
+          </div>          
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );
-};
-
-export default page;
+}

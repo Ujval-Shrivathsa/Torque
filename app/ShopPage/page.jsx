@@ -265,7 +265,7 @@ const ProductCard = ({ product, onEyeClick, onAddToCart }) => {
         </div>
         
         {/* Product Image */}
-        <div className="h-full bg-gradient-to-br from-cyan-50 to-gray-100 flex items-center justify-center p-4">
+        <div className="h-full bg-gradient-to-br from-white to-white flex items-center justify-center p-4">
           <img 
             className={`h-full object-contain transition-transform duration-500 ${isHovered ? 'scale-110' : 'scale-100'}`} 
             src={image} 
@@ -326,7 +326,7 @@ const ProductCard = ({ product, onEyeClick, onAddToCart }) => {
 const Page = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('featured');
+  const [activeFilter, setActiveFilter] = useState('all');
   const [cartNotification, setCartNotification] = useState({
     visible: false,
     message: ''

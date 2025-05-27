@@ -1,185 +1,194 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
 import Navlinks from "../Navlinks/Navlinks";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Footer from "../Components/Footer";
-import Link from "next/link";
 
-const page = () => {
-    const benefits = [
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746690280/download_2_dh2vbi.png",
-          title: "Easy Maintenance",
-          description:
-            "Vinyl wraps are generally easy to clean and maintain, requiring minimal effort to keep them looking their best.",
-        },
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746690484/download_3_catbpo.png",
-          title: "Durability",
-          description:
-            "Vinyl wraps are designed to withstand the elements, including harsh sunlight, road debris, and even minor scratches, making them a durable alternative to paint. ",
-        },
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746690680/download_1_hjpmaa.jpg",
-          title: "Customization",
-          description:
-            "Vinyl frog states vinyl wraps come in a wide variety of colors, finishes, and textures, allowing for extensive customization options, including full wraps, partial wraps, and graphics.",
-        },
-        {
-          icon: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746691075/download_4_q11kpb.png",
-          title: "Removable",
-          description:
-            "Vinyl wraps can be easily removed or replaced without damaging the original paint, offering flexibility for changing the car's look or addressing any issues with the wrap itself.",
-        },
-      ];
+const benefits = [
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Customizable Appearance",
+    description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Paint Protection",
+    description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: " Improves Hygiene",
+    description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: " Reversible and Non-Permanent",
+    description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Faster Installation",
+    description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Boosts Resale Value",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
+  },
+];
+
+
+export default function page() {
+
+    const images = [
+    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593858.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593880.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593856.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+  ];
+
+    const scrollRef1 = useRef(null);
+    const { scrollYProgress: progress1 } = useScroll({
+      target: scrollRef1,
+      offset: ["start end", "end start"],
+    });
+    const xRightToLeft = useTransform(progress1, [0, 1], ["40%", "0%"]);
+
     
-
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 640;
   return (
-    <div>
-        
-      <>
+    <div className="bg-black text-white overflow-x-hidden min-h-screen">
       <Navlinks isComplete={true} />
-        <div className="bg-black text-white py-10 pt-30 md:pt-30 lg:pt-30 px-6 md:py-15 flex flex-col items-center text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase ">
+      
+      {/* Hero Section */}
+      <div
+        className="w-full h-[100vh] flex items-center bg-cover"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,1.1), rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593880.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740')`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover"
+        }}
+      >
+        <div className="text-left ml-[6%] mb-10 px-4 md:px-0">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
             Vinyl Wrap
-          </h2>
-          <p className=" lg:px-50 text-center text-gray-300">
-          A vinyl wrap is a flexible, adhesive-backed material, typically made of PVC, that's applied to surfaces to change their appearance or protect them.
+          </h1>
+          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+           Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.
           </p>
+          <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
+            Book Now
+          </button>
         </div>
+      </div>
 
-        <div className="bg-black text-white  py-6 px-6 md:px-70">
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            {/* Left Text Section */}
-            <div className="md:col-span-1 text-sm md:px-6">
-              <h1 className="text-sm font-bold mb-2">About Services</h1>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 p-0">
-                What Is
-                <br />
-                <span className="text-[#00DAFF]">
-                 Vinyl?
-                </span>
-              </h2>
-              <p className="text-gray-300 mb-4">
-                Vinyl is made from Poly Vinyl Chloride (PVC) material, which is a 
-                synthetic man-made substance. It is a type of plastic that is 
-                made from Chlorine and Ethylene. When processed, the 
-                substances combine to form PVC resin or vinyl.
+      {/* Image Gallery Section */}
+      <div className="w-full py-8 md:py-12 lg:h-[60vh]">
+        <div
+          ref={scrollRef1}
+          className="w-full lg:-mt-20 bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
+        >
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-6 items-center justify-center">
+            {images.map((img, index) => (
+              <motion.div
+                key={index}
+                style={{ x: isDesktop ? xRightToLeft : 0, transition: "transform 0.6s ease-out" }}
+                className="rounded-xl overflow-hidden shadow-lg w-full max-w-sm md:max-w-md lg:max-w-[400px] md:w-1/3"
+              >
+                <img
+                  src={img}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-48 md:h-56 lg:h-[250px] object-cover rounded-xl"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* What Is Section */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
+        <div className="md:pl-[4%] lg:pl-0 mb-8 md:mb-16">
+          <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
+            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
+              Vinyl Wrap?
+            </div>
+            <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
+              <p className="text-justify">
+Vinyl wrap is a thin, adhesive-backed film applied over a vehicle’s original paint to change its appearance or protect the surface. Available in a wide range of colors, finishes (matte, gloss, satin, chrome), and textures (carbon fiber, brushed metal), vinyl wraps offer endless customization possibilities without the permanence of a new paint job. The application process is non-invasive and reversible, making it a popular choice for car enthusiasts and businesses wanting to brand their vehicles.
               </p>
-              {/* <p className="text-gray-300">
-                The technology behind PPF has evolved significantly since its
-                initial use by the military to protect helicopter rotor blades,
-                resulting in today's highly conformable, optically clear, and
-                incredibly durable automotive protection solutions.
-              </p> */}
-            </div>
-
-            {/* Middle Image Section */}
-            <div className="relative">
-              <img
-                src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745928442/download_5_z0jijk.jpg"
-                alt="Ceramic Coating"
-                className="rounded-lg h-111 object-cover"
-              />
-              <div className="md:absolute md:bottom-[-20px] md:left-[-40px] absolute bottom-[-20px] left-[80px] border-4 border-white rounded-lg">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXj2p2AkTlPBmwhV0B1kHkLlCgLcC4audkOw&s"
-                  alt="Detailing"
-                  className="w-32 md:w-40 lg:h-35 object-cover rounded-lg"
-                />
-              </div>
-            </div>
-
-            {/* Right Text Section */}
-            <div className="md:col-span-1">
-              <div className="mb-8 ">
-                <h3 className="text-[18px] font-semibold mb-2">
-                  Invisible and Durable Protection:
-                </h3>
-                <p className="text-gray-300 text-xs mb-2">
-                Vehicle vinyl wrap and color change wrap grew in popularity out of the wrap advertising business. The first attempts at using the plastic in commercial applications failed as a result of being too fragile. In 1926, Waldo Semon invented the vinyl still used today by introducing additives to PVC that made it flexible and easier to process
-                </p>
-              </div>
-              <div className="">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxGQchH1Se1ukCnZSLcb95d9AyIR7s1aglRA&s"
-                  className="rounded my-4 w-60 h-40 object-cover"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h3 className="text-[18px] font-semibold mb-2">
-                  Preserves Value and Appearance:{" "}
-                </h3>
-                <p className="text-gray-300 text-xs">
-                Advancements in plastics have led to new types of vinyl designed specifically for wrap advertising, including vinyl sheets that feature bubble-preventing air channels. Microscopic glass beads are used to prevent an adhesive from functioning until the user is ready (the beads allow the material to be repeatedly lifted and reapplied during the wrapping process, without compromising the longevity of the wrap). The vinyl is heated with a heat gun or torch for the purpose of molding the material around objects.
-                </p>
-              </div>
+              <p className="text-justify">
+Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV rays, scratches, road debris, and weather damage, helping preserve the factory paint underneath. It can cover the entire vehicle or just selected areas like the hood, roof, or mirrors. With proper care, a high-quality wrap can last 3 to 7 years. Vinyl wrapping is an affordable, reversible, and creative way to give your car a fresh, personalized look while protecting its original finish.
+              </p>
             </div>
           </div>
         </div>
-
-        <div className="bg-black text-white py-16 px-4 md:px-20 0 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Benefits Of<span className="text-[#00daff]"> Vinyl Wraps</span>
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 md:mt-20 md:py-6 py-4">
-            {benefits.slice(0, 3).map((benefit, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center"
-              >
-                <img src={benefit.icon} alt="icon" className="w-16 rounded-md mb-4" />
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="grid md:grid-cols-1 gap-8 mt-8 w-2/4 mx-auto">
-            {benefits.slice(3).map((benefit, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center"
-              >
-                <img src={benefit.icon} alt="icon" className="w-16 mb-4" />
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </>
-      <div className="w-full h-80 bg-[#000000] gap-10 pt-[5%] flex items-center justify-center flex-col md:flex-col lg:flex-row">
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745678458/paintprotection_ju2ue0.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823190/paintprotectionmask_i2mufm.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-        <div className="w-[90%] md:w-[70%] lg:w-[30%] h-64 lg:h-full">
-          <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745924820/paint_jidkqf.jpg"
-            className="w-full h-full object-cover"
-            alt=""
+        
+        {/* Side Image */}
+        <div className="flex justify-center md:justify-start lg:block px-4 md:px-0">
+          <img 
+            src="https://img.freepik.com/premium-photo/car-specialists-applying-neon-yellow-vinyl-foil-clients-black-car-workshop_609103-1525.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+            className="w-full max-w-sm md:max-w-md lg:w-[60%] h-64 md:h-80 lg:h-[100%] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-[18%] rounded-2xl" 
+            alt="Car care process" 
           />
         </div>
       </div>
+
+      {/* Two Column Benefits */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[20vh] lg:-mt-8 md:pl-[4%] lg:pl-[6%]">
+        <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-25 bg-black">
+          <div className="flex-1">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+              Invisible and Durable Protection:
+            </h3>
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
+              Provides a clear, strong layer that shields your vehicle’s surface from damage, wear, and elements.
+            </p>
+          </div>
+          <div className="flex-1 lg:ml-[-50%]">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+              Preserves Value and Appearance:
+            </h3>
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-75">
+Maintains your vehicle’s showroom look, reduces wear, and helps retain higher resale or trade-in value.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[40vh] md:pl-[4%] lg:pl-[6%]">
+        <div className="mt-8 md:mt-12 lg:mt-20">
+          <div className="mb-6 lg:mb-6">
+            <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
+            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
+              Vinyl Wrap
+            </div>
+          </div>
+
+          {/* Benefits Icons Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex gap-4 md:gap-6 lg:gap-25 pt-2 lg:pt-3">
+            {benefits.slice(0, 5).map((benefit, index) => (
+              <div key={index} className="flex flex-col items-center text-center lg:flex-1 lg:min-w-33 lg:max-w-25">
+                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-26 flex mb-2 lg:mb-2 p-2">
+                  <img 
+                    src={benefit.icon} 
+                    alt={benefit.title}
+                    className="w-full h-full object-contain text-blue-400"
+                  />
+                </div>
+                <div className="text-xs md:text-sm lg:text-[16px] font-semibold text-white lg:-mt-2 leading-tight text-center">
+                  {benefit.title}
+                </div>
+              </div>
+            ))}
+          </div>          
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );
-};
-
-export default page;
+}

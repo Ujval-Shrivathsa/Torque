@@ -281,7 +281,7 @@ const Hero = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            transition={{ delay: 5, stiffness: 300 }}
             className="fixed inset-0 z-[999999999999] flex items-center justify-center px-4"
           >
             <div 
