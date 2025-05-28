@@ -109,11 +109,11 @@ export default function page() {
 
       {/* What Is Section */}
       <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
-        <div className="md:pl-[4%] lg:pl-0 mb-8 md:mb-16">
+        <div className="md:pl-[4%] lg:pl-0 lg:flex-1 mb-8 md:mb-16">
           <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
             <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-              Headlight Restoration?
+               Headlight Restoration?
             </div>
             <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
               <p className="text-justify">
@@ -127,10 +127,10 @@ Restoration involves sanding away the damaged outer layer, polishing the lens to
         </div>
         
         {/* Side Image */}
-        <div className="flex justify-center md:justify-start lg:block px-4 md:px-0">
+        <div className="flex justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:max-w-sm lg:w-sm xl:max-w-lg xl:mr-40 2xl:mr-100 2xl:max-w-xl lg:mr-8.5">
           <img 
             src="https://img.freepik.com/premium-photo/mechanic-his-workshop-is-repairing-car-headlight-car-service-concept_98890-571.jpg?ga=GA1.1.1515336155.1743059816&w=740"
-            className="w-full max-w-sm md:max-w-md lg:w-[60%] h-64 md:h-80 lg:h-[100%] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-[18%] rounded-2xl" 
+            className="w-full max-w-sm md:max-w-md lg:w-full h-64 md:h-80 lg:h-[400px] xl:h-[450px] 2xl:h-[500px] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-8 xl:ml-12 2xl:ml-16 rounded-2xl" 
             alt="Car care process" 
           />
         </div>
@@ -151,8 +151,8 @@ Restoration involves sanding away the damaged outer layer, polishing the lens to
             <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
               Preserves Value and Appearance:
             </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-75">
-             Maintains your vehicle’s showroom shine and condition, helping retain resale value and curb appeal.
+            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
+            Maintains your vehicle’s showroom shine and condition, helping retain resale value and curb appeal.
             </p>
           </div>
         </div>

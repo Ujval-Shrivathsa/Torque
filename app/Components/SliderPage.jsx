@@ -36,7 +36,8 @@ const SliderPage = () => {
                         className="w-full max-w-[90%] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[950px] rounded-2xl overflow-hidden"
                     >
                         <ImageSlider
-                            beforeImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1747657651/Ceramic-Pro-Pompano-by-Ceramic-Pro-Pompano-Elite-Dealer-scaled-1-1024x576_vskumx.png"
+                            beforeImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1748435180/cosy_gdc42f.png"
+                            afterImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1748435180/cosy-01_jgnpvw.png"
                         />
                     </motion.div>
                 </motion.div>

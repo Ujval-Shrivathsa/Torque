@@ -133,7 +133,6 @@ const ImageSlider = ({
         />
       </div>
 
-      {/* Slider Handle 
       <div
         className="absolute top-[10%] bottom-[10%] w-0.5 bg-white cursor-ew-resize select-none touch-none"
         style={{ left: `${position}%` }}
@@ -144,7 +143,6 @@ const ImageSlider = ({
           <GripVertical className="w-4 h-4 text-gray-600" />
         </div>
       </div>
-      */}
     </div>
   );
 };

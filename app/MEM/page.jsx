@@ -33,7 +33,7 @@ const benefits = [
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Extends Vehicle Lifespan",
+    title: "Extends A/C System Life",
     description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
@@ -109,7 +109,7 @@ export default function page() {
 
       {/* What Is Section */}
       <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
-        <div className="md:pl-[4%] lg:pl-0 mb-8 md:mb-16">
+        <div className="md:pl-[4%] lg:pl-0 lg:flex-1 mb-8 md:mb-16">
           <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
             <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
@@ -120,17 +120,17 @@ export default function page() {
 Minor Electrical & Mechanical Work refers to small-scale repairs and adjustments done to keep a vehicle functioning smoothly without needing major servicing or part replacements. This includes tasks like fixing or replacing fuses, bulbs, switches, wiring, battery terminals, or resolving minor faults in the horn, indicators, or power windows. On the mechanical side, it might involve tightening loose parts, adjusting belts, lubricating hinges, or replacing small components like wiper blades, filters, or worn-out rubber fittings. 
               </p>
               <p className="text-justify">
-These services are often performed during routine maintenance or detailing and help ensure the vehicle’s components work reliably. Though minor, these repairs play a vital role in enhancing safety, preventing bigger issues, and maintaining a comfortable driving experience. Keeping up with such repairs can also extend the overall life of the vehicle and reduce the likelihood of sudden breakdowns. They’re quick, affordable fixes that support optimal vehicle performance and user convenience.
+These services are often performed during routine maintenance or detailing and help ensure the vehicle's components work reliably. Though minor, these repairs play a vital role in enhancing safety, preventing bigger issues, and maintaining a comfortable driving experience. Keeping up with such repairs can also extend the overall life of the vehicle and reduce the likelihood of sudden breakdowns. They're quick, affordable fixes that support optimal vehicle performance and user convenience.
               </p>
             </div>
           </div>
         </div>
         
         {/* Side Image */}
-        <div className="flex justify-center md:justify-start lg:block px-4 md:px-0">
+        <div className="flex justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:max-w-sm lg:w-sm xl:max-w-lg xl:mr-40 2xl:mr-100 2xl:max-w-xl lg:mr-8.5">
           <img 
             src="https://img.freepik.com/premium-photo/midsection-man-sitting-car_1048944-3615526.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740"
-            className="w-full max-w-sm md:max-w-md lg:w-[60%] h-64 md:h-80 lg:h-[100%] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-[18%] rounded-2xl" 
+            className="w-full max-w-sm md:max-w-md lg:w-full h-64 md:h-80 lg:h-[400px] xl:h-[450px] 2xl:h-[500px] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-8 xl:ml-12 2xl:ml-16 rounded-2xl" 
             alt="Car care process" 
           />
         </div>
@@ -152,7 +152,7 @@ These services are often performed during routine maintenance or detailing and h
               Preserves Value and Appearance:
             </h3>
             <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-75">
-           Protects your vehicle’s finish from wear and tear, keeping it looking new and maintaining resale value.
+           Protects your vehicle's finish from wear and tear, keeping it looking new and maintaining resale value.
             </p>
           </div>
         </div>
