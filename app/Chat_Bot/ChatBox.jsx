@@ -149,7 +149,7 @@ const ChatBox = () => {
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = "7022299544";
+    const phoneNumber = "9686968315";
     const message = "Hello! I'm interested in your automotive services.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -157,7 +157,7 @@ const ChatBox = () => {
   };
 
   const handlePhone = () => {
-    window.location.href = "tel:7022299544";
+    window.location.href = "tel:9686968315";
     setIsExpanded(false);
   };
 
