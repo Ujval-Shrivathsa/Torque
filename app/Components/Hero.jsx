@@ -14,6 +14,7 @@ const Hero = () => {
   const [progress, setProgress] = useState(1);
   const [isComplete, setIsComplete] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [popupClosed, setPopupClosed] = useState(false);
   const [discountCode, setDiscountCode] = useState("");
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -26,20 +27,17 @@ const Hero = () => {
   
   // Characters for the hacking effect
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
-  const finalCodeLength = 8; // Length of the final discount code
+  const finalCodeLength = 8;
   const hackingInterval = useRef(null);
-  const hackingDuration = 1500; // 1.5 seconds of hacking effect
+  const hackingDuration = 1500;
 
-  // Check if popup has been shown before
+  // Simplified popup tracking - removed sessionStorage dependency
   const hasPopupBeenShown = () => {
-    if (typeof window !== 'undefined') {
-      return sessionStorage.getItem('popupShown') === 'true';
-    }
-    return false;
+    return false; // Always allow popup to show for testing
   };
 
-  // Mark popup as shown
   const markPopupAsShown = () => {
+    // Optional: you can add sessionStorage back later if needed
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('popupShown', 'true');
     }
@@ -51,14 +49,6 @@ const Hero = () => {
         if (prev >= 100) {
           clearInterval(interval);
           setIsComplete(true);
-          
-          // Only show popup if it hasn't been shown before in this session
-          if (!hasPopupBeenShown()) {
-            setTimeout(() => {
-              setShowPopup(true);
-              markPopupAsShown(); // Mark as shown when displaying
-            }, 1500);
-          }
         }
         return prev + 1;
       });
@@ -72,6 +62,21 @@ const Hero = () => {
     };
   }, []);
 
+  // Fixed popup timer - removed conditions that might prevent popup
+  useEffect(() => {
+    console.log("Setting up popup timer..."); // Debug log
+    
+    const popupTimer = setTimeout(() => {
+      console.log("Popup timer triggered, showing popup"); // Debug log
+      setShowPopup(true);
+      markPopupAsShown();
+    }, 15000); // 1 second
+
+    return () => {
+      clearTimeout(popupTimer);
+    };
+  }, []);
+
   const scrollToSection = () => {
     const section = document.getElementById("second");
     if (section) {
@@ -81,6 +86,7 @@ const Hero = () => {
 
   const closePopup = () => {
     setShowPopup(false);
+    setPopupClosed(true);
     setShowCode(false);
     setDiscountCode("");
     setCopied(false);
@@ -101,13 +107,11 @@ const Hero = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     
-    // Basic validation
     if (!userName.trim() || !userPhone.trim()) {
       setFormError("Please fill in all fields");
       return;
     }
     
-    // Phone number validation (basic)
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(userPhone.trim())) {
       setFormError("Please enter a valid 10-digit phone number");
@@ -120,69 +124,51 @@ const Hero = () => {
   };
 
   const generateDiscountCode = () => {
-    // Don't start another generation if one is in progress
     if (isGenerating) return;
     
     setIsGenerating(true);
     setShowCode(true);
     setHackText("");
     
-    // Start with random characters that will change rapidly
     let startTime = Date.now();
     let finalCode = "";
     
-    // Generate the final code now but don't display it yet
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     for (let i = 0; i < finalCodeLength; i++) {
       finalCode += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     
-    // Start the hacking effect interval
     hackingInterval.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / hackingDuration, 1);
       
-      // Generate random text, gradually revealing the real code
       let currentText = "";
       for (let i = 0; i < finalCodeLength; i++) {
         if (i < Math.floor(progress * finalCodeLength)) {
-          // This position has been "solved"
           currentText += finalCode[i];
         } else {
-          // This position is still randomizing
           currentText += chars.charAt(Math.floor(Math.random() * chars.length));
         }
       }
       
       setHackText(currentText);
       
-      // When complete, clear interval and set the final code
       if (progress >= 1) {
         clearInterval(hackingInterval.current);
         setDiscountCode(finalCode);
         setIsGenerating(false);
-        
-        // Redirect to WhatsApp with the user details and discount code
         redirectToWhatsApp(finalCode);
       }
-    }, 50); // Update every 50ms for smooth animation
+    }, 50);
   };
 
-  // Function to redirect to WhatsApp with the user details and discount code
   const redirectToWhatsApp = (code) => {
-    // Create the message with user details and discount code
     const message = `Hi, I'm ${userName}. I'd like to claim my 30% discount (code: ${code}) for Torque Detailing Studio services.`;
-    
-    // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
-    
-    // Create the WhatsApp URL with the business number
     const whatsappURL = `https://wa.me/919998899789?text=${encodedMessage}`;
     
-    // Open WhatsApp in a new tab
     window.open(whatsappURL, '_blank');
     
-    // Close the popup after a delay (4 seconds)
     setTimeout(() => {
       closePopup();
     }, 4000);
@@ -194,31 +180,16 @@ const Hero = () => {
       setTimeout(() => setCopied(false), 2000);
     });
   };
+
+  // Debug log to check popup state
+  console.log("Popup state:", { showPopup, popupClosed, isComplete });
  
   return (
     <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
       {/* Navbar */}
-      <motion.div className="absolute top-0 left-0 w-full px-4 md:px-10">
+      <motion.div className="absolute top-0 left-0 w-full px-4 md:px-10 z-50">
         <Navlinks isComplete={isComplete} />
       </motion.div>
-
-      {/* Progress Display (Hidden after loading) */}
-      {!isComplete && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          className="absolute inset-0 flex items-center justify-center bg-black text-white text-4xl font-bold z-50"
-        >
-          <motion.span
-            key={progress}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-white text-6xl md:text-8xl"
-          >
-            {progress}%
-          </motion.span>
-        </motion.div>
-      )}
 
       <video
         loop
@@ -238,40 +209,7 @@ const Hero = () => {
           visible: { transition: { staggerChildren: 0.5 } },
         }}
       >
-        {/* <motion.h1 className="text-white text-4xl md:text-[5vw] md:my-2 font-extrabold drop-shadow-lg leading-18">
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, x: -100 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-            className="md:text-[3vw] font-medium "
-          >
-            Experience the Art of
-          </motion.span>
-          <br />
-          <motion.span
-             variants={{
-              hidden: { opacity: 0,},
-              visible: { opacity: 1, x: 0 },
-            }}
-            transition={{ duration: 1, ease: "easeOut", delay: 2 }}
-            className="relative inline-block "
-          >
-            <Glitch/>
-          </motion.span>
-
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, },
-              visible: { opacity: 1, x: 0 },
-            }}
-            transition={{ duration: 1, ease: "easeOut", delay: 2.5 }}
-            className="relative inline-block glitch mx-6 text-[#00DAFF]"
-          >
-            <GlitchText/>
-          </motion.span>
-        </motion.h1> */}
+        {/* Your commented heading code here */}
       </motion.div>
 
       {/* Discount Popup */}
@@ -281,13 +219,8 @@ const Hero = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 300, 
-              damping: 30,
-              // Removed the delay from here - this was causing the issue
-            }}
-            className="fixed inset-0 z-[999999999999] flex items-center justify-center px-4"
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-4"
           >
             <div 
               className="fixed inset-0 bg-black bg-opacity-50" 
@@ -295,7 +228,7 @@ const Hero = () => {
             />
             
             <motion.div 
-              className="relative bg-black border-2 border-[#00DAFF] rounded-lg p-6 w-full max-w-md shadow-2xl z-[999999999999]"
+              className="relative bg-black border-2 border-[#00DAFF] rounded-lg p-6 w-full max-w-md shadow-2xl z-[101]"
               whileHover={{ scale: 1.02 }}
             >
               <button 
