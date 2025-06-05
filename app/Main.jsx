@@ -7,8 +7,8 @@ import ProductPage from "./Components/ProductPage";
 import ChatBox from "./Chat_Bot/ChatBox";
 import { Toaster } from "react-hot-toast";
 import SliderPage from "./Components/SliderPage";
+import Gallery from "./Components/Gallery";
 import Instagrampost from "./Components/Instagrampost";
-
 
 const Main = () => {
   return (
@@ -20,6 +20,7 @@ const Main = () => {
         <ProductPage />
         <Testimonials />
         <SliderPage/>
+        <Gallery />
         <Instagrampost/>
         <Footer />
     </div>

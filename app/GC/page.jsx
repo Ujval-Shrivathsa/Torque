@@ -57,7 +57,7 @@ export default function page() {
       
       {/* Hero Section */}
       <div
-        className="w-full h-[100vh] flex items-center bg-cover"
+        className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/front-view-worker-spraying-powder-paint-from-gum_52683-97009.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740')`,
           backgroundPosition: "center",
@@ -65,12 +65,12 @@ export default function page() {
           backgroundSize: "cover"
         }}
       >
-        <div className="text-left ml-[6%] mb-10 px-4 md:px-0">
+        <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-           Graphene Coating
+            Graphene Coating
           </h1>
           <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-           Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.
+            Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.
           </p>
           <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
             Book Now
@@ -79,10 +79,10 @@ export default function page() {
       </div>
 
       {/* Image Gallery Section */}
-      <div className="w-full py-8 md:py-12 lg:h-[60vh]">
+      <div className="w-full py-8 md:py-12 lg:py-16">
         <div
           ref={scrollRef1}
-          className="w-full lg:-mt-20 bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
+          className="w-full bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
         >
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-6 items-center justify-center">
             {images.map((img, index) => (
@@ -102,60 +102,65 @@ export default function page() {
         </div>
       </div>
 
-      {/* What Is Section */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
-        <div className="md:pl-[4%] lg:pl-0 lg:flex-1 mb-8 md:mb-16">
-          <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
-            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-              Graphene Coating?
-            </div>
-            <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
-              <p className="text-justify">
- Graphene coating is an advanced automotive surface protection technology that uses graphene, a single layer of carbon atoms arranged in a hexagonal lattice. Known for its exceptional strength, conductivity, and flexibility, graphene provides a durable and highly effective shield when applied as a coating to a vehicle’s paint. Unlike traditional ceramic coatings, graphene coatings offer superior heat resistance, water repellency (hydrophobicity), and anti-static properties, meaning they repel dust and water more effectively.
-              </p>
-              <p className="text-justify">
-This results in a cleaner surface for longer periods and easier maintenance. Graphene coatings also offer enhanced UV protection, reducing the risk of paint oxidation and fading. Additionally, they are highly resistant to chemical stains, bird droppings, and other environmental contaminants. Their slick, glossy finish enhances the depth and shine of the paint, giving the car a freshly detailed look. Overall, graphene coatings provide long-lasting, high-performance protection while reducing the need for frequent washing or detailing.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Side Image */}
-        <div className="flex justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:max-w-sm lg:w-sm xl:max-w-lg xl:mr-40 2xl:mr-100 2xl:max-w-xl lg:mr-8.5">
-          <img 
-            src="https://img.freepik.com/free-photo/male-painter-hazmat-suit-inside-car-shop_23-2149750030.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
-            className="w-full max-w-sm md:max-w-md lg:w-full h-64 md:h-80 lg:h-[400px] xl:h-[450px] 2xl:h-[500px] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-8 xl:ml-12 2xl:ml-16 rounded-2xl" 
-            alt="Car care process" 
-          />
-        </div>
-      </div>
 
-      {/* Two Column Benefits */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[20vh] md:pl-[4%] lg:pl-[6%]">
-        <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-25 bg-black">
-          <div className="flex-1">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
-              Invisible and Durable Protection:
-            </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-Provides clear, long-lasting defense against damage while keeping your car’s original look intact.
-            </p>
+      {/* What Is Section */}
+      <div className="w-full px-4 gap-80 2xl:gap-0 flex justify-center items-center md:px-0 py-8 md:py-12 lg:py-16 ">
+        <div className="lg:flex lg:items-start">
+          <div className="md:pl-[4%] 2xl:ml-50 lg:pl-0 lg:flex-1 mb-8 md:mb-16 lg:mb-0">
+            <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
+              <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
+                Graphene Coating?
+              </div>
+              <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
+                <p className="text-justify">
+                  Graphene coating is an advanced automotive surface protection technology that uses graphene, a single layer of carbon atoms arranged in a hexagonal lattice. Known for its exceptional strength, conductivity, and flexibility, graphene provides a durable and highly effective shield when applied as a coating to a vehicle’s paint. Unlike traditional ceramic coatings, graphene coatings offer superior heat resistance, water repellency (hydrophobicity), and anti-static properties, meaning they repel dust and water more effectively.
+                </p>
+                <p className="text-justify">
+                  This results in a cleaner surface for longer periods and easier maintenance. Graphene coatings also offer enhanced UV protection, reducing the risk of paint oxidation and fading. Additionally, they are highly resistant to chemical stains, bird droppings, and other environmental contaminants. Their slick, glossy finish enhances the depth and shine of the paint, giving the car a freshly detailed look. Overall, graphene coatings provide long-lasting, high-performance protection while reducing the need for frequent washing or detailing.
+                </p>
+              </div>
+            </div>
+        
+              {/* Two Column Benefits */}
+              <div className="w-full px-4 md:px-0 pt-5 pb-6 md:py-8 lg:pt-5 lg:pb-10 md:pl-[4%] lg:pl-0">
+                <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-50 2xl:gap-60 bg-black">
+                  <div className="flex-1">
+                    <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+                      Invisible and Durable Protection:
+                    </h3>
+                    <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
+                     Graphene coating provides ultra-thin, invisible, and highly durable protection against wear, chemicals, heat, and UV.
+                    </p>
+                  </div>
+                  <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
+                    <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+                      Preserves Value and Appearance:
+                    </h3>
+                    <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
+                     Graphene coating preserves value and appearance by preventing wear, fading, corrosion, and environmental damage long-term.
+                    </p>
+                  </div>
+                </div>
+              </div>
           </div>
-          <div className="flex-1 lg:ml-[-50%]">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
-              Preserves Value and Appearance:
-            </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-Maintains your car’s showroom finish and resale value by preventing paint damage and wear.
-            </p>
+          
+          {/* Side Image */}
+          <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
+            <img 
+              src="https://img.freepik.com/free-photo/male-painter-hazmat-suit-inside-car-shop_23-2149750030.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
+              style={{ marginRight: '30px' }}
+              alt="Car care process" 
+            />
           </div>
         </div>
+
       </div>
 
       {/* Benefits Section */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[40vh] md:pl-[4%] lg:pl-[6%]">
-        <div className="mt-8 md:mt-12 lg:mt-20">
+      <div className="w-full 2xl:ml-[13.5%] px-4 md:px-0 py-8 md:py-12 lg:py-16 md:pl-[4%] lg:pl-[6%]">
+        <div className="mt-8 md:mt-12 lg:mt-0">
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">

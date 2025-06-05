@@ -8,7 +8,7 @@ import Footer from "../Components/Footer";
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: " Restores Shine and Gloss",
+    title: "Restores Shine and Gloss",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
@@ -28,13 +28,8 @@ const benefits = [
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: " Cleans Wheels and Tires",
+    title: "Cleans Wheels and Tires",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
-  },
-  {
-    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: " Increases Resale Value",
-    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
@@ -42,7 +37,7 @@ const benefits = [
 export default function page() {
 
     const images = [
-    "https://img.freepik.com/premium-photo/worker-washing-car-with-active-foam-car-wash_179755-10785.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+"https://img.freepik.com/premium-photo/worker-washing-car-with-active-foam-car-wash_179755-10785.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
     "https://img.freepik.com/premium-photo/detailing-center-worker-cleans-car-s-radiator-grill-with-brush_153608-2690.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
     "https://img.freepik.com/free-photo/selective-focus-shot-man-cleaning-car-s-back-headlight-with-microfiber-cloth_181624-46344.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
   ];
@@ -62,7 +57,7 @@ export default function page() {
       
       {/* Hero Section */}
       <div
-        className="w-full h-[100vh] flex items-center bg-cover"
+        className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/car-wash-detailing-station_1303-22318.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740')`,
           backgroundPosition: "center",
@@ -70,12 +65,12 @@ export default function page() {
           backgroundSize: "cover"
         }}
       >
-        <div className="text-left ml-[6%] mb-10 px-4 md:px-0">
+        <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
             Exterior Detailing
           </h1>
           <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-            Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.
+Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.
           </p>
           <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
             Book Now
@@ -84,10 +79,10 @@ export default function page() {
       </div>
 
       {/* Image Gallery Section */}
-      <div className="w-full py-8 md:py-12 lg:h-[60vh]">
+      <div className="w-full py-8 md:py-12 lg:py-16">
         <div
           ref={scrollRef1}
-          className="w-full lg:-mt-20 bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
+          className="w-full bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
         >
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-6 items-center justify-center">
             {images.map((img, index) => (
@@ -107,60 +102,65 @@ export default function page() {
         </div>
       </div>
 
-      {/* What Is Section */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
-        <div className="md:pl-[4%] lg:pl-0 lg:flex-1 mb-8 md:mb-16">
-          <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
-            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-              Exterior Detailing?
-            </div>
-            <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
-              <p className="text-justify">
-Exterior detailing is a comprehensive cleaning, restoration, and finishing process focused on a vehicle’s outer surfaces to protect and enhance its appearance. It goes beyond a standard car wash by thoroughly cleaning every part of the exterior, including paint, windows, wheels, tires, trim, and chrome. The process typically involves washing to remove dirt and grime, clay bar treatment to eliminate embedded contaminants, polishing to remove swirl marks and minor scratches, and waxing or sealing to provide a protective layer
-              </p>
-              <p className="text-justify">
-Exterior detailing restores the car’s shine, improves paint clarity, and helps protect against environmental damage such as UV rays, oxidation, bird droppings, and road salt. Wheel cleaning and tire dressing enhance the look of these often-neglected areas. Overall, exterior detailing not only makes your car look brand new but also helps preserve the paint’s condition, extending the vehicle’s life and maintaining its resale value
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Side Image */}
-        <div className="flex justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:max-w-sm lg:w-sm xl:max-w-lg xl:mr-40 2xl:mr-100 2xl:max-w-xl lg:mr-8.5">
-          <img 
-            src="https://img.freepik.com/free-photo/man-washing-his-car-garage_1157-26058.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
-            className="w-full max-w-sm md:max-w-md lg:w-full h-64 md:h-80 lg:h-[400px] xl:h-[450px] 2xl:h-[500px] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-8 xl:ml-12 2xl:ml-16 rounded-2xl" 
-            alt="Car care process" 
-          />
-        </div>
-      </div>
 
-      {/* Two Column Benefits */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[20vh] md:pl-[4%] lg:pl-[6%]">
-        <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-25 bg-black">
-          <div className="flex-1">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
-              Invisible and Durable Protection:
-            </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
+      {/* What Is Section */}
+      <div className="w-full px-4 gap-80 2xl:gap-0 flex justify-center items-center md:px-0 py-8 md:py-12 lg:py-16 ">
+        <div className="lg:flex lg:items-start">
+          <div className="md:pl-[4%] 2xl:ml-50 lg:pl-0 lg:flex-1 mb-8 md:mb-16 lg:mb-0">
+            <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
+              <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
+                Exterior Detailing?
+              </div>
+              <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
+                <p className="text-justify">
+Exterior detailing is a comprehensive cleaning, restoration, and finishing process focused on a vehicle’s outer surfaces to protect and enhance its appearance. It goes beyond a standard car wash by thoroughly cleaning every part of the exterior, including paint, windows, wheels, tires, trim, and chrome. The process typically involves washing to remove dirt and grime, clay bar treatment to eliminate embedded contaminants, polishing to remove swirl marks and minor scratches, and waxing or sealing to provide a protective layer
+                </p>
+                <p className="text-justify">
+Exterior detailing restores the car’s shine, improves paint clarity, and helps protect against environmental damage such as UV rays, oxidation, bird droppings, and road salt. Wheel cleaning and tire dressing enhance the look of these often-neglected areas. Overall, exterior detailing not only makes your car look brand new but also helps preserve the paint’s condition, extending the vehicle’s life and maintaining its resale value
+                </p>
+              </div>
+            </div>
+        
+              {/* Two Column Benefits */}
+              <div className="w-full px-4 md:px-0 pt-5 pb-6 md:py-8 lg:pt-5 lg:pb-10 md:pl-[4%] lg:pl-0">
+                <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-50 2xl:gap-60 bg-black">
+                  <div className="flex-1">
+                    <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+                      Invisible and Durable Protection:
+                    </h3>
+                    <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
  Provides clear, long-lasting defense against scratches, chips, and environmental damage without altering appearance.
-            </p>
-          </div>
-          <div className="flex-1 lg:ml-[-50%]">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
-              Preserves Value and Appearance:
-            </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
+                    </p>
+                  </div>
+                  <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
+                    <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+                      Preserves Value and Appearance:
+                    </h3>
+                    <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
             Maintains your car’s original look and condition, helping retain its value over time.
-            </p>
+                    </p>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+          {/* Side Image */}
+          <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
+            <img 
+              src="https://img.freepik.com/free-photo/man-washing-his-car-garage_1157-26058.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
+              style={{ marginRight: '30px' }}
+              alt="Car care process" 
+            />
           </div>
         </div>
+
       </div>
 
       {/* Benefits Section */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[40vh] md:pl-[4%] lg:pl-[6%]">
-        <div className="mt-8 md:mt-12 lg:mt-20">
+      <div className="w-full 2xl:ml-[13.5%] px-4 md:px-0 py-8 md:py-12 lg:py-16 md:pl-[4%] lg:pl-[6%]">
+        <div className="mt-8 md:mt-12 lg:mt-0">
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">

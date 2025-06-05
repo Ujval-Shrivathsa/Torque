@@ -26,6 +26,7 @@ const SliderPage = () => {
                 <motion.div
                     initial={{ borderRadius: "20px" }}
                     whileInView={{ borderRadius: "30px" }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.5, ease: "circInOut" }}
                     className="w-full flex justify-center"
                 >
@@ -43,7 +44,6 @@ const SliderPage = () => {
                 </motion.div>
 
                 {/* Features Grid */}
-                {/* 
                 <motion.div className="mt-12 sm:mt-16">
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-12">
                         {features.map((item, index) => (
@@ -63,7 +63,6 @@ const SliderPage = () => {
                         ))}
                     </div>
                 </motion.div>
-                */}
             </motion.div>
         </div>
     );

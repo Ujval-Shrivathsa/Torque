@@ -219,7 +219,7 @@ const ComplexServices = () => {
                 CarWash offers a range of customizable services...
               </p>
               <p className="text-gray-400 mt-1 w-sm text-sm poppins">
-                Special offer: 30% off selected items. Shop now and save!
+                Special offer: Rs.5000 off on any service!
               </p>
               <button className="border-2 anton tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
                 <Link href="/Contact">Contact Us</Link>

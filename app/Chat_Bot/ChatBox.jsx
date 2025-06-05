@@ -1,15 +1,8 @@
-"use client";
+"use client"
 
 import React, { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretDown,
-  faPaperPlane,
-  faXmark,
-  faCheck,
-  faRotateRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { useAnimation, AnimatePresence, motion } from "framer-motion";
+import { Check, ChevronDown, Send, X, RotateCcw } from "lucide-react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 const OptionCard = ({ option, selected, onClick }) => (
   <label className="cursor-pointer">
@@ -34,7 +27,7 @@ const OptionCard = ({ option, selected, onClick }) => (
         }`}
       >
         {selected && (
-          <FontAwesomeIcon icon={faCheck} className="text-white text-xs" />
+          <Check className="text-white w-3 h-3" />
         )}
       </div>
       {option}
@@ -63,8 +56,8 @@ const TypingDots = () => (
   </div>
 );
 
-  
 const ChatBox = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasBeenClicked, setHasBeenClicked] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -81,21 +74,16 @@ const ChatBox = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isMobileNumberValid, setIsMobileNumberValid] = useState(true);
   const [isChatEnded, setIsChatEnded] = useState(false);
-  const [showChatTooltip, setShowChatTooltip] = useState(false);
   const messagesEndRef = useRef(null);
 
   const controls = useAnimation();
 
   useEffect(() => {
     const sequence = async () => {
-      // Fade in
       await controls.start({ opacity: 1, transition: { duration: 3 } });
-      // Wait 3 seconds
       await new Promise((res) => setTimeout(res, 3000));
-      // Fade out
       await controls.start({ opacity: 0, transition: { duration: 1 } });
     };
-
     sequence();
   }, [controls]);
 
@@ -106,19 +94,6 @@ const ChatBox = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  // Add tooltip effect when page loads
-  useEffect(() => {
-    // Show tooltip after page loads
-    setShowChatTooltip(true);
-    
-    // Hide tooltip after 3 seconds
-    const timer = setTimeout(() => {
-      setShowChatTooltip(false);
-    }, 3000);
-    
-    return () => clearTimeout(timer);
-  }, []);
 
   const options = [
     ["Ceramic Coating", "PPF", "Car Detailing", "Sunfilms"],
@@ -166,10 +141,24 @@ const ChatBox = () => {
   const handleOpenChat = () => {
     setIsChatOpen(true);
     setHasBeenClicked(true);
+    setIsExpanded(false);
   };
 
   const handleCloseChat = () => {
     setIsChatOpen(false);
+  };
+
+  const handleWhatsApp = () => {
+    const phoneNumber = "7022299544";
+    const message = "Hello! I'm interested in your automotive services.";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    setIsExpanded(false);
+  };
+
+  const handlePhone = () => {
+    window.location.href = "tel:7022299544";
+    setIsExpanded(false);
   };
 
   const handleSend = () => {
@@ -253,7 +242,7 @@ const ChatBox = () => {
             sender: "bot",
             text: "I will call you soon to discuss details. Can I have your mobile number?",
           },
-          { sender: "bot", text: "Please type your phone number ️😊" },
+          { sender: "bot", text: "Please type your phone number 😊" },
         ]);
       }, 1200);
 
@@ -292,7 +281,6 @@ const ChatBox = () => {
     }
   }, [chatData.mobile]);
 
-  // Bouncing animation variants
   const bounceVariants = {
     bounce: {
       y: [0, -8, 0],
@@ -310,15 +298,37 @@ const ChatBox = () => {
     }
   };
 
-  // Tooltip animation variants
-  const tooltipVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 10 }
-  };
+  const actionButtons = [
+    {
+      id: 'chat',
+      icon: '💬',
+      label: 'Chat',
+      onClick: handleOpenChat,
+      color: 'bg-blue-500 hover:bg-blue-600',
+      iconType: 'emoji'
+    },
+    {
+      id: 'whatsapp',
+      icon: 'https://cdn-icons-png.freepik.com/256/3536/3536445.png?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid',
+      label: 'WhatsApp',
+      onClick: handleWhatsApp,
+      color: 'bg-green-600 hover:bg-green-600',
+      iconType: 'image'
+    },
+    {
+      id: 'phone',
+      icon: '📞',
+      label: 'Call',
+      onClick: handlePhone,
+      color: 'bg-orange-500 hover:bg-orange-600',
+      iconType: 'emoji'
+    }
+  ];
 
   return (
-    <div className="relative z-9999999 min-h-full w-[full]">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+      
+      {/* Chat Interface */}
       <AnimatePresence>
         {isChatOpen && (
           <motion.div
@@ -326,7 +336,7 @@ const ChatBox = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.3 }}
-           className="fixed lg:bottom-25 right-3 md:bottom-25 md:w-[40%] bottom-15 lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
+            className="fixed lg:bottom-25 right-3 md:bottom-25 md:w-[40%] bottom-15 lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
           >
             {/* Header */}
             <div className="relative flex items-center w-[full] h-[8%] sm:h-[10%] bg-white rounded-t-xl px-2 sm:px-4 overflow-hidden">
@@ -350,24 +360,24 @@ const ChatBox = () => {
                   onClick={resetChat}
                   className="text-black p-1 rounded-full"
                 >
-                  <FontAwesomeIcon icon={faRotateRight} className="text-sm hover:text-cyan-700" />
+                  <RotateCcw className="w-4 h-4 hover:text-cyan-700" />
                 </button>
                 <button
                   onClick={handleCloseChat}
                   className="p-1.5 sm:p-2 flex justify-center items-center rounded-full"
                 >
-                  <FontAwesomeIcon icon={faXmark} className="text-black text-lg hover:text-cyan-700" />
+                  <X className="text-black w-5 h-5 hover:text-cyan-700" />
                 </button>
               </div>  
             </div>
 
             {/* Chat Area */}
             <div className="flex-1 bg-[#f5f5f5] rounded-lg p-2 sm:p-3 mt-1 sm:mt-2 overflow-y-auto scroll-smooth text-xs">
-            <style jsx>{`
-              div::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
+              <style jsx>{`
+                div::-webkit-scrollbar {
+                  display: none;
+                }
+              `}</style>
               <div className="flex flex-col gap-2">
                 {messages.map((msg, index) => (
                   <div key={index} className="flex flex-col gap-1">
@@ -431,7 +441,7 @@ const ChatBox = () => {
                   <div className="flex gap-2">
                     <div className="flex items-center justify-center border border-gray-300 rounded-xl h-9 w-20">
                       <img
-                        src="data:image/png;base64,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"
+                        src="data:image/png;base64,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"
                         alt="Indian Flag"
                         className="w-3 h-2 mr-1"
                       />
@@ -454,7 +464,7 @@ const ChatBox = () => {
                         }`}
                         disabled={!isMobileNumberValid}
                       >
-                        <FontAwesomeIcon icon={faPaperPlane} />
+                        <Send className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
@@ -483,7 +493,7 @@ const ChatBox = () => {
                       onClick={handleSend}
                       className="p-2 rounded-full hover:opacity-90 transition-opacity"
                     >
-                      <FontAwesomeIcon icon={faPaperPlane} />
+                      <Send className="w-4 h-4" />
                     </button>
                   </div>
                 )}
@@ -493,26 +503,75 @@ const ChatBox = () => {
         )}
       </AnimatePresence>
 
-      {/* Chat Button - Only bounces if it has never been clicked */}
-      <motion.button
-        onClick={handleOpenChat}
-        animate={!hasBeenClicked ? "bounce" : "still"}
-        variants={bounceVariants}
-        className="fixed bottom-3 right-3 w-10 h-10 lg:w-18 lg:h-18 md:w-18 md:h-18 rounded-full text-white flex justify-center items-center z-50 shadow-lg"
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={controls}
-          className="absolute lg:w-60 lg:h-10 lg:text-lg right-24 mr-2 bg-cyan-600 text-white text-xs px-2 py-1 rounded-md"
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {/* Expanded action buttons */}
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex flex-col gap-3 mb-3"
+            >
+              {actionButtons.map((button, index) => (
+                <motion.button
+                  key={button.id}
+                  initial={{ scale: 0, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0, y: 20 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={button.onClick}
+                  className={`${button.color} w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group`}
+                >
+                  {button.iconType === 'emoji' ? (
+                    <span className="text-lg">{button.icon}</span>
+                  ) : (
+                    <img src={button.icon} alt={button.label} className="w-6 h-6" />
+                  )}
+                  
+                  {/* Tooltip */}
+                  <div className="absolute right-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    {button.label}
+                  </div>
+                </motion.button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main toggle button */}
+        <motion.button
+          onClick={() => setIsExpanded(!isExpanded)}
+          animate={!hasBeenClicked && !isExpanded ? "bounce" : "still"}
+          variants={bounceVariants}
+          className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-transparent none text-white flex justify-center items-center shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 relative"
         >
-          Hello, how may I help you?
-        </motion.div>
-        <img
-          src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg"
-          alt="Chat"
-          className="w-full h-full object-cover object-top rounded-full"
-        />
-      </motion.button>
+          {/* Tooltip */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={controls}
+            className="absolute right-16 bg-cyan-600 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap"
+          >
+            Hello, how may I help you?
+          </motion.div>
+
+          <motion.div
+            animate={{ rotate: isExpanded ? 45 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {isExpanded ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <img
+                src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg"
+                alt="Assistant"
+                className="w-10 h-10 lg:w-15 lg:h-15 object-cover object-top rounded-full"
+              />
+            )}
+          </motion.div>
+        </motion.button>
+      </div>
     </div>
   );
 };

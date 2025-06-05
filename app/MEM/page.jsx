@@ -62,20 +62,20 @@ export default function page() {
       
       {/* Hero Section */}
       <div
-        className="w-full h-[100vh] flex items-center bg-cover"
+        className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,1.1), rgba(0,0,0,0.5)), url('https://img.freepik.com/premium-photo/mechanic-working-car-engine_53419-1672.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://img.freepik.com/premium-photo/mechanic-working-car-engine_53419-1672.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
-        <div className="text-left ml-[6%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl w-180 lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
+        <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
             Minor Electrical & Mechanical Work
           </h1>
           <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-           From windshield wiper changes to fitting dashcams, we handle small but essential repairs.
+From windshield wiper changes to fitting dashcams, we handle small but essential repairs.
           </p>
           <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
             Book Now
@@ -84,10 +84,10 @@ export default function page() {
       </div>
 
       {/* Image Gallery Section */}
-      <div className="w-full py-8 md:py-12 lg:h-[60vh]">
+      <div className="w-full py-8 md:py-12 lg:py-16">
         <div
           ref={scrollRef1}
-          className="w-full lg:-mt-20 bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
+          className="w-full bg-black py-6 md:py-12 px-4 sm:px-6 md:px-10 lg:px-4 overflow-hidden"
         >
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-6 items-center justify-center">
             {images.map((img, index) => (
@@ -107,64 +107,69 @@ export default function page() {
         </div>
       </div>
 
-      {/* What Is Section */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[60vh] lg:flex lg:pl-[6%]">
-        <div className="md:pl-[4%] lg:pl-0 lg:flex-1 mb-8 md:mb-16">
-          <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
-            <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-              Minor Electrical & Mechanical Work?
-            </div>
-            <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-180">
-              <p className="text-justify">
-Minor Electrical & Mechanical Work refers to small-scale repairs and adjustments done to keep a vehicle functioning smoothly without needing major servicing or part replacements. This includes tasks like fixing or replacing fuses, bulbs, switches, wiring, battery terminals, or resolving minor faults in the horn, indicators, or power windows. On the mechanical side, it might involve tightening loose parts, adjusting belts, lubricating hinges, or replacing small components like wiper blades, filters, or worn-out rubber fittings. 
-              </p>
-              <p className="text-justify">
-These services are often performed during routine maintenance or detailing and help ensure the vehicle's components work reliably. Though minor, these repairs play a vital role in enhancing safety, preventing bigger issues, and maintaining a comfortable driving experience. Keeping up with such repairs can also extend the overall life of the vehicle and reduce the likelihood of sudden breakdowns. They're quick, affordable fixes that support optimal vehicle performance and user convenience.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Side Image */}
-        <div className="flex justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:max-w-sm lg:w-sm xl:max-w-lg xl:mr-40 2xl:mr-100 2xl:max-w-xl lg:mr-8.5">
-          <img 
-            src="https://img.freepik.com/premium-photo/midsection-man-sitting-car_1048944-3615526.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740"
-            className="w-full max-w-sm md:max-w-md lg:w-full h-64 md:h-80 lg:h-[400px] xl:h-[450px] 2xl:h-[500px] object-cover object-center mt-4 md:mt-8 lg:mt-[10%] md:ml-[4%] lg:ml-8 xl:ml-12 2xl:ml-16 rounded-2xl" 
-            alt="Car care process" 
-          />
-        </div>
-      </div>
 
-      {/* Two Column Benefits */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[20vh] md:pl-[4%] lg:pl-[6%]">
-        <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-25 bg-black">
-          <div className="flex-1">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
-              Invisible and Durable Protection:
-            </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-              Shields vehicle surfaces from damage while maintaining a clean, sleek, factory-finish look long-term.
+      {/* What Is Section */}
+      <div className="w-full px-4 gap-80 2xl:gap-0 flex justify-center items-center md:px-0 py-8 md:py-12 lg:py-16 ">
+        <div className="lg:flex lg:items-start">
+          <div className="md:pl-[4%] 2xl:ml-50 lg:pl-0 lg:flex-1 mb-8 md:mb-16 lg:mb-0">
+            <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
+              <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
+                Minor Electrical & Mechanical Work?
+              </div>
+              <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
+                <p className="text-justify">
+Minor Electrical & Mechanical Work refers to small-scale repairs and adjustments done to keep a vehicle functioning smoothly without needing major servicing or part replacements. This includes tasks like fixing or replacing fuses, bulbs, switches, wiring, battery terminals, or resolving minor faults in the horn, indicators, or power windows. On the mechanical side, it might involve tightening loose parts, adjusting belts, lubricating hinges, or replacing small components like wiper blades, filters, or worn-out rubber fittings. 
+                </p>
+                <p className="text-justify">
+These services are often performed during routine maintenance or detailing and help ensure the vehicle's components work reliably. Though minor, these repairs play a vital role in enhancing safety, preventing bigger issues, and maintaining a comfortable driving experience. Keeping up with such repairs can also extend the overall life of the vehicle and reduce the likelihood of sudden breakdowns. They're quick, affordable fixes that support optimal vehicle performance and user convenience.
+                </p>
+              </div>
+            </div>
+        
+              {/* Two Column Benefits */}
+              <div className="w-full px-4 md:px-0 pt-5 pb-6 md:py-8 lg:pt-5 lg:pb-10 md:pl-[4%] lg:pl-0">
+                <div className="flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 lg:gap-50 2xl:gap-60 bg-black">
+                  <div className="flex-1">
+                    <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+                      Invisible and Durable Protection:
+                    </h3>
+                    <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
+Shields vehicle surfaces from damage while maintaining a clean, sleek, factory-finish look long-term.
             </p>
+                  </div>
+                  <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
+                    <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
+                      Preserves Value and Appearance:
+                    </h3>
+                    <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
+ Protects your vehicle's finish from wear and tear, keeping it looking new and maintaining resale value.
+                    </p>
+                  </div>
+                </div>
+              </div>
           </div>
-          <div className="flex-1 lg:ml-[-50%]">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
-              Preserves Value and Appearance:
-            </h3>
-            <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-75">
-           Protects your vehicle's finish from wear and tear, keeping it looking new and maintaining resale value.
-            </p>
+          
+          {/* Side Image */}
+          <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
+            <img 
+              src="https://img.freepik.com/premium-photo/midsection-man-sitting-car_1048944-3615526.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740"
+              className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
+              style={{ marginRight: '30px' }}
+              alt="Car care process" 
+            />
           </div>
         </div>
+
       </div>
 
       {/* Benefits Section */}
-      <div className="w-full px-4 md:px-0 py-8 md:py-0 lg:h-[40vh] md:pl-[4%] lg:pl-[6%]">
-        <div className="mt-8 md:mt-12 lg:mt-20">
+      <div className="w-full 2xl:ml-[13.5%] px-4 md:px-0 py-8 md:py-12 lg:py-16 md:pl-[4%] lg:pl-[6%]">
+        <div className="mt-8 md:mt-12 lg:mt-0">
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Minor Electrical & Mechanical Work
+               Minor Electrical & Mechanical Work
             </div>
           </div>
 
