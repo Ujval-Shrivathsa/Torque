@@ -6,12 +6,12 @@ import ImageSlider from "./ImageSlider";
 
 const SliderPage = () => {
     const features = [
-        { img: "https://torquedetailingstudio.com/wp-content/uploads/2025/01/uv-protection.png", text: "UV & SUNSHINE" },
-        { img: "https://torquedetailingstudio.com/wp-content/uploads/2025/01/rain.png", text: "WEATHER EROSION" },
-        { img: "https://torquedetailingstudio.com/wp-content/uploads/2025/01/radiation.png", text: "ACID RAIN" },
-        { img: "https://torquedetailingstudio.com/wp-content/uploads/2025/01/scratch.png", text: "GRAFFITI & SCRATCHES" },
-        { img: "https://torquedetailingstudio.com/wp-content/uploads/2025/01/bird-on-branch.png", text: "BIRD DROPPING" },
-        { img: "https://torquedetailingstudio.com/wp-content/uploads/2025/01/leaf.png", text: "TREE GUM" },
+        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg", text: "UV & SUNSHINE" },
+        { img: "https://ocdetailmn.com/wp-content/uploads/2024/03/ico_Prevention.svg", text: "WEATHER EROSION" },
+        { img: "https://ocdetailmn.com/wp-content/uploads/2024/03/ico_Protection.svg", text: "ACID RAIN" },
+        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_hand.svg", text: "GRAFFITI & SCRATCHES" },
+        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_water.svg", text: "BIRD DROPPING" },
+        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_cloud.svg", text: "TREE GUM" },
     ];
 
     return (
@@ -26,7 +26,7 @@ const SliderPage = () => {
                 <motion.div
                     initial={{ borderRadius: "20px" }}
                     whileInView={{ borderRadius: "30px" }}
-                    viewport={{ once: true }}
+                      viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.5, ease: "circInOut" }}
                     className="w-full flex justify-center"
                 >
