@@ -477,12 +477,12 @@ const ChatBox = () => {
         {/* WhatsApp Button */}
         <motion.button
           onClick={handleWhatsApp}
-          className="bg-green-600 hover:bg-green-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
+          className="bg-green-700 hover:bg-green-700 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
           <img 
-            src="https://cdn-icons-png.freepik.com/256/3536/3536445.png?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid" 
+            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655227/whatsapp_llcxl2.png" 
             alt="WhatsApp" 
             className="w-6 h-6" 
           />
@@ -496,11 +496,15 @@ const ChatBox = () => {
         {/* Call Button */}
         <motion.button
           onClick={handlePhone}
-          className="bg-orange-500 hover:bg-orange-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
+          className="bg-cyan-600 hover:bg-cyan-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="text-lg">📞</span>
+          <img 
+            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/telephone_x4qcsy.png"
+            alt="WhatsApp" 
+            className="w-6 h-6" 
+          />
           
           {/* Tooltip */}
           <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">

@@ -6,12 +6,12 @@ import ImageSlider from "./ImageSlider";
 
 const SliderPage = () => {
     const features = [
-        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg", text: "UV & SUNSHINE" },
-        { img: "https://ocdetailmn.com/wp-content/uploads/2024/03/ico_Prevention.svg", text: "WEATHER EROSION" },
-        { img: "https://ocdetailmn.com/wp-content/uploads/2024/03/ico_Protection.svg", text: "ACID RAIN" },
-        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_hand.svg", text: "GRAFFITI & SCRATCHES" },
-        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_water.svg", text: "BIRD DROPPING" },
-        { img: "https://ocdetailmn.com/wp-content/uploads/2024/02/ico_cloud.svg", text: "TREE GUM" },
+        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/uv_zzyt83.png", text: "UV & SUNSHINE" },
+        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655229/water-drops_zcbuwq.png", text: "WEATHER EROSION" },
+        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655225/acid-rain_zps4gg.png", text: "ACID RAIN" },
+        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/scratches_tp6rfq.png", text: "GRAFFITI & SCRATCHES" },
+        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655227/bird_wf807b.png", text: "BIRD DROPPING" },
+        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/natural-gum_ifk1zb.png", text: "TREE GUM" },
     ];
 
     return (

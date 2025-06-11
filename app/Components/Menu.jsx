@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, Instagram, Facebook, Linkedin } from "lucide-react";
+import { X, Instagram, Facebook, Youtube } from "lucide-react";
 
 const Menu = ({ onClose }) => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -75,7 +75,7 @@ const Menu = ({ onClose }) => {
         <h3 className="text-xs font-medium mb-2 opacity-80 uppercase">Socials</h3>
         <div className="flex lg:gap-6 gap-4">
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/torquedetailingstudio/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group p-1 transition-all duration-300 hover:text-cyan-500"
@@ -86,7 +86,7 @@ const Menu = ({ onClose }) => {
             />
           </a>
           <a 
-            href="https://facebook.com" 
+            href="https://www.facebook.com/profile.php?id=61570408028536#" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group p-1 transition-all duration-300 hover:text-cyan-500"
@@ -97,12 +97,12 @@ const Menu = ({ onClose }) => {
             />
           </a>
           <a 
-            href="https://linkedin.com" 
+            href="https://www.youtube.com/channel/UCGI6Asw5sOPEOuOlRpnzFRQ" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group p-1 transition-all duration-300 hover:text-cyan-500"
           >
-            <Linkedin 
+            <Youtube 
               size={14} 
               className="transition-all duration-300 group-hover:scale-110" 
             />

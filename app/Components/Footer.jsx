@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -156,6 +156,10 @@ const Footer = () => {
       {
         Icon: FaFacebookF,
         href: "https://www.facebook.com/torquedetailingstudio",
+      },
+      {
+        Icon: FaYoutube,
+        href: "https://www.youtube.com/channel/UCGI6Asw5sOPEOuOlRpnzFRQ",
       },
     ].map(({ Icon, href }, index) => (
       <motion.a
