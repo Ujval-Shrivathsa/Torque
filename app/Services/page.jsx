@@ -25,7 +25,7 @@ const ServiceCard = ({ title, description, image, linkUrl }) => {
         <h2 className="text-2xl sm:text-4xl text-white ml-0 sm:ml-8 tracking-wide font-bold">
           {title}
         </h2>
-        <p className="text-zinc-400 ml-0 sm:ml-8 mt-2 sm:mt-6 poppins text-base sm:text-md max-w-full sm:max-w-[420px]">
+        <p className="text-zinc-400 ml-0 sm:ml-8 mt-2 sm:mt-6 text-base sm:text-md max-w-full sm:max-w-[420px]">
           {description}
         </p>
         <Link href={linkUrl}>
@@ -196,14 +196,14 @@ const ComplexServices = () => {
             {/* Mobile Header */}
             <div className="lg:hidden space-y-6 mb-10">
               <div className="border-l-4 border-cyan-600 pl-4">
-                <h1 className="text-4xl font-bold anton text-white">
+                <h1 className="text-4xl font-bold text-white">
                   SERVICES
                 </h1>
               </div>
-              <p className="text-gray-300 poppins text-base">
+              <p className="text-gray-300 text-base">
                 CarWash offers a range of customizable services...
               </p>
-              <button className="border-2 anton tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
+              <button className="border-2 tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
                 <Link href="/Contact">Contact Us</Link>
               </button>
             </div>
@@ -211,17 +211,17 @@ const ComplexServices = () => {
             {/* Sticky Header for Tablet/Desktop */}
             <div className="hidden lg:block w-full max-w-[400px] sticky top-32 self-start space-y-6">
               <div className="border-l-4 border-cyan-600 pl-4">
-                <h1 className="text-5xl font-bold anton text-white">
+                <h1 className="text-5xl font-bold text-white">
                   SERVICES
                 </h1>
               </div>
-              <p className="text-gray-300 mb-0 poppins text-lg">
+              <p className="text-gray-300 mb-0 text-lg">
                 CarWash offers a range of customizable services...
               </p>
-              <p className="text-gray-400 mt-1 w-sm text-sm poppins">
+              <p className="text-gray-400 mt-1 w-sm text-sm">
                 Special offer: Rs.5000 off on any service!
               </p>
-              <button className="border-2 anton tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
+              <button className="border-2 tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
                 <Link href="/Contact">Contact Us</Link>
               </button>
             </div>
