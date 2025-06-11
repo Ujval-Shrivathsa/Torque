@@ -306,15 +306,31 @@ const Contact = () => {
           </h2>
           <div className="text-sm leading-relaxed text-center md:text-left">
             <p>
-              29, 4th B Cross, 5th Block, Koramangala, <br />
-              Bengaluru, Karnataka 560095
+              <a
+                href="https://www.google.com/maps?q=3-29,+4th+B+Cross,+Koramangala+Industrial+Layout,+Koramangala,+Bengaluru,+Karnataka+560034,+India"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline text-white"
+              >
+                3-29, 4th B Cross, Koramangala Industrial Layout, <br /> Koramangala, Bengaluru, Karnataka 560034, India
+              </a>
             </p>
             <p className="mt-2">
-              📞 +91 96869 68315 / +91 8884440944
+              📞{" "}
+              <a href="tel:+919686968315" className="hover:underline text-white">
+                +91 96869 68315
+              </a>{" "}
+              /{" "}
+              <a href="tel:+918884440944" className="hover:underline text-white">
+                +91 8884440944
+              </a>
               <br />
-              ✉️ enquiry@torquedetailingstudio.com
+              ✉️{" "}
+              <a href="mailto:torquedetailingstudio@gmail.com" className="hover:underline text-white">
+                enquiry@torquedetailingstudio.com
+              </a>
             </p>
-            <p className="mt-2 italic">Mon - Sat: 7am - 5pm (By Appointment)</p>
+            <p className="mt-2 italic">Mon - Sunday: 9am - 8pm (By Appointment)</p>
           </div>
           <iframe
             className="w-full h-72 rounded-xl border-2 border-[#00DAFF]"

@@ -374,30 +374,44 @@ const ComplexServices = () => {
               </form> 
             </div>
 
-            {/* Contact Section */}
-            <div className="space-y-6">
-              <h2 className="text-3xl font-black underline">CONTACT US</h2>
-              <div>
-                <h3 className="text-[#00DAFF] text-2xl font-bold">PHONE</h3>
-                <p>+91 96869 68315 / +91 8884440944</p>
-              </div>
-              <div>
-                <h3 className="text-[#00DAFF] text-2xl font-bold">
-                  KENTUCKY OFFICE
-                </h3>
-                <p>
-                  29, 4th B Cross, 5th Block, Koramangala, Bengaluru, Karnataka
-                  560095
-                </p>
-              </div>
-              <div>
-                <h3 className="text-[#00DAFF] text-2xl font-bold">
-                  OPENING HOURS
-                </h3>
-                <p>Mon - Sat: 7am - 5pm</p>
-                <p>(By Appointment Only)</p>
-              </div>
-            </div>
+{/* Contact Section */}
+<div className="space-y-6">
+  <h2 className="text-3xl font-black underline">CONTACT US</h2>
+
+  <div>
+    <h3 className="text-[#00DAFF] text-2xl font-bold">PHONE</h3>
+    <p>
+      <a href="tel:+919686968315" className="hover:underline text-black">
+        +91 96869 68315
+      </a>{" "}
+      /{" "}
+      <a href="tel:+918884440944" className="hover:underline text-black">
+        +91 8884440944
+      </a>
+    </p>
+  </div>
+
+  <div>
+    <h3 className="text-[#00DAFF] text-2xl font-bold">LOCATION</h3>
+    <p>
+      <a
+        href="https://www.google.com/maps?q=3-29,+4th+B+Cross,+Koramangala+Industrial+Layout,+Koramangala,+Bengaluru,+Karnataka+560034,+India"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:underline text-black"
+      >
+        3-29, 4th B Cross, Koramangala Industrial Layout, Koramangala, Bengaluru, Karnataka 560034, India
+      </a>
+    </p>
+  </div>
+
+  <div>
+    <h3 className="text-[#00DAFF] text-2xl font-bold">OPENING HOURS</h3>
+    <p>Mon - Sunday: 9am - 8pm</p>
+    <p>(By Appointment Only)</p>
+  </div>
+</div>
+
           </div>
         </div>
 

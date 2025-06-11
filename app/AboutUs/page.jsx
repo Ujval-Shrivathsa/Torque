@@ -57,10 +57,7 @@ const Page = () => {
               About
             </h1>
             <p className="text-[15px] sm:text-[17px] md:text-[20px] max-w-4xl font-light leading-relaxed drop-shadow-sm">
-              For more than 35 years, we have been bringing ambitious projects
-              to life. The pride of our work, the rigor in the execution, the
-              spirit of team, and integrity are the values that animate us on a
-              daily basis.
+Torque Detailing Studio, located in Koramangala, Bengaluru, is a premium vehicle detailing center specializing in high-quality services such as paint protection films, ceramic coating, graphene coating, sun films, and vehicle wraps. The studio is renowned for its skilled team of experienced detailers who use only the best imported products, ensuring top-tier results. One of their standout offerings is the self-healing paint protection film, which offers exceptional durability and maintains a pristine finish. Torque Detailing Studio provides both warranty and guarantee for their products and services, ensuring peace of mind for every customer. Whether you’re looking to enhance the aesthetics or protect your vehicle, Torque Detailing delivers expert solutions with unmatched quality
             </p>
           </div>
         </div>
