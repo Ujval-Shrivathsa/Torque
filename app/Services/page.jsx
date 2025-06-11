@@ -25,7 +25,7 @@ const ServiceCard = ({ title, description, image, linkUrl }) => {
         <h2 className="text-2xl sm:text-4xl text-white ml-0 sm:ml-8 tracking-wide font-bold">
           {title}
         </h2>
-        <p className="text-zinc-400 ml-0 sm:ml-8 mt-2 sm:mt-6 text-base sm:text-md max-w-full sm:max-w-[420px]">
+        <p className="text-zinc-400 ml-0 sm:ml-8 mt-2 sm:mt-6 text-base sm:text-md font-medium max-w-full sm:max-w-[420px]">
           {description}
         </p>
         <Link href={linkUrl}>

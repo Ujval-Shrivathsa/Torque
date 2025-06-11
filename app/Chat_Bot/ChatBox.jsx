@@ -295,7 +295,7 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <div className="bg-gradient-to-br z-9999999999 from-gray-50 to-gray-100 relative overflow-hidden">
       
       {/* Chat Interface */}
       <AnimatePresence>
