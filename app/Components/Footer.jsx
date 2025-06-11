@@ -110,48 +110,70 @@ const Footer = () => {
         </motion.div>
 
         {/* 4. Contact Info + Socials */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="space-y-4"
-        >
-          <p className="text-xl font-semibold">Contact Us</p>
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-            29, 4th B Cross, 5th Block, Koramangala,
-            <br />
-            Bengaluru, Karnataka 560095
-          </p>
-          <p className="text-[#00DAFF] font-semibold text-sm sm:text-base">
-            +91 96869 68315 / +91 8884440944
-          </p>
+{/* 4. Contact Info + Socials */}
+<motion.div
+  initial={{ opacity: 0, x: 50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.6, delay: 0.5 }}
+  viewport={{ once: true }}
+  className="space-y-4"
+>
+  <p className="text-xl font-semibold">Contact Us</p>
+{/* Address with Google Maps link */}
+<a
+  href="https://www.google.com/maps?q=3-29,+4th+B+Cross,+Koramangala+Industrial+Layout,+Koramangala,+Bengaluru,+Karnataka+560034,+India"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-gray-400 text-sm sm:text-base leading-relaxed hover:text-[#00DAFF] transition-colors duration-300 block"
+>
+  3-29, 4th B Cross, Koramangala Industrial Layout, Koramangala,
+  Bengaluru, Karnataka 560034, India
+</a>
 
-          <div className="flex justify-center sm:justify-start gap-4 mt-4">
-            {[
-              {
-                Icon: FaInstagram,
-                href: "https://www.instagram.com/torquedetailingstudio",
-              },
-              {
-                Icon: FaFacebookF,
-                href: "https://www.facebook.com/torquedetailingstudio",
-              },
-            ].map(({ Icon, href }, index) => (
-              <motion.a
-                key={index}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, color: "#00DAFF" }}
-                transition={{ duration: 0.3 }}
-                className="text-xl cursor-pointer"
-              >
-                <Icon />
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
+  {/* Phone Numbers in Flex */}
+  <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-6">
+    <a
+      href="tel:+919686968315"
+      className="text-[#00DAFF] font-semibold hover:underline"
+    >
+      +91 96869 68315
+    </a>
+    <a
+      href="tel:+918884440944"
+      className="text-[#00DAFF] font-semibold hover:underline"
+    >
+      +91 88844 40944
+    </a>
+  </div>
+
+  {/* Social Icons */}
+  <div className="flex justify-center sm:justify-start gap-4 mt-4">
+    {[
+      {
+        Icon: FaInstagram,
+        href: "https://www.instagram.com/torquedetailingstudio",
+      },
+      {
+        Icon: FaFacebookF,
+        href: "https://www.facebook.com/torquedetailingstudio",
+      },
+    ].map(({ Icon, href }, index) => (
+      <motion.a
+        key={index}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.2, color: "#00DAFF" }}
+        transition={{ duration: 0.3 }}
+        className="text-xl cursor-pointer"
+      >
+        <Icon />
+      </motion.a>
+    ))}
+  </div>
+</motion.div>
+
+
       </div>
 
       {/* Bottom Bar */}

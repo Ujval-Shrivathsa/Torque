@@ -25,23 +25,70 @@ const Hero = () => {
   const [userPhone, setUserPhone] = useState("");
   const [formError, setFormError] = useState("");
   
+  // Video ref for manual control
+  const videoRef = useRef(null);
+  
   // Characters for the hacking effect
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
   const finalCodeLength = 8;
   const hackingInterval = useRef(null);
   const hackingDuration = 1500;
 
-  // Simplified popup tracking - removed sessionStorage dependency
+  // Fixed popup tracking with proper sessionStorage usage
   const hasPopupBeenShown = () => {
-    return false; // Always allow popup to show for testing
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('popupShown') === 'true';
+    }
+    return false;
   };
 
   const markPopupAsShown = () => {
-    // Optional: you can add sessionStorage back later if needed
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('popupShown', 'true');
     }
   };
+
+  // Force video play on iOS
+  useEffect(() => {
+    const playVideo = async () => {
+      if (videoRef.current) {
+        try {
+          // Set video properties for iOS compatibility
+          videoRef.current.defaultMuted = true;
+          videoRef.current.muted = true;
+          videoRef.current.setAttribute('webkit-playsinline', 'true');
+          videoRef.current.setAttribute('playsinline', 'true');
+          
+          // Force play
+          await videoRef.current.play();
+        } catch (error) {
+          console.log('Video autoplay failed:', error);
+          
+          // Fallback: try to play on first user interaction
+          const handleFirstInteraction = async () => {
+            try {
+              if (videoRef.current) {
+                await videoRef.current.play();
+              }
+            } catch (err) {
+              console.log('Manual video play failed:', err);
+            }
+            // Remove listeners after first attempt
+            document.removeEventListener('touchstart', handleFirstInteraction);
+            document.removeEventListener('click', handleFirstInteraction);
+          };
+          
+          document.addEventListener('touchstart', handleFirstInteraction);
+          document.addEventListener('click', handleFirstInteraction);
+        }
+      }
+    };
+
+    // Small delay to ensure video element is ready
+    const timer = setTimeout(playVideo, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -62,19 +109,26 @@ const Hero = () => {
     };
   }, []);
 
-  // Fixed popup timer - removed conditions that might prevent popup
+  // Fixed popup timer - only show if not shown before
   useEffect(() => {
-    console.log("Setting up popup timer..."); // Debug log
+    console.log("Checking if popup should show..."); // Debug log
     
-    const popupTimer = setTimeout(() => {
-      console.log("Popup timer triggered, showing popup"); // Debug log
-      setShowPopup(true);
-      markPopupAsShown();
-    }, 15000); // 1 second
+    // Only set the timer if popup hasn't been shown before
+    if (!hasPopupBeenShown()) {
+      console.log("Setting up popup timer..."); // Debug log
+      
+      const popupTimer = setTimeout(() => {
+        console.log("Popup timer triggered, showing popup"); // Debug log
+        setShowPopup(true);
+        markPopupAsShown();
+      }, 15000); // 15 seconds
 
-    return () => {
-      clearTimeout(popupTimer);
-    };
+      return () => {
+        clearTimeout(popupTimer);
+      };
+    } else {
+      console.log("Popup already shown, skipping..."); // Debug log
+    }
   }, []);
 
   const scrollToSection = () => {
@@ -182,7 +236,7 @@ const Hero = () => {
   };
 
   // Debug log to check popup state
-  console.log("Popup state:", { showPopup, popupClosed, isComplete });
+  console.log("Popup state:", { showPopup, popupClosed, isComplete, hasBeenShown: hasPopupBeenShown() });
  
   return (
     <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
@@ -191,14 +245,43 @@ const Hero = () => {
         <Navlinks isComplete={isComplete} />
       </motion.div>
 
+      {/* Enhanced video element with iOS-specific attributes */}
       <video
+        ref={videoRef}
         loop
         autoPlay
         muted
         playsInline
+        webkit-playsinline="true"
+        preload="auto"
+        poster="" // Remove poster to avoid showing static image
+        controls={false}
+        disablePictureInPicture
         src="https://res.cloudinary.com/dycm7vkuq/video/upload/v1744367852/100_MB_skq4tw.mp4"
         className="absolute inset-0 w-full h-full object-cover"
-      ></video>
+        style={{
+          // Force hardware acceleration
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          perspective: '1000px'
+        }}
+        onLoadStart={() => {
+          console.log('Video load started');
+        }}
+        onCanPlay={() => {
+          console.log('Video can play');
+          // Try to play again when video is ready
+          if (videoRef.current) {
+            videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+          }
+        }}
+        onError={(e) => {
+          console.error('Video error:', e);
+        }}
+      >
+        {/* Fallback for browsers that don't support the video format */}
+        Your browser does not support the video tag.
+      </video>
 
       {/* Heading & Subtitle */}
       <motion.div
@@ -372,7 +455,7 @@ const Hero = () => {
                 )}
                 
                 <p className="text-gray-400 text-sm mt-4">
-                  *Offer valid until May 30, 2025
+                  *Offer valid until August 31, 2025
                 </p>
               </div>
             </motion.div>

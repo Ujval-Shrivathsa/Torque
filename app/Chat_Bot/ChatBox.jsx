@@ -57,7 +57,6 @@ const TypingDots = () => (
 );
 
 const ChatBox = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasBeenClicked, setHasBeenClicked] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -141,7 +140,6 @@ const ChatBox = () => {
   const handleOpenChat = () => {
     setIsChatOpen(true);
     setHasBeenClicked(true);
-    setIsExpanded(false);
   };
 
   const handleCloseChat = () => {
@@ -153,12 +151,10 @@ const ChatBox = () => {
     const message = "Hello! I'm interested in your automotive services.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-    setIsExpanded(false);
   };
 
   const handlePhone = () => {
     window.location.href = "tel:9686968315";
-    setIsExpanded(false);
   };
 
   const handleSend = () => {
@@ -297,33 +293,6 @@ const ChatBox = () => {
       }
     }
   };
-
-  const actionButtons = [
-    {
-      id: 'chat',
-      icon: '💬',
-      label: 'Chat',
-      onClick: handleOpenChat,
-      color: 'bg-blue-500 hover:bg-blue-600',
-      iconType: 'emoji'
-    },
-    {
-      id: 'whatsapp',
-      icon: 'https://cdn-icons-png.freepik.com/256/3536/3536445.png?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid',
-      label: 'WhatsApp',
-      onClick: handleWhatsApp,
-      color: 'bg-green-600 hover:bg-green-600',
-      iconType: 'image'
-    },
-    {
-      id: 'phone',
-      icon: '📞',
-      label: 'Call',
-      onClick: handlePhone,
-      color: 'bg-orange-500 hover:bg-orange-600',
-      iconType: 'emoji'
-    }
-  ];
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
@@ -503,49 +472,50 @@ const ChatBox = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {/* Expanded action buttons */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex flex-col gap-3 mb-3"
-            >
-              {actionButtons.map((button, index) => (
-                <motion.button
-                  key={button.id}
-                  initial={{ scale: 0, y: 20 }}
-                  animate={{ scale: 1, y: 0 }}
-                  exit={{ scale: 0, y: 20 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={button.onClick}
-                  className={`${button.color} w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group`}
-                >
-                  {button.iconType === 'emoji' ? (
-                    <span className="text-lg">{button.icon}</span>
-                  ) : (
-                    <img src={button.icon} alt={button.label} className="w-6 h-6" />
-                  )}
-                  
-                  {/* Tooltip */}
-                  <div className="absolute right-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {button.label}
-                  </div>
-                </motion.button>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Main toggle button */}
+      {/* Left Bottom Buttons - WhatsApp and Call (Always Visible) */}
+      <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
+        {/* WhatsApp Button */}
         <motion.button
-          onClick={() => setIsExpanded(!isExpanded)}
-          animate={!hasBeenClicked && !isExpanded ? "bounce" : "still"}
+          onClick={handleWhatsApp}
+          className="bg-green-600 hover:bg-green-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <img 
+            src="https://cdn-icons-png.freepik.com/256/3536/3536445.png?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid" 
+            alt="WhatsApp" 
+            className="w-6 h-6" 
+          />
+          
+          {/* Tooltip */}
+          <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            WhatsApp
+          </div>
+        </motion.button>
+
+        {/* Call Button */}
+        <motion.button
+          onClick={handlePhone}
+          className="bg-orange-500 hover:bg-orange-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="text-lg">📞</span>
+          
+          {/* Tooltip */}
+          <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            Call
+          </div>
+        </motion.button>
+      </div>
+
+      {/* Right Bottom Chat Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <motion.button
+          onClick={handleOpenChat}
+          animate={!hasBeenClicked ? "bounce" : "still"}
           variants={bounceVariants}
-          className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-transparent none text-white flex justify-center items-center shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 relative"
+          className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-transparent text-white flex justify-center items-center shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 relative"
         >
           {/* Tooltip */}
           <motion.div
@@ -556,20 +526,13 @@ const ChatBox = () => {
             Hello, how may I help you?
           </motion.div>
 
-          <motion.div
-            animate={{ rotate: isExpanded ? 45 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {isExpanded ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <img
-                src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg"
-                alt="Assistant"
-                className="w-10 h-10 lg:w-15 lg:h-15 object-cover object-top rounded-full"
-              />
-            )}
-          </motion.div>
+          <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center">
+            <img
+              src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg"
+              alt="Chat Assistant"
+              className="w-10 h-10 lg:w-14 lg:h-14 object-cover object-top rounded-full"
+            />
+          </div>
         </motion.button>
       </div>
     </div>

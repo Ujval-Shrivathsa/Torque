@@ -72,9 +72,15 @@ export default function page() {
           <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
             Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.
           </p>
-          <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
-            Book Now
-          </button>
+          <a
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Graphene%20Coating"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
+              Book Now
+            </button>
+          </a>
         </div>
       </div>
 

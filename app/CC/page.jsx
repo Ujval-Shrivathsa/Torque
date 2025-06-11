@@ -72,9 +72,15 @@ export default function page() {
           <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
 Ceramic coating is a liquid polymer applied to cars that bonds with paint, providing glossy, long-lasting protection against dirt and damage.
           </p>
-          <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
-            Book Now
-          </button>
+          <a
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Ceramic%20Coating"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="w-32 md:w-35 font-semibold rounded-xl mt-6 md:mt-[4%] cursor-pointer text-black h-11 bg-white px-4">
+              Book Now
+            </button>
+          </a>
         </div>
       </div>
 
