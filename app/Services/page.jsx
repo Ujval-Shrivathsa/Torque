@@ -242,178 +242,222 @@ const ComplexServices = () => {
         </div>
         <div className="w-full h-25 bg-black"></div>
 
-        {/* Appointment Section */}
-        <div className="min-h-screen bg-[#f8f8f8] flex justify-center items-center px-6 md:px-16 lg:px-40 py-20">
-          <div className="max-w-7xl w-full grid md:grid-cols-3 gap-12">
-            {/* Form Section */}
-            <div className="md:col-span-2">
-              <h2 className="text-4xl md:text-5xl font-black mb-6">
-                LET'S <br /> BOOK AN{" "}
-                <span className="text-[#00DAFF]">APPOINTMENT</span>
-              </h2>
+ <div className="min-h-screen bg-gray-100">
+      {/* Appointment Section */}
+      <div className="min-h-screen bg-[#f8f8f8] flex justify-center items-center px-4 sm:px-6 md:px-16 lg:px-40 py-8 sm:py-20">
+        <div className="max-w-7xl w-full grid md:grid-cols-3 gap-6 md:gap-12">
+          {/* Form Section */}
+          <div className="md:col-span-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">
+              LET'S <br /> BOOK AN{" "}
+              <span className="text-[#00DAFF]">APPOINTMENT</span>
+            </h2>
 
-              {/* Form */}
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="grid md:grid-cols-2 gap-5"
-              >
-                <div className="md:col-span-1">
-                  <input
-                    {...register("name", { required: "Name is required" })}
-                    type="text"
-                    className="p-4 rounded-full border text-sm w-full"
-                    placeholder="Name"
-                  />
-                  {errors.name && (
-                    <p className="text-red-500 text-sm">
-                      {errors.name.message}
-                    </p>
-                  )}
-                </div>
+            {/* Form */}
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
+            >
+              <div className="md:col-span-1">
+                <input
+                  {...register("name", { required: "Name is required" })}
+                  type="text"
+                  className="p-4 rounded-full border border-gray-800 text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all"
+                  placeholder="Name"
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
 
-                <div className="md:col-span-1">
-                  <input
-                    {...register("vehicleType", {
-                      required: "Vehicle type is required",
-                    })}
-                    type="text"
-                    className="p-4 rounded-full border text-sm w-full"
-                    placeholder="Vehicle type"
-                  />
-                  {errors.vehicleType && (
-                    <p className="text-red-500 text-sm">
-                      {errors.vehicleType.message}
-                    </p>
-                  )}
-                </div>
+              <div className="md:col-span-1">
+                <input
+                  {...register("vehicleType", {
+                    required: "Vehicle type is required",
+                  })}
+                  type="text"
+                  className="p-4 rounded-full border border-gray-800 text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all"
+                  placeholder="Vehicle type"
+                />
+                {errors.vehicleType && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.vehicleType.message}
+                  </p>
+                )}
+              </div>
 
-                <div className="md:col-span-1">
-                  <input
-                    {...register("phone", {
-                      required: "Phone number is required",
-                      pattern: {
-                        value: /^[0-9]{10}$/,
-                        message: "Enter a valid 10-digit phone number",
-                      },
-                    })}
-                    type="number"
-                    className="p-4 rounded-full border text-sm w-full"
-                    placeholder="Phone number*"
-                  />
-                  {errors.phone && (
-                    <p className="text-red-500 text-sm">
-                      {errors.phone.message}
-                    </p>
-                  )}
-                </div>
+              <div className="md:col-span-1">
+                <input
+                  {...register("phone", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Enter a valid 10-digit phone number",
+                    },
+                  })}
+                  type="tel"
+                  className="p-4 rounded-full border border-gray-800 text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all"
+                  placeholder="Phone number*"
+                />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
 
-                <div className="md:col-span-1">
+              <div className="md:col-span-1">
+                <div className="relative">
                   <input
                     {...register("date", { required: "Date is required" })}
                     type="date"
-                    className="p-4 rounded-full border text-sm w-full"
+                    className="p-4 rounded-full border border-gray-800 text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all
+                              appearance-none
+                              [&::-webkit-calendar-picker-indicator]:opacity-100
+                              [&::-webkit-calendar-picker-indicator]:scale-125
+                              [&::-webkit-calendar-picker-indicator]:cursor-pointer
+                              [&::-webkit-calendar-picker-indicator]:mr-2
+                              [&::-webkit-calendar-picker-indicator]:filter-none
+                              [&::-webkit-inner-spin-button]:appearance-none
+                              [&::-webkit-outer-spin-button]:appearance-none
+                              sm:[&::-webkit-calendar-picker-indicator]:scale-100"
                   />
-                  {errors.date && (
-                    <p className="text-red-500 text-sm">
-                      {errors.date.message}
-                    </p>
-                  )}
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400 sm:hidden">
+                    📅
+                  </div>
                 </div>
+                {errors.date && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.date.message}
+                  </p>
+                )}
+              </div>
 
-                <div className="md:col-span-1">
-                  <input
-                    {...register("email", {
-                      pattern: {
-                        value: /^\S+@\S+$/i,
-                        message: "Invalid email address",
-                      },
-                    })}
-                    type="email"
-                    className="p-4 rounded-full border text-sm w-full"
-                    placeholder="Email*"
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm">
-                      {errors.email.message}
-                    </p>
-                  )}
-                </div>
+              <div className="md:col-span-1">
+                <input
+                  {...register("email", {
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  type="email"
+                  className="p-4 rounded-full border border-gray-800 text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all"
+                  placeholder="Email*"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
 
-                <div className="md:col-span-1">
+              <div className="md:col-span-1">
+                <div className="relative">
                   <input
                     {...register("time", { required: "Time is required" })}
                     type="time"
-                    className="p-4 rounded-full border text-sm w-full"
+                    className="p-4 rounded-full border border-gray-800 text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all
+                              appearance-none
+                              [&::-webkit-calendar-picker-indicator]:opacity-100
+                              [&::-webkit-calendar-picker-indicator]:scale-125
+                              [&::-webkit-calendar-picker-indicator]:cursor-pointer
+                              [&::-webkit-calendar-picker-indicator]:mr-2
+                              [&::-webkit-calendar-picker-indicator]:filter-none
+                              [&::-webkit-inner-spin-button]:appearance-none
+                              [&::-webkit-outer-spin-button]:appearance-none
+                              sm:[&::-webkit-calendar-picker-indicator]:scale-100"
                   />
-                  {errors.time && (
-                    <p className="text-red-500 text-sm">
-                      {errors.time.message}
-                    </p>
-                  )}
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400 sm:hidden">
+                    🕐
+                  </div>
                 </div>
+                {errors.time && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.time.message}
+                  </p>
+                )}
+              </div>
 
-                <div className="md:col-span-2">
-                  <textarea
-                    className="p-4 border rounded-2xl text-sm w-full"
-                    rows="4"
-                    placeholder="Any additional requests?"
-                  />
-                  {errors.requests && (
-                    <p className="text-red-500 text-sm">
-                      {errors.requests.message}
-                    </p>
-                  )}
-                </div>
+              <div className="md:col-span-2">
+                <textarea
+                  {...register("requests")}
+                  className="p-4 border border-gray-800 rounded-2xl text-sm w-full focus:outline-none focus:border-[#00DAFF] focus:ring-2 focus:ring-[#00DAFF]/20 transition-all resize-none"
+                  rows={4}
+                  placeholder="Any additional requests?"
+                />
+                {errors.requests && (
+                  <p className="text-red-500 text-sm mt-1 ml-4">
+                    {errors.requests.message}
+                  </p>
+                )}
+              </div>
 
-                <button
-                  type="submit"
-                  className="md:col-span-2 border border-[#00DAFF] text-[#00DAFF] font-bold px-8 py-3 rounded-full hover:bg-[#00DAFF] hover:text-white transition"
-                >
-                  SUBMIT MESSAGE
-                </button>
-              </form> 
+              <button
+                type="submit"
+                className="md:col-span-2 border-2 border-[#00DAFF] text-[#00DAFF] font-bold px-8 py-4 rounded-full hover:bg-[#00DAFF] hover:text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                SUBMIT MESSAGE
+              </button>
+            </form>
+          </div>
+
+          {/* Contact Section */}
+          <div className="space-y-6 mt-8 md:mt-0">
+            <h2 className="text-2xl sm:text-3xl font-black underline decoration-2 underline-offset-4">
+              CONTACT US
+            </h2>
+
+            <div className="space-y-3">
+              <h3 className="text-[#00DAFF] text-xl sm:text-2xl font-bold">PHONE</h3>
+              <div className="space-y-1 flex">
+                <p>
+                  <a 
+                    href="tel:+919686968315" 
+                    className="hover:underline text-black text-sm sm:text-base transition-colors hover:text-[#00DAFF]"
+                  >
+                    +91 96869 68315
+                  </a>
+                </p>
+                <p className="ml-1 mr-1"> / </p>
+                <p>
+                  <a 
+                    href="tel:+918884440944" 
+                    className="hover:underline text-black text-sm sm:text-base transition-colors hover:text-[#00DAFF]"
+                  >
+                    +91 8884440944
+                  </a>
+                </p>
+              </div>
             </div>
 
-{/* Contact Section */}
-<div className="space-y-6">
-  <h2 className="text-3xl font-black underline">CONTACT US</h2>
+            <div className="space-y-3">
+              <h3 className="text-[#00DAFF] text-xl sm:text-2xl font-bold">LOCATION</h3>
+              <p>
+                <a
+                  href="https://www.google.com/maps?q=3-29,+4th+B+Cross,+Koramangala+Industrial+Layout,+Koramangala,+Bengaluru,+Karnataka+560034,+India"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline text-black text-sm sm:text-base transition-colors hover:text-[#00DAFF] leading-relaxed"
+                >
+                  3-29, 4th B Cross, Koramangala Industrial Layout, Koramangala, Bengaluru, Karnataka 560034, India
+                </a>
+              </p>
+            </div>
 
-  <div>
-    <h3 className="text-[#00DAFF] text-2xl font-bold">PHONE</h3>
-    <p>
-      <a href="tel:+919686968315" className="hover:underline text-black">
-        +91 96869 68315
-      </a>{" "}
-      /{" "}
-      <a href="tel:+918884440944" className="hover:underline text-black">
-        +91 8884440944
-      </a>
-    </p>
-  </div>
-
-  <div>
-    <h3 className="text-[#00DAFF] text-2xl font-bold">LOCATION</h3>
-    <p>
-      <a
-        href="https://www.google.com/maps?q=3-29,+4th+B+Cross,+Koramangala+Industrial+Layout,+Koramangala,+Bengaluru,+Karnataka+560034,+India"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:underline text-black"
-      >
-        3-29, 4th B Cross, Koramangala Industrial Layout, Koramangala, Bengaluru, Karnataka 560034, India
-      </a>
-    </p>
-  </div>
-
-  <div>
-    <h3 className="text-[#00DAFF] text-2xl font-bold">OPENING HOURS</h3>
-    <p>Mon - Sunday: 9am - 8pm</p>
-    <p>(By Appointment Only)</p>
-  </div>
-</div>
-
+            <div className="space-y-3">
+              <h3 className="text-[#00DAFF] text-xl sm:text-2xl font-bold">OPENING HOURS</h3>
+              <div className="space-y-1">
+                <p className="text-sm sm:text-base">Mon - Sunday: 9am - 8pm</p>
+                <p className="text-sm sm:text-base text-gray-600">(By Appointment Only)</p>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
 
         {/* Footer */}
         <div className="relative bg-black pt-10">
