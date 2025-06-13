@@ -96,7 +96,7 @@ const onSubmit = async (data) => {
       description:
         "A paint protection film, also known as a clear bra, is a transparent layer that is applied to the exterior of a vehicle to safeguard the paint from scratches, chips, and other damage.",
       image:
-        "https://media.istockphoto.com/id/1494849821/nl/foto/wrapping-car-paint-protection-films.jpg?s=612x612&w=0&k=20&c=5YRNvejX8l-fXf4ZaTzAvJC8Q4NQcpxMjZrNJ3UJI7s=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822076/PPF_i70du0.jpg",
       linkUrl: "/PPF"
     },
     {
@@ -104,7 +104,7 @@ const onSubmit = async (data) => {
       description:
         "Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.",
       image:
-        "https://media.istockphoto.com/id/2199760696/photo/ceramic-or-graphene-coating-applied-on-black-paint.jpg?s=612x612&w=0&k=20&c=VojxYpwi-hSXdjlfIeKd5z9iTgK048-KYkVawcvKGnI=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/ED_zhw6nc.jpg",
       linkUrl: "/GC"
     },
     {
@@ -112,7 +112,7 @@ const onSubmit = async (data) => {
       description:
         "Ceramic coating is a liquid polymer applied to the exterior of a vehicle, creating a protective layer that enhances shine and provides resistance against scratches, UV rays, and chemical stains.",
       image:
-        "https://media.istockphoto.com/id/1178049623/photo/applying-a-nano-ceramic-coating-for-interior-leather-on-the-cars-seat-brown-upholstery-by-a.jpg?s=612x612&w=0&k=20&c=YaESNLfFfdIZmO7-qdLygiWqioy2kDGOR9C6OBv1Vvg=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg",
       linkUrl: "/CC"
     },
     {
@@ -120,7 +120,7 @@ const onSubmit = async (data) => {
       description:
         "Deep cleaning and protection of all interior surfaces including seats, carpets, and dashboard. Keeps your ride looking brand new inside.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745678458/paintprotection_ju2ue0.jpg",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/IN_D_dlrscu.jpg",
       linkUrl: "/ID"
     },
     {
@@ -128,7 +128,7 @@ const onSubmit = async (data) => {
       description:
         "Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823189/exteriordetailing_q2tm0h.jpg",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823070/EDD_ufzxn4.jpg",
       linkUrl: "/ED"
     },
     {
@@ -136,7 +136,7 @@ const onSubmit = async (data) => {
       description:
         "Give your vehicle a complete makeover, inside and out. Experience a sparkling exterior and a refreshed interior with our meticulous cleaning and restoration service.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823190/paintprotectionmask_i2mufm.jpg",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/AD_newgqk.jpg",
       linkUrl: "/AD"
     },
     {
@@ -144,7 +144,7 @@ const onSubmit = async (data) => {
       description:
         "Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.",
       image:
-        "https://media.istockphoto.com/id/1130126161/nl/foto/auto-folie.jpg?s=612x612&w=0&k=20&c=n1jCKgSXN8wQ3DiQP_Oe9rh9owGbqeY50nNAfsIeOE8=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823939/V_W_u9lzhn.jpg",
       linkUrl: "/VX"
     },
     {
@@ -152,7 +152,7 @@ const onSubmit = async (data) => {
       description:
         " It enhances privacy, reduces glare, blocks UV rays, and protects your interior from fading and heat damage. Customizable options offer the perfect blend of style and function.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745925408/HK109691_1_pn8kkh.jpg",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/WT_hj84sr.jpg",
       linkUrl: "/WT"
     },
     {
@@ -160,7 +160,7 @@ const onSubmit = async (data) => {
       description:
         "Enhance visibility and safety with an advanced hydrophobic coating that keeps your windshield clean, providing clearer vision during heavy rains and reducing hard water spots.",
       image:
-        "https://media.istockphoto.com/id/1178049879/photo/the-process-of-applying-a-nano-ceramic-coating-for-hydrophobic-effect-on-the-cars-windows-by.webp?a=1&b=1&s=612x612&w=0&k=20&c=wVAUHKcA1B7rvoyd6JmwJQmU95di4yJ0Q8bz2Cy-eE0=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/WC_pripys.jpg",
       linkUrl: "/WC"
     },
     {
@@ -168,7 +168,7 @@ const onSubmit = async (data) => {
       description:
         "Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.",
       image:
-        "https://media.istockphoto.com/id/1148715302/photo/auto-mechanic-buffing-and-polishing-car-headlight.jpg?s=612x612&w=0&k=20&c=hakbiIJ2bL48D9FAU2B-n7l8a2wG28DfzSLO34wCsJI=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/HR_gemq1v.jpg",
       linkUrl: "/HR"
     },
     {
@@ -176,7 +176,7 @@ const onSubmit = async (data) => {
       description:
         "Eliminate odours and harmful bacteria with our thorough interior disinfection service.",
       image:
-        "https://media.istockphoto.com/id/1215774974/photo/car-disinfection.jpg?s=612x612&w=0&k=20&c=RkbZ2xm5PdcM4-eyCaSlGYIemSFryfARU1hOWWBmdMY=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/ID_cvrf2r.jpg",
       linkUrl: "/IDI"
     },
     {
@@ -184,7 +184,7 @@ const onSubmit = async (data) => {
       description:
         "Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!",
       image:
-        "https://media.istockphoto.com/id/2171665645/photo/the-master-polishes-a-part-of-the-steering-wheel-of-the-car-before-painting-and-tightening.jpg?s=612x612&w=0&k=20&c=Fzz4uQqqqZj5oBqFqWDEJ-5OXodCVXZwqxweaZ4WCIU=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/TR_ntkjqg.jpg",
       linkUrl: "/TR"
     },
     {
@@ -192,7 +192,7 @@ const onSubmit = async (data) => {
       description:
         "With a deep clean and sanitization of your A/C ducts and filters. You can be rest assured, with clean and fresh air inside your car",
       image:
-        "https://media.istockphoto.com/id/1221055392/photo/professional-worker-using-disinfectant-and-wet-wipe-to-clean-car-interior.jpg?s=612x612&w=0&k=20&c=gsEm3Lv9aoi4ZXEdxH5bx9TOi0xLC7XdpbcN03t1_YE=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/AC_ooer2g.jpg",
       linkUrl: "/ACS"
     },
     {
@@ -200,7 +200,7 @@ const onSubmit = async (data) => {
       description:
         "From windshield wiper changes to fitting dashcams, we handle small but essential repairs. ",
       image:
-        "https://media.istockphoto.com/id/1428271853/photo/mechanic-inspecting-engine-at-garage-workshop.jpg?s=612x612&w=0&k=20&c=dAkLigq3R9iJboJk5477d1gprZbv2IENLbjm5IYg_xI=",
+        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/ME_pkvmqo.jpg",
       linkUrl: "/MEM"
     },
   ];

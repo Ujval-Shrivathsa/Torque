@@ -6,9 +6,9 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 const Gallery = () => {
     return (
-        <div className="flex text-white flex-col items-center justify-center min-h-screen px-4 py-12 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+        <div className="flex text-white flex-col items-center justify-center min-h-[0vh] px-4 py-12 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
             <div className="text-center">
-                Our <span className="text-cyan-600">Recent Works</span>
+                Our <span className="text-cyan-400">Recent Works</span>
             </div>
 
             <div className="w-full mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
