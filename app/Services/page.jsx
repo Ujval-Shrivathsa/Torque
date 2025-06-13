@@ -6,6 +6,8 @@ import Navlinks from "../Navlinks/Navlinks";
 import Footer from "../Components/Footer";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import emailjs from "@emailjs/browser";
 
 const ServiceCard = ({ title, description, image, linkUrl }) => {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -41,6 +43,9 @@ const ServiceCard = ({ title, description, image, linkUrl }) => {
 };
 
 const ComplexServices = () => {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  
   const {
     register,
     handleSubmit,
@@ -48,11 +53,42 @@ const ComplexServices = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    alert("Form submitted successfully!");
-    console.log("Form data:", data);
-    reset();
+// Updated onSubmit function with correct template parameters
+const onSubmit = async (data) => {
+  setIsSubmitting(true);
+
+  // Prepare template parameters matching your EmailJS template
+  const templateParams = {
+    name: data.name,                    // {{name}} in template
+    fullName: data.name,               // {{fullName}} in template  
+    phone: data.phone,                 // {{phone}} in template
+    email: data.email || "Not provided", // {{email}} in template
+    vehicletype: data.vehicleType || "Not specified", // {{vehicletype}} in template
+    vehicledate: data.date,            // {{vehicledate}} in template
+    vehicletime: data.time,            // {{vehicletime}} in template
+    message: data.requests || "No additional requests", // {{message}} in template
   };
+
+  try {
+    const result = await emailjs.send(
+      "service_la3gn92",     // Your EmailJS Service ID
+      "template_xd1y36x",    // Your EmailJS Template ID
+      templateParams,
+      "YP21SDfp07F2Tce0O"    // Your EmailJS Public Key
+    );
+
+    console.log("Appointment email sent successfully:", result);
+    
+    // Reset form and redirect to Thank You page
+    reset();
+    router.push("/ThankYouPage");
+
+  } catch (error) {
+    console.error("Appointment email send failed:", error);
+    alert("Something went wrong. Please try again or contact us directly.");
+    setIsSubmitting(false);
+  }
+};
 
   const services = [
     {
@@ -397,9 +433,10 @@ const ComplexServices = () => {
 
               <button
                 type="submit"
-                className="md:col-span-2 border-2 border-[#00DAFF] text-[#00DAFF] font-bold px-8 py-4 rounded-full hover:bg-[#00DAFF] hover:text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                disabled={isSubmitting}
+                className="md:col-span-2 border-2 border-[#00DAFF] text-[#00DAFF] font-bold px-8 py-4 rounded-full hover:bg-[#00DAFF] hover:text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                SUBMIT MESSAGE
+                {isSubmitting ? "BOOKING..." : "SUBMIT MESSAGE"}
               </button>
             </form>
           </div>

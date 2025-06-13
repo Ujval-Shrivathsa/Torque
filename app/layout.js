@@ -1,44 +1,49 @@
-"use client";
+// app/layout.js
+import './globals.css';
+import Script from 'next/script';
+import ChatBox from './Chat_Bot/ChatBox';
+import { CartProvider } from './context/CartContext';
 
-import ChatBox from "./Chat_Bot/ChatBox";
-import "./globals.css";
-import { CartProvider } from "../app/context/CartContext";
+export const metadata = {
+  title: 'Torque | Detailing Studio',
+  description: 'Torque is your trusted partner for premium car and bike care solutions...',
+};
 
 export default function RootLayout({ children }) {
-    return (
-        <html lang="en">
-            <head>
-                {/* Meta Tags */}
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta name="description" content="Torque is your trusted partner for premium car and bike care solutions including Ceramic Coating, PPF, Detailing, and Sunfilms. Quality, precision, and protection" />
-                <meta name="keywords" content="your, keywords, here" />
-                <meta name="author" content="Your Name or Company" />
+  return (
+    <html lang="en">
+      <head>
+        {/* Google Tag Manager Script */}
+        <Script
+          id="gtm-head"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-K9VLQJBZ');
+            `,
+          }}
+        />
+      </head>
+      <body>
+        {/* Google Tag Manager noscript */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K9VLQJBZ"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
 
-                {/* Open Graph */}
-                <meta property="og:title" content="Torque" />
-                <meta property="og:description" content="Detailing Studio" />
-                <meta property="og:image" content="/Torque-PNG-02.png" />
-                <meta property="og:type" content="website" />
-
-                {/* Twitter */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Your Website Title" />
-                <meta name="twitter:description" content="A short description of your website." />
-                <meta name="twitter:image" content="/path-to-your-image.jpg" />
-                <meta name="twitter:site" content="@yourtwitterhandle" />
-
-                {/* Favicon */}
-                <link rel="icon" href="/favicon.ico" />
-
-                <title>Torque | Detailing Studio</title>
-            </head>
-            <body>
-                <CartProvider>
-                    {children}
-                    <ChatBox />
-                </CartProvider>
-            </body>
-        </html>
-    );
+        <CartProvider>
+          {children}
+          <ChatBox />
+        </CartProvider>
+      </body>
+    </html>
+  );
 }
