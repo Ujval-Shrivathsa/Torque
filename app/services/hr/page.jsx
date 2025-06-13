@@ -1,45 +1,50 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Reduces Heat and Glare",
+    title: "Improved Visibility",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Protects Against UV Rays",
+    title: "Enhanced Appearance",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Enhances Privacy and Security",
+    title: "Cost-Effective",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Prevents Interior Fading",
+    title: "Increased Safety",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Improves Comfort",
+    title: "Prevents Further Damage",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Boosts Resale Value",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
 
 export default function page() {
 
-    const images = [
-    "https://img.freepik.com/premium-photo/car-tinting-worker-applying-tinting-foil-car-window_473712-3600.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/premium-photo/male-specialist-applying-car-tinting-film-installation-process-tinted-auto-glass-installing-procedure_266732-24247.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/premium-photo/installs-tint-film-car-glass_1339-38259.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+const images = [
+    "https://img.freepik.com/free-photo/man-working-car-detailing-coating-car_1303-30592.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/premium-photo/worker-hands-holding-polisher_152904-5748.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/premium-photo/car-service-polishing-optics-car-2_662322-2044.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -59,21 +64,21 @@ export default function page() {
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/WT_hj84sr.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/HR_gemq1v.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            Window Tint
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Headlight Restoration
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
- It enhances privacy, reduces glare, blocks UV rays, and protects your interior from fading and heat damage. Customizable options offer the perfect blend of style and function.
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Window%20Tint."
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Headlight%20Restoration"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -116,14 +121,14 @@ export default function page() {
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                Window Tint?
+                Headlight Restoration?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-Window tint is a thin, multi-layered film applied to the interior of a vehicle’s windows to reduce glare, block harmful UV rays, and enhance privacy. It comes in various shades and types, including dyed, metalized, carbon, and ceramic films, each offering different levels of heat rejection and visibility. One of its primary benefits is protecting passengers and interiors from UV radiation, which can cause skin damage and fade upholstery over time. 
+Headlight restoration is the process of cleaning, repairing, and refinishing aged or cloudy headlight lenses to restore clarity and improve light output. Over time, exposure to sunlight, UV rays, pollution, and road debris can cause plastic headlight covers to become yellowed, foggy, or oxidized, significantly reducing visibility and the overall appearance of a vehicle. 
                 </p>
                 <p className="text-justify">
-Window tint also helps regulate the car’s interior temperature, reducing the need for excessive air conditioning and improving fuel efficiency. Additionally, it adds a sleek, stylish appearance and makes it harder for outsiders to see inside, deterring theft. Some high-quality films even reinforce the glass, preventing shattering during accidents. While laws vary by region regarding tint darkness, professionally installed window tint enhances comfort, safety, and aesthetics, making it a smart investment for vehicle owners looking to protect both themselves and their cars.
+Restoration involves sanding away the damaged outer layer, polishing the lens to remove imperfections, and applying a protective UV sealant to prevent future deterioration. This process not only enhances the aesthetic appeal of the vehicle but also improves nighttime driving safety by ensuring that headlights shine brightly and effectively. Compared to replacing headlights, restoration is a cost-effective and eco-friendly solution. It's suitable for most plastic headlights and can often be completed in under an hour. Regular maintenance or professional restoration helps keep your vehicle looking sharp and your night drives safer.
                 </p>
               </div>
             </div>
@@ -136,7 +141,7 @@ Window tint also helps regulate the car’s interior temperature, reducing the n
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-Forms a clear, resilient shield that defends your vehicle’s surface against scratches, chips, and weathering.
+Creates a strong, unseen barrier that defends surfaces from damage while maintaining the vehicle’s original look.
                     </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
@@ -144,7 +149,7 @@ Forms a clear, resilient shield that defends your vehicle’s surface against sc
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-Maintains your vehicle’s pristine look, reduces wear, and helps retain higher resale or trade-in value.
+Maintains your vehicle’s showroom shine and condition, helping retain resale value and curb appeal.
                     </p>
                   </div>
                 </div>
@@ -154,7 +159,7 @@ Maintains your vehicle’s pristine look, reduces wear, and helps retain higher 
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/premium-photo/car-specialists-applying-neon-yellow-vinyl-foil-clients-black-car-workshop_609103-1525.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              src="https://img.freepik.com/premium-photo/mechanic-his-workshop-is-repairing-car-headlight-car-service-concept_98890-571.jpg?ga=GA1.1.1515336155.1743059816&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -170,7 +175,7 @@ Maintains your vehicle’s pristine look, reduces wear, and helps retain higher 
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Window Tint
+              Headlight Restoration
             </div>
           </div>
 

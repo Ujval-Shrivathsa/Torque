@@ -9,21 +9,21 @@ const Footer = () => {
   const pathname = usePathname();
 
   const quickLinks = [
-    { name: "Services", link: "/Services" },
-    { name: "Contact", link: "/Contact" },
-    { name: "About Us", link: "/AboutUs" },
+    { name: "Services", link: "/services/home" },
+    { name: "Contact", link: "/contact" },
+    { name: "About Us", link: "/aboutus" },
   ];
 
   const services = [
-    { name: "Windshield Coating", link: "/WC" },
-    { name: "Interior Detailing", link: "/ID" },
-    { name: "Exterior Detailing", link: "/ED" },
+    { name: "Windshield Tint", link: "/services/wt" },
+    { name: "Interior Detailing", link: "/services/id" },
+    { name: "Exterior Detailing", link: "/services/ed" },
   ];
 
   const specialServices = [
-    { name: "Graphene Coating", link: "/GC" },
-    { name: "Ceramic Coating", link: "/CC" },
-    { name: "Paint Protection", link: "/PPF" },
+    { name: "Graphene Coating", link: "/services/gc" },
+    { name: "Ceramic Coating", link: "/services/cc" },
+    { name: "Paint Protection", link: "/services/ppf" },
   ];
 
   return (

@@ -26,62 +26,6 @@ const Page = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Track mouse position
-  useEffect(() => {
-    const moveDot = (e) => {
-      cursorTarget.current = { x: e.clientX, y: e.clientY };
-    };
-
-    window.addEventListener("mousemove", moveDot);
-    return () => window.removeEventListener("mousemove", moveDot);
-  }, []);
-
-  useEffect(() => {
-    const dot = dotRef.current;
-    if (!dot) return;
-
-    let x = 0;
-    let y = 0;
-
-    const followCursor = () => {
-      x += (cursorTarget.current.x - x) * 0.2;
-      y += (cursorTarget.current.y - y) * 0.2;
-
-      dot.style.left = `${x}px`;
-      dot.style.top = `${y}px`;
-      dot.style.transform = `translate(-50%, -50%)`;
-      requestAnimationFrame(followCursor);
-    };
-
-    requestAnimationFrame(followCursor);
-  }, []);
-
-  useEffect(() => {
-    const dot = dotRef.current;
-
-    const handleMouseEnter = () => {
-      dot.style.width = "16px";
-      dot.style.height = "16px";
-    };
-
-    const handleMouseLeave = () => {
-      dot.style.width = "8px";
-      dot.style.height = "8px";
-    };
-
-    clickableElements.current.forEach((element) => {
-      element.addEventListener("mouseenter", handleMouseEnter);
-      element.addEventListener("mouseleave", handleMouseLeave);
-    });
-
-    return () => {
-      clickableElements.current.forEach((element) => {
-        element.removeEventListener("mouseenter", handleMouseEnter);
-        element.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
-  }, []);
-
   const carouselImages = [
     mainCar.url,
     "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894424/TQ1_kgbzwa.jpg",
@@ -213,7 +157,7 @@ const Page = () => {
                       values that animate us on a daily basis.
                     </p>
                       <button className="hover-target cursor-pointer bg-cyan-600 mt-4 px-6 py-2 border border-cyan-600 text-white rounded-full uppercase">
-                        <Link href="/AboutUs">Read More</Link>
+                        <Link href="/aboutus">Read More</Link>
                       </button>
                   </motion.div>
                 </div>

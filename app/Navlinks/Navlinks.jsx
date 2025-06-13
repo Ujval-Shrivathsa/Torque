@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import GlitchLogo from "../Components/GlitchLogo";
-import Cart from "../Components/Cart";
-import Menu from "../Components/Menu";
+import Cart from "../components/Cart";
+import Menu from "../components/Menu";
 
 const Navlinks = ({ isComplete }) => {
   const [showNav, setShowNav] = useState(false);

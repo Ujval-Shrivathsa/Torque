@@ -91,7 +91,7 @@ const SlidingPage = () => {
         <div className="w-full flex flex-col md:flex-row justify-center items-center gap-6 mt-10 md:mt-20">
 
           {/* PPF Card */}
-          <Link href="/PPF" className="w-full md:w-[30%] overflow-hidden">
+          <Link href="/services/ppf" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822076/PPF_i70du0.jpg')] bg-cover bg-center cursor-pointer relative"
@@ -104,7 +104,7 @@ const SlidingPage = () => {
           </Link>
 
           {/* GC Card */}
-          <Link href="/GC" className="w-full md:w-[30%] overflow-hidden">
+          <Link href="/services/gc" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/ED_zhw6nc.jpg')] bg-cover bg-center cursor-pointer relative"
@@ -117,7 +117,7 @@ const SlidingPage = () => {
           </Link>
 
           {/* CC Card */}
-          <Link href="/CC" className="w-full md:w-[30%] overflow-hidden">
+          <Link href="/services/cc" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg')] bg-cover bg-center cursor-pointer relative"
@@ -140,7 +140,7 @@ const SlidingPage = () => {
           viewport={{ once: true }}
           className="mt-11 z-99 px-6 py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-base sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white transition-all duration-300"
         >
-          <Link href="/Services">Our services →</Link>
+          <Link href="/services/home">Our services →</Link>
         </motion.button>
       </div>
 

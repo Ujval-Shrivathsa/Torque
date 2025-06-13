@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../Components/Footer";
+import Navlinks from "../../Navlinks/Navlinks";
+import Footer from "../../Components/Footer";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -97,7 +97,7 @@ const onSubmit = async (data) => {
         "A paint protection film, also known as a clear bra, is a transparent layer that is applied to the exterior of a vehicle to safeguard the paint from scratches, chips, and other damage.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822076/PPF_i70du0.jpg",
-      linkUrl: "/PPF"
+      linkUrl: "/services/ppf"
     },
     {
       title: "GRAPHENE COATING",
@@ -105,7 +105,7 @@ const onSubmit = async (data) => {
         "Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/ED_zhw6nc.jpg",
-      linkUrl: "/GC"
+      linkUrl: "/services/gc"
     },
     {
       title: "CERAMIC COATING",
@@ -113,7 +113,7 @@ const onSubmit = async (data) => {
         "Ceramic coating is a liquid polymer applied to the exterior of a vehicle, creating a protective layer that enhances shine and provides resistance against scratches, UV rays, and chemical stains.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg",
-      linkUrl: "/CC"
+      linkUrl: "/services/cc"
     },
     {
       title: "INTERIOR DETAILING",
@@ -121,7 +121,7 @@ const onSubmit = async (data) => {
         "Deep cleaning and protection of all interior surfaces including seats, carpets, and dashboard. Keeps your ride looking brand new inside.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/IN_D_dlrscu.jpg",
-      linkUrl: "/ID"
+      linkUrl: "/services/id"
     },
     {
       title: "EXTERIOR DETAILING",
@@ -129,7 +129,7 @@ const onSubmit = async (data) => {
         "Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823070/EDD_ufzxn4.jpg",
-      linkUrl: "/ED"
+      linkUrl: "/services/ed"
     },
     {
       title: "AUTO DETAILING",
@@ -137,7 +137,7 @@ const onSubmit = async (data) => {
         "Give your vehicle a complete makeover, inside and out. Experience a sparkling exterior and a refreshed interior with our meticulous cleaning and restoration service.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/AD_newgqk.jpg",
-      linkUrl: "/AD"
+      linkUrl: "/services/ad"
     },
     {
       title: "VINYL WRAP",
@@ -145,7 +145,7 @@ const onSubmit = async (data) => {
         "Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823939/V_W_u9lzhn.jpg",
-      linkUrl: "/VX"
+      linkUrl: "/services/vx"
     },
     {
       title: "WINDOW TINT",
@@ -153,7 +153,7 @@ const onSubmit = async (data) => {
         " It enhances privacy, reduces glare, blocks UV rays, and protects your interior from fading and heat damage. Customizable options offer the perfect blend of style and function.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/WT_hj84sr.jpg",
-      linkUrl: "/WT"
+      linkUrl: "/services/wt"
     },
     {
       title: "WINDSHIELD COATING",
@@ -161,7 +161,7 @@ const onSubmit = async (data) => {
         "Enhance visibility and safety with an advanced hydrophobic coating that keeps your windshield clean, providing clearer vision during heavy rains and reducing hard water spots.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/WC_pripys.jpg",
-      linkUrl: "/WC"
+      linkUrl: "/services/wc"
     },
     {
       title: "HEADLIGHT RESTORATION",
@@ -169,7 +169,7 @@ const onSubmit = async (data) => {
         "Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/HR_gemq1v.jpg",
-      linkUrl: "/HR"
+      linkUrl: "/services/hr"
     },
     {
       title: "INTERIOR DISINFECTION",
@@ -177,7 +177,7 @@ const onSubmit = async (data) => {
         "Eliminate odours and harmful bacteria with our thorough interior disinfection service.",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/ID_cvrf2r.jpg",
-      linkUrl: "/IDI"
+      linkUrl: "/services/idi"
     },
     {
       title: "TRIM RESTORATION",
@@ -185,7 +185,7 @@ const onSubmit = async (data) => {
         "Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/TR_ntkjqg.jpg",
-      linkUrl: "/TR"
+      linkUrl: "/services/tr"
     },
     {
       title: "A/C STERILIZATION",
@@ -193,7 +193,7 @@ const onSubmit = async (data) => {
         "With a deep clean and sanitization of your A/C ducts and filters. You can be rest assured, with clean and fresh air inside your car",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/AC_ooer2g.jpg",
-      linkUrl: "/ACS"
+      linkUrl: "/services/acs"
     },
     {
       title: "MINOR ELECTRICAL & MECHANICAL WORK",
@@ -201,7 +201,7 @@ const onSubmit = async (data) => {
         "From windshield wiper changes to fitting dashcams, we handle small but essential repairs. ",
       image:
         "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/ME_pkvmqo.jpg",
-      linkUrl: "/MEM"
+      linkUrl: "/services/mem"
     },
   ];
 
@@ -240,7 +240,7 @@ const onSubmit = async (data) => {
                 CarWash offers a range of customizable services...
               </p>
               <button className="border-2 tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
-                <Link href="/Contact">Contact Us</Link>
+                <Link href="/contact">Contact Us</Link>
               </button>
             </div>
 
@@ -258,7 +258,7 @@ const onSubmit = async (data) => {
                 Special offer: Rs.5000 off on any service!
               </p>
               <button className="border-2 tracking-wide border-cyan-600 text-white px-6 py-3 rounded-full hover:bg-cyan-600 hover:text-black transition-all duration-200">
-                <Link href="/Contact">Contact Us</Link>
+                <Link href="/contact">Contact Us</Link>
               </button>
             </div>
 

@@ -17,7 +17,7 @@ const products = [
     mrp: 500,
     discountedPrice: 760,
     discountPercentage: 35,
-    Link: "/Product",
+    Link: "/product",
   },
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR4_d5yk2s.jpg",
@@ -25,7 +25,7 @@ const products = [
     mrp: 399,
     discountedPrice: 540,
     discountPercentage: 25,
-    Link: "/TarAdhesiveRemover",
+    Link: "/taradhesiveremover",
   },
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR5_kzonyn.jpg",
@@ -33,7 +33,7 @@ const products = [
     mrp: 410,
     discountedPrice: 540,
     discountPercentage: 35,
-    Link: "/PlasticRubberCare",
+    Link: "/plasticrubbercare",
   },
   {
     img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR3_cp1stx.jpg",
@@ -41,7 +41,7 @@ const products = [
     mrp: 390,
     discountedPrice: 590,
     discountPercentage: 35,
-    Link: "/UpholsteryCleaner",
+    Link: "/upholsterycleaner",
   },
 ];
 
@@ -117,7 +117,7 @@ const ProductPage = () => {
         viewport={{ once: true }}
         className="mt-14 px-6 py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-base sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white transition-all duration-300"
       >
-        <Link href="/ShopPage">Our Products →</Link>
+        <Link href="/shoppage">Our Products →</Link>
       </motion.button>
     </div>
   );

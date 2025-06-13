@@ -12,11 +12,11 @@ const Menu = ({ onClose }) => {
   
   const menuItems = [
     { name: "Home", link: "/" },
-    { name: "Work", link: "/Works" },
-    { name: "Service", link: "/Services" },
-    { name: "Shop", link: "/ShopPage" },
-    { name: "About", link: "/AboutUs" },
-    { name: "Contact", link: "/Contact" },
+    { name: "Work", link: "/works" },
+    { name: "Service", link: "/services/home" },
+    { name: "Shop", link: "/shoppage" },
+    { name: "About", link: "/aboutus" },
+    { name: "Contact", link: "/contact" },
   ];
 
   return (

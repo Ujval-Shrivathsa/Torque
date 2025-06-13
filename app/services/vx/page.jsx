@@ -1,50 +1,45 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Improved Visibility",
+    title: "Customizable Appearance",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Enhanced Appearance",
+    title: "Paint Protection",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Cost-Effective",
+    title: "Improves Hygiene",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Increased Safety",
+    title: "Reversible and Non-Permanent",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Prevents Further Damage",
+    title: "Faster Installation",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
-  },
-  {
-    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Boosts Resale Value",
-    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
 
 export default function page() {
 
-const images = [
-    "https://img.freepik.com/free-photo/man-working-car-detailing-coating-car_1303-30592.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/premium-photo/worker-hands-holding-polisher_152904-5748.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/premium-photo/car-service-polishing-optics-car-2_662322-2044.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    const images = [
+    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593858.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593880.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593856.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -64,21 +59,21 @@ const images = [
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/HR_gemq1v.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823939/V_W_u9lzhn.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            Headlight Restoration
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Vinyl Wrap
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Headlight%20Restoration"
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Vinyl%20Wrap"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -121,14 +116,14 @@ Improve night driving safety by restoring cloudy or yellowed headlights to their
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                Headlight Restoration?
+                Vinyl Wrap?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-Headlight restoration is the process of cleaning, repairing, and refinishing aged or cloudy headlight lenses to restore clarity and improve light output. Over time, exposure to sunlight, UV rays, pollution, and road debris can cause plastic headlight covers to become yellowed, foggy, or oxidized, significantly reducing visibility and the overall appearance of a vehicle. 
+Vinyl wrap is a thin, adhesive-backed film applied over a vehicle’s original paint to change its appearance or protect the surface. Available in a wide range of colors, finishes (matte, gloss, satin, chrome), and textures (carbon fiber, brushed metal), vinyl wraps offer endless customization possibilities without the permanence of a new paint job. The application process is non-invasive and reversible, making it a popular choice for car enthusiasts and businesses wanting to brand their vehicles.
                 </p>
                 <p className="text-justify">
-Restoration involves sanding away the damaged outer layer, polishing the lens to remove imperfections, and applying a protective UV sealant to prevent future deterioration. This process not only enhances the aesthetic appeal of the vehicle but also improves nighttime driving safety by ensuring that headlights shine brightly and effectively. Compared to replacing headlights, restoration is a cost-effective and eco-friendly solution. It's suitable for most plastic headlights and can often be completed in under an hour. Regular maintenance or professional restoration helps keep your vehicle looking sharp and your night drives safer.
+Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV rays, scratches, road debris, and weather damage, helping preserve the factory paint underneath. It can cover the entire vehicle or just selected areas like the hood, roof, or mirrors. With proper care, a high-quality wrap can last 3 to 7 years. Vinyl wrapping is an affordable, reversible, and creative way to give your car a fresh, personalized look while protecting its original finish.
                 </p>
               </div>
             </div>
@@ -141,7 +136,7 @@ Restoration involves sanding away the damaged outer layer, polishing the lens to
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-Creates a strong, unseen barrier that defends surfaces from damage while maintaining the vehicle’s original look.
+ Provides a clear, strong layer that shields your vehicle’s surface from damage, wear, and elements.
                     </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
@@ -149,7 +144,7 @@ Creates a strong, unseen barrier that defends surfaces from damage while maintai
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-Maintains your vehicle’s showroom shine and condition, helping retain resale value and curb appeal.
+            Maintains your vehicle’s showroom look, reduces wear, and helps retain higher resale or trade-in value.
                     </p>
                   </div>
                 </div>
@@ -159,7 +154,7 @@ Maintains your vehicle’s showroom shine and condition, helping retain resale v
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/premium-photo/mechanic-his-workshop-is-repairing-car-headlight-car-service-concept_98890-571.jpg?ga=GA1.1.1515336155.1743059816&w=740"
+              src="https://img.freepik.com/premium-photo/car-specialists-applying-neon-yellow-vinyl-foil-clients-black-car-workshop_609103-1525.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -175,7 +170,7 @@ Maintains your vehicle’s showroom shine and condition, helping retain resale v
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Headlight Restoration
+              Vinyl Wrap
             </div>
           </div>
 

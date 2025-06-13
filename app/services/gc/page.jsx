@@ -1,40 +1,35 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Instant healing properties",
+    title: "Enhanced slickness",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Extreme high gloss finish",
+    title: "Higher abraslion resistance",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Hydrophobic top coat",
+    title: "Grossler aesthetics",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Advanced chemical resistance",
+    title: "Longer durability",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "High temperature resistance",
+    title: "Less water spotting",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
-  },
-  {
-    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Seamless finishing",
-    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
@@ -42,9 +37,9 @@ const benefits = [
 export default function page() {
 
     const images = [
-    "https://img.freepik.com/premium-photo/application-ceramic-coating-car_235347-1.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/free-photo/man-working-car-detailing-coating-car_1303-30600.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/free-photo/close-up-car-care-process_23-2149193581.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/close-up-car-care-process_23-2149193565.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/male-painter-using-gun-paint-car-shop_23-2149750071.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/front-view-man-working-with-paint-gun_23-2149878804.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -64,21 +59,21 @@ export default function page() {
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822076/PPF_i70du0.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/ED_zhw6nc.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            Paint Protection Film
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Graphene Coating
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-            PPF is a conformable and optically clear film available in a variety of thickness (measured in microns) and colours. They are multilayered and offer a self healing top coat capable of reforming itself after being scuffed or scratched, maintaining clarity and having hydrophobic properties, similar to ceramic coating. 
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+            Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Paint%20Protection%20Film"
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Graphene%20Coating"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -121,20 +116,14 @@ export default function page() {
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                Paint Protection Film?
+                Graphene Coating?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-                  The top layer of the PPF is comprised of an elastomeric polymer substance that helps the material
-                  maintain a natural shape once its been stretched or applied to something like a painted or clear
-                  coated surface. This allows the PPF to "selfheal" when light scratches occur, and pretty much
-                  eliminates any risk of swirl marks. 
+                  Graphene coating is an advanced automotive surface protection technology that uses graphene, a single layer of carbon atoms arranged in a hexagonal lattice. Known for its exceptional strength, conductivity, and flexibility, graphene provides a durable and highly effective shield when applied as a coating to a vehicle’s paint. Unlike traditional ceramic coatings, graphene coatings offer superior heat resistance, water repellency (hydrophobicity), and anti-static properties, meaning they repel dust and water more effectively.
                 </p>
                 <p className="text-justify">
-                  The root cause of yellowing issue lies in the ultraviolet radiation. For a low quality TPU, the
-                  manufacturer uses coatings or other technology to lock the ultraviolet rays to delay the yellowing, but
-                  eventually, after a few years, it will show it will turn yellow. PPF is a product that relies on TPU
-                  substrates. The use of different substrates determines PPF life and yellowing resistance.
+                  This results in a cleaner surface for longer periods and easier maintenance. Graphene coatings also offer enhanced UV protection, reducing the risk of paint oxidation and fading. Additionally, they are highly resistant to chemical stains, bird droppings, and other environmental contaminants. Their slick, glossy finish enhances the depth and shine of the paint, giving the car a freshly detailed look. Overall, graphene coatings provide long-lasting, high-performance protection while reducing the need for frequent washing or detailing.
                 </p>
               </div>
             </div>
@@ -147,7 +136,7 @@ export default function page() {
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-                      It helps by shielding your car's paint from scratches, rock chips, bird droppings, and UV rays — all without changing how it looks, ensuring long-term beauty and value
+                     Graphene coating provides ultra-thin, invisible, and highly durable protection against wear, chemicals, heat, and UV.
                     </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
@@ -155,7 +144,7 @@ export default function page() {
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-                      Paint Protection Film (PPF) keeps your car looking new by preventing damage. This helps maintain its resale value and showroom-like finish for years.
+                     Graphene coating preserves value and appearance by preventing wear, fading, corrosion, and environmental damage long-term.
                     </p>
                   </div>
                 </div>
@@ -165,7 +154,7 @@ export default function page() {
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/free-photo/service-worker-painting-car-auto-service_23-2149486989.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              src="https://img.freepik.com/free-photo/male-painter-hazmat-suit-inside-car-shop_23-2149750030.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -181,7 +170,7 @@ export default function page() {
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Paint Protection Film
+              Graphene Coating
             </div>
           </div>
 

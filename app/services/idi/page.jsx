@@ -1,35 +1,40 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Restores Shine and Gloss",
+    title: "Kills Harmful Germs",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Protects Paintwork",
+    title: "Improves Health",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Improves Vehicle Appearance",
+    title: "Removes Odors",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Prevents Rust and Corrosion",
+    title: "Enhances Cabin Cleanliness",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Cleans Wheels and Tires",
+    title: "Protects High-Touch Surfaces",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Promotes Peace of Mind",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
@@ -37,9 +42,9 @@ const benefits = [
 export default function page() {
 
     const images = [
-"https://img.freepik.com/premium-photo/worker-washing-car-with-active-foam-car-wash_179755-10785.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/premium-photo/detailing-center-worker-cleans-car-s-radiator-grill-with-brush_153608-2690.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/free-photo/selective-focus-shot-man-cleaning-car-s-back-headlight-with-microfiber-cloth_181624-46344.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/still-life-cleaning-tools_23-2150552221.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/premium-photo/cleaner-disinfecting-car-interior-with-steamer-closeup_151013-29746.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/close-up-car-care-dusting_23-2149172887.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -59,21 +64,21 @@ export default function page() {
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823070/EDD_ufzxn4.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/ID_cvrf2r.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            Exterior Detailing
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Interior Disinfection
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Exterior%20Detailing"
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Interior%20Disinfection"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -116,14 +121,14 @@ Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                Exterior Detailing?
+                Interior Disinfection?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-Exterior detailing is a comprehensive cleaning, restoration, and finishing process focused on a vehicle’s outer surfaces to protect and enhance its appearance. It goes beyond a standard car wash by thoroughly cleaning every part of the exterior, including paint, windows, wheels, tires, trim, and chrome. The process typically involves washing to remove dirt and grime, clay bar treatment to eliminate embedded contaminants, polishing to remove swirl marks and minor scratches, and waxing or sealing to provide a protective layer
+Interior Disinfection is a deep cleaning process that targets and eliminates harmful bacteria, viruses, fungi, and allergens from a vehicle’s cabin. Unlike basic interior cleaning, disinfection uses specialized products such as hospital-grade disinfectants, steam, and fogging systems to sanitize high-touch surfaces like the steering wheel, dashboard, gear shift, door handles, seats, and air vents. This service is especially crucial for vehicles used frequently or shared among multiple people, such as rideshares or family cars.
                 </p>
                 <p className="text-justify">
-Exterior detailing restores the car’s shine, improves paint clarity, and helps protect against environmental damage such as UV rays, oxidation, bird droppings, and road salt. Wheel cleaning and tire dressing enhance the look of these often-neglected areas. Overall, exterior detailing not only makes your car look brand new but also helps preserve the paint’s condition, extending the vehicle’s life and maintaining its resale value
+By disinfecting the interior, the process ensures a healthier environment for drivers and passengers, reducing the risk of illness and allergic reactions. It also removes bad odors caused by bacteria and mold, leaving the cabin smelling fresh. Interior disinfection is often recommended during seasonal changes, after illness, or as part of routine vehicle maintenance. It promotes not just cleanliness, but also peace of mind, making your driving experience safer and more hygienic.
                 </p>
               </div>
             </div>
@@ -136,7 +141,7 @@ Exterior detailing restores the car’s shine, improves paint clarity, and helps
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
- Provides clear, long-lasting defense against scratches, chips, and environmental damage without altering appearance.
+Shields surfaces without altering appearance, offering long-lasting defense against wear, UV rays, and damage.
                     </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
@@ -144,7 +149,7 @@ Exterior detailing restores the car’s shine, improves paint clarity, and helps
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-            Maintains your car’s original look and condition, helping retain its value over time.
+Maintains your vehicle’s original look and finish, helping retain resale value and appeal.
                     </p>
                   </div>
                 </div>
@@ -154,7 +159,7 @@ Exterior detailing restores the car’s shine, improves paint clarity, and helps
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/free-photo/man-washing-his-car-garage_1157-26058.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              src="https://img.freepik.com/free-photo/car-wash-detailing-station_1303-22314.jpg?ga=GA1.1.1515336155.1743059816&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -170,7 +175,7 @@ Exterior detailing restores the car’s shine, improves paint clarity, and helps
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Exterior Detailing
+              Headlight Restoration
             </div>
           </div>
 

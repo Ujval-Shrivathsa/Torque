@@ -1,35 +1,40 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Long-Lasting Protection",
+    title: "Prevents Major Breakdowns",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Hydrophobic Effect",
+    title: "Improves Vehicle Reliability",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Enhanced Gloss and Shine",
+    title: "Enhances Safety",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Scratch Resistance",
+    title: "Saves Money",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Preserves Resale Value",
+    title: "Maintains Comfort",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Extends A/C System Life",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
@@ -37,9 +42,9 @@ const benefits = [
 export default function page() {
 
     const images = [
-"https://img.freepik.com/premium-photo/car-body-polishing-process-detailing-workshop_153608-1185.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/free-photo/beautiful-car-polishing-service_23-2149212247.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/premium-photo/car-polish-wax-worker-hands-holding-polisher-polish-car-detailing-valeting-concept-taillight-red-car_152904-4650.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/car-mechanic-repairs-blue-car-garage-with-tools_1157-46533.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
+    "https://img.freepik.com/free-photo/male-mechanic-working-auto-repair-shop-car_23-2150376991.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
+    "https://img.freepik.com/premium-photo/auto-mechanic-using-measuring-equipment-tool-fix-checking-car-battery_101448-1527.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -59,21 +64,21 @@ export default function page() {
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/ME_pkvmqo.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            Ceramic Coating
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Minor Electrical & Mechanical Work
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-Ceramic coating is a liquid polymer applied to cars that bonds with paint, providing glossy, long-lasting protection against dirt and damage.
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+From windshield wiper changes to fitting dashcams, we handle small but essential repairs.
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Ceramic%20Coating"
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Minor%20Electrical%20&%20Mechanical%20Work"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -116,14 +121,14 @@ Ceramic coating is a liquid polymer applied to cars that bonds with paint, provi
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                Ceramic Coating?
+                Minor Electrical & Mechanical Work?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-Ceramic coating is a liquid polymer applied to a vehicle's exterior that chemically bonds with the factory paint, forming a protective layer. This invisible shield offers long-lasting protection against UV ray oxidation, chemical stains, bird droppings, and minor scratches. It's highly hydrophobic, meaning water, dirt, and contaminants bead up and slide off easily, making cleaning much easier.
+Minor Electrical & Mechanical Work refers to small-scale repairs and adjustments done to keep a vehicle functioning smoothly without needing major servicing or part replacements. This includes tasks like fixing or replacing fuses, bulbs, switches, wiring, battery terminals, or resolving minor faults in the horn, indicators, or power windows. On the mechanical side, it might involve tightening loose parts, adjusting belts, lubricating hinges, or replacing small components like wiper blades, filters, or worn-out rubber fittings. 
                 </p>
                 <p className="text-justify">
-Unlike wax, which wears off quickly, ceramic coatings can last for years with proper care. They also enhance the vehicle's gloss and depth, giving the paint a richer, more vibrant look. While not bulletproof, ceramic coatings significantly reduce the risk of surface damage and preserve the car's appearance. It's a popular choice among car owners who want extended protection and low-maintenance shine.
+These services are often performed during routine maintenance or detailing and help ensure the vehicle's components work reliably. Though minor, these repairs play a vital role in enhancing safety, preventing bigger issues, and maintaining a comfortable driving experience. Keeping up with such repairs can also extend the overall life of the vehicle and reduce the likelihood of sudden breakdowns. They're quick, affordable fixes that support optimal vehicle performance and user convenience.
                 </p>
               </div>
             </div>
@@ -136,15 +141,15 @@ Unlike wax, which wears off quickly, ceramic coatings can last for years with pr
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-Ceramic coating forms a clear, long-lasting layer that protects your vehicle's paint from UV rays, contaminants, and minor scratches.
-                    </p>
+Shields vehicle surfaces from damage while maintaining a clean, sleek, factory-finish look long-term.
+            </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
                     <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-Ceramic coating maintains your vehicle's glossy finish, prevents paint damage and fading, helping retain its showroom look and resale value.
+ Protects your vehicle's finish from wear and tear, keeping it looking new and maintaining resale value.
                     </p>
                   </div>
                 </div>
@@ -154,7 +159,7 @@ Ceramic coating maintains your vehicle's glossy finish, prevents paint damage an
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/free-photo/close-up-car-care-process_23-2149193626.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              src="https://img.freepik.com/premium-photo/midsection-man-sitting-car_1048944-3615526.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -170,7 +175,7 @@ Ceramic coating maintains your vehicle's glossy finish, prevents paint damage an
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Ceramic Coating
+               Minor Electrical & Mechanical Work
             </div>
           </div>
 

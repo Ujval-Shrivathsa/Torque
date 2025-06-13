@@ -1,40 +1,35 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Eliminates Harmful Bacteria and Mold",
+    title: "Reduces Heat and Glare",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Improves Air Quality",
+    title: "Protects Against UV Rays",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Reduces Allergic Reactions",
+    title: "Enhances Privacy and Security",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Removes Unpleasant Odors",
+    title: "Prevents Interior Fading",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Enhances Cooling Efficiency",
+    title: "Improves Comfort",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
-  },
-  {
-    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Extends A/C System Life",
-    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
@@ -42,9 +37,9 @@ const benefits = [
 export default function page() {
 
     const images = [
-    "https://img.freepik.com/premium-photo/replacement-cabin-pollen-air-filter-car-basic-auto-mechanic-skills-concept_1048944-1849557.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
-    "https://img.freepik.com/premium-photo/human-hand-adjusts-wind-direction-car-air-conditioner-cabin_41472-1782.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
-    "https://img.freepik.com/premium-photo/close-up-hand-holding-car_1048944-867030.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
+    "https://img.freepik.com/premium-photo/car-tinting-worker-applying-tinting-foil-car-window_473712-3600.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/premium-photo/male-specialist-applying-car-tinting-film-installation-process-tinted-auto-glass-installing-procedure_266732-24247.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/premium-photo/installs-tint-film-car-glass_1339-38259.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -64,21 +59,21 @@ export default function page() {
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/AC_ooer2g.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/WT_hj84sr.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            A/C Sterilization
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Window Tint
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-With a deep clean and sanitization of your A/C ducts and filters. You can be rest assured, with clean and fresh air inside your car
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+ It enhances privacy, reduces glare, blocks UV rays, and protects your interior from fading and heat damage. Customizable options offer the perfect blend of style and function.
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20A/C%20Sterilization"
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Window%20Tint."
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -121,16 +116,14 @@ With a deep clean and sanitization of your A/C ducts and filters. You can be res
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                A/C Sterilization?
+                Window Tint?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-A/C Sterilization is a professional cleaning process that targets the air conditioning system of a vehicle to eliminate harmful bacteria, mold, mildew, and unpleasant odors. Over time, moisture and debris accumulate in the A/C vents and evaporator, creating a breeding ground for microorganisms. This not only leads to musty smells but can also affect air quality and health.
+Window tint is a thin, multi-layered film applied to the interior of a vehicle’s windows to reduce glare, block harmful UV rays, and enhance privacy. It comes in various shades and types, including dyed, metalized, carbon, and ceramic films, each offering different levels of heat rejection and visibility. One of its primary benefits is protecting passengers and interiors from UV radiation, which can cause skin damage and fade upholstery over time. 
                 </p>
                 <p className="text-justify">
-The sterilization process typically involves using specialized disinfectants or ozone treatment to sanitize the evaporator core, ducts, and vents. Some methods also include antibacterial sprays or fogging machines to reach deep into the system.
-
-Regular A/C sterilization ensures cleaner, fresher air inside the car, reduces the risk of respiratory issues, and enhances the overall driving experience. It's especially beneficial for people with allergies or asthma, and it complements routine interior detailing by maintaining a healthy cabin environment. Ideally, this should be done every 6–12 months or as needed based on usage and climate.
+Window tint also helps regulate the car’s interior temperature, reducing the need for excessive air conditioning and improving fuel efficiency. Additionally, it adds a sleek, stylish appearance and makes it harder for outsiders to see inside, deterring theft. Some high-quality films even reinforce the glass, preventing shattering during accidents. While laws vary by region regarding tint darkness, professionally installed window tint enhances comfort, safety, and aesthetics, making it a smart investment for vehicle owners looking to protect both themselves and their cars.
                 </p>
               </div>
             </div>
@@ -143,15 +136,15 @@ Regular A/C sterilization ensures cleaner, fresher air inside the car, reduces t
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
-Creates a clear, long-lasting barrier that shields surfaces from damage without altering their appearance.
-            </p>
+Forms a clear, resilient shield that defends your vehicle’s surface against scratches, chips, and weathering.
+                    </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
                     <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-cyan-300">
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-Maintains the vehicle’s original look and resale value by preventing wear, fading, and damage.
+Maintains your vehicle’s pristine look, reduces wear, and helps retain higher resale or trade-in value.
                     </p>
                   </div>
                 </div>
@@ -161,7 +154,7 @@ Maintains the vehicle’s original look and resale value by preventing wear, fad
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/free-photo/close-up-car-interior_23-2148194117.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740"
+              src="https://img.freepik.com/premium-photo/car-specialists-applying-neon-yellow-vinyl-foil-clients-black-car-workshop_609103-1525.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -177,7 +170,7 @@ Maintains the vehicle’s original look and resale value by preventing wear, fad
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              A/C Sterilization
+              Window Tint
             </div>
           </div>
 

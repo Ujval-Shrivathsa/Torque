@@ -1,35 +1,40 @@
 "use client";
 
 import React, { useRef } from "react";
-import Navlinks from "../Navlinks/Navlinks";
+import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../Components/Footer";
+import Footer from "../../Components/Footer";
 
 const benefits = [
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Customizable Appearance",
+    title: "Revives Faded Trim",
     description: "Paint Protection Films (PPFs), especially those marketed as instant healing or self-healing, have the ability to repair minor scratches and imperfections without external heat application",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Paint Protection",
+    title: "Enhances Vehicle Aesthetics",
     description: "An extreme high gloss car finish refers to a paint job that achieves a mirror-like, exceptionally deep shine, often resembling a polished, wet look",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Improves Hygiene",
+    title: "Protects from UV Damage",
     description: "Hydrophobic coatings provide a 'water-repellent' seal on a vehicle. They're great for 'repelling' water and dirt, which can make it easier when it comes to cleaning your car.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Reversible and Non-Permanent",
+    title: "Prevents Cracking and Aging",
     description: "Advanced chemical resistance in cars is primarily achieved through specialized coatings, particularly graphene and ceramic coatings, which form a protective layer on the paint, enhancing its durability and resistance to various chemical agents.",
   },
   {
     icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
-    title: "Faster Installation",
+    title: "Improves Resale Value",
     description: "High-temperature resistance in cars is crucial for ensuring the durability and performance of various components, particularly those exposed to engine heat or exhaust fumes.",
+  },
+  {
+    icon: "https://ocdetailmn.com/wp-content/uploads/2024/02/icon_umbrella.svg",
+    title: "Water and Dirt Repellent",
+    description: "A seamless finishing car refers to the overall refinement and quality of a car's exterior and interior surfaces, including the paint, trim, and materials used in the car's construction.",
   },
 ];
 
@@ -37,9 +42,9 @@ const benefits = [
 export default function page() {
 
     const images = [
-    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593858.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593880.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
-    "https://img.freepik.com/free-photo/auto-service-salon-doign-car-wrapping_23-2149593856.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
+    "https://img.freepik.com/free-photo/high-angle-hand-wrapping-car-with-blue-cover_23-2149385686.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_items_boosted&w=740",
+    "https://img.freepik.com/free-photo/car-wrapping-with-foil-drying-with-fan-car-service_1303-32347.jpg?ga=GA1.1.1515336155.1743059816&w=740",
+    "https://img.freepik.com/free-photo/person-working-car-wrapping_23-2149342617.jpg?ga=GA1.1.1515336155.1743059816&w=740",
   ];
 
     const scrollRef1 = useRef(null);
@@ -59,21 +64,21 @@ export default function page() {
       <div
         className="w-full h-[100vh] lg:h-[80vh] 2xl:h-[60vh] flex items-center bg-cover"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823939/V_W_u9lzhn.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/TR_ntkjqg.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
         }}
       >
         <div className="text-left ml-[6%] lg:ml-[5%] 2xl:ml-[18%] mb-10 px-4 md:px-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-cyan-300 tracking-tight">
-            Vinyl Wrap
+          <h1 className="text-4xl md:text-5xl lg:text-6xl lg:mt-20 font-bold mb-4 text-cyan-300 tracking-tight">
+            Trim Restoration
           </h1>
-          <p className="text-gray-400 mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
-Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.
+          <p className="text-white mt-4 md:mt-[5%] w-full md:w-[90%] lg:w-[90%] text-sm md:text-base lg:text-[17px] leading-relaxed max-w-xs md:max-w-md lg:max-w-lg">
+Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!
           </p>
           <a
-            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Vinyl%20Wrap"
+            href="https://wa.me/919686968315?text=I%20want%20to%20know%20more%20about%20Trim%20Restoration"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -116,14 +121,16 @@ Transform your vehicle with high-quality vinyl wraps. Choose from a variety of c
             <div className="border-l-4 md:border-l-5 border-cyan-300 pl-4 md:pl-7 mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-white mb-2">What Is</h2>
               <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-2">
-                Vinyl Wrap?
+                Trim Restoration?
               </div>
               <div className="space-y-4 mt-4 md:mt-6 text-gray-300 text-sm leading-relaxed max-w-full md:max-w-xl lg:max-w-140">
                 <p className="text-justify">
-Vinyl wrap is a thin, adhesive-backed film applied over a vehicle’s original paint to change its appearance or protect the surface. Available in a wide range of colors, finishes (matte, gloss, satin, chrome), and textures (carbon fiber, brushed metal), vinyl wraps offer endless customization possibilities without the permanence of a new paint job. The application process is non-invasive and reversible, making it a popular choice for car enthusiasts and businesses wanting to brand their vehicles.
+Trim Restoration is the process of reviving faded, oxidized, or damaged plastic and rubber trim on a vehicle’s exterior. Over time, UV rays, harsh weather, and car wash chemicals can cause trim pieces—such as bumper moldings, window seals, mirror housings, and fender arches—to lose their original color and luster, often turning gray or chalky. Trim restoration involves thoroughly cleaning these areas, removing oxidation, and applying specialized products designed to restore color and provide a layer of protection.
                 </p>
                 <p className="text-justify">
-Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV rays, scratches, road debris, and weather damage, helping preserve the factory paint underneath. It can cover the entire vehicle or just selected areas like the hood, roof, or mirrors. With proper care, a high-quality wrap can last 3 to 7 years. Vinyl wrapping is an affordable, reversible, and creative way to give your car a fresh, personalized look while protecting its original finish.
+Professional-grade trim restorers penetrate the material, rejuvenating the finish and often restoring it to a like-new appearance. Some treatments include long-lasting ceramic or graphene-based solutions that offer UV resistance and hydrophobic protection, helping to repel water and prevent future fading.
+
+Trim restoration not only enhances the overall aesthetics of the vehicle but also contributes to preserving its value by maintaining the factory-like appearance of the exterior components.
                 </p>
               </div>
             </div>
@@ -136,7 +143,7 @@ Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV ray
                       Invisible and Durable Protection:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-65">
- Provides a clear, strong layer that shields your vehicle’s surface from damage, wear, and elements.
+Seamlessly shields your vehicle’s surfaces while maintaining original aesthetics and long-lasting resilience.
                     </p>
                   </div>
                   <div className="flex-1 2xl:ml-[-60%] lg:ml-[-50%]">
@@ -144,7 +151,7 @@ Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV ray
                       Preserves Value and Appearance:
                     </h3>
                     <p className="text-gray-400 text-sm lg:text-sm lg:-mt-2 leading-relaxed lg:w-70">
-            Maintains your vehicle’s showroom look, reduces wear, and helps retain higher resale or trade-in value.
+Maintains your vehicle’s showroom look and resale value by preventing wear, fading, and damage.
                     </p>
                   </div>
                 </div>
@@ -154,7 +161,7 @@ Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV ray
           {/* Side Image */}
           <div className="flex 2xl:ml-40 justify-center md:justify-start w-full px-4 md:px-0 lg:flex-shrink-0 lg:w-auto lg:mr-8">
             <img 
-              src="https://img.freepik.com/premium-photo/car-specialists-applying-neon-yellow-vinyl-foil-clients-black-car-workshop_609103-1525.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740"
+              src="https://img.freepik.com/free-photo/car-wrapping-with-foil-drying-with-fan-car-service_1303-32345.jpg?ga=GA1.1.1515336155.1743059816&w=740"
               className="w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg h-64 md:h-80 2xl:h-125 2xl:ml-[-140px] lg:h-[350px] xl:h-[400px] object-cover object-center mt-4 md:mt-8 lg:mt-0 md:ml-[4%] lg:ml-0 rounded-2xl"
               style={{ marginRight: '30px' }}
               alt="Car care process" 
@@ -170,7 +177,7 @@ Beyond aesthetics, vinyl wrap also serves as a protective barrier against UV ray
           <div className="mb-6 lg:mb-6">
             <h2 className="text-lg md:text-xl font-normal text-gray-400 mb-2">Benefits of</h2>
             <div className="text-3xl md:text-4xl font-bold text-white -mt-1 lg:-mt-3">
-              Vinyl Wrap
+              Trim Restoration
             </div>
           </div>
 
