@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import GlitchLogo from '../Components/GlitchLogo';
 import Footer from '../Components/Footer';
 import Menu from '../Components/Menu';
+import Cart from "../Components/Cart";
 
 
 const Navlinks = ({ isComplete }) => {
