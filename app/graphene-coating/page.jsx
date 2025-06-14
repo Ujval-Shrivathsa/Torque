@@ -1,6 +1,6 @@
 import React from "react";
 import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../Components/Footer";
+import Footer from "../components/Footer";
 
 const page = () => {
   const benefits = [

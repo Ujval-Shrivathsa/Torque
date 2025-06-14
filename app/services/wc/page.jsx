@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Navlinks from "../../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../../Components/Footer";
+import Footer from "../../components/Footer";
 
 const benefits = [
   {
