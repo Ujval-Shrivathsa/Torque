@@ -4,7 +4,7 @@ import React from "react";
 import Navlinks from "../Navlinks/Navlinks";
 import { Check } from 'lucide-react';
 import Link from "next/link";
-import Footer from "../Components/Footer";
+import Footer from "../components/Footer";
 
 const Page = () => {
   return (

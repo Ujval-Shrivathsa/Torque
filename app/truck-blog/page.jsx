@@ -5,7 +5,7 @@ import { faFacebookF, faThreads } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../Components/Footer";
+import Footer from "../components/Footer";
 
 const page = () => {
   return (

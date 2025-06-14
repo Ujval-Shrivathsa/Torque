@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../Components/Footer";
+import Footer from "../components/Footer";
 
 const blogPosts = [
   {
