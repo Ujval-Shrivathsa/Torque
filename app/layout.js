@@ -2,8 +2,8 @@ import './globals.css';
 import Script from 'next/script';
 import ChatBox from './Chat_Bot/ChatBox';
 import { CartProvider } from './context/CartContext';
-import Cart from "../components/Cart"; // adjust the path as needed
-import { useCart } from "../context/CartContext"; // adjust the path
+import Cart from "./Components/Cart"; // adjust the path as needed
+import { useCart } from "./context/CartContext"; // adjust the path
 
 export const metadata = {
   title: 'Torque | Detailing Studio',

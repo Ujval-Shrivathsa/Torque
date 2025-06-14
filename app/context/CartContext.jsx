@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import Cart from "../components/Cart"; // adjust the path as needed
+import Cart from "../Components/Cart"; // adjust the path as needed
 
 
 const CartContext = createContext();

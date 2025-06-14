@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import toast from "react-hot-toast";
-import Cart from "../components/Cart"; // adjust the path as needed
+import Cart from "../Components/Cart"; // adjust the path as needed
 import Link from "next/link";
 
 const products = [
