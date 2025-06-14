@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import GlitchLogo from "../components/GlitchLogo";
-import Cart from "../components/Cart";
-import Menu from "../components/Menu";
+import GlitchLogo from '../components/GlitchLogo';
+import Footer from '../components/Footer';
+import Menu from '../components/Menu';
+
 
 const Navlinks = ({ isComplete }) => {
   const [showNav, setShowNav] = useState(false);
