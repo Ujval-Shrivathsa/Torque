@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { MdShoppingCart, MdDelete } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
+import Cart from "../components/Cart"; // adjust the path as needed
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();

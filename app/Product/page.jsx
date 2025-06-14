@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
 import Footer from "../Components/Footer";
+import Cart from "../Components/Cart";
 
 const page = () => {
   const images = [
