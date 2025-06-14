@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import GlitchLogo from "../Components/GlitchLogo";
+import GlitchLogo from "../components/GlitchLogo";
 import Cart from "../components/Cart";
 import Menu from "../components/Menu";
 
