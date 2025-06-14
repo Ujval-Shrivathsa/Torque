@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../Components/Footer";
+import Navlinks from "../../Navlinks/Navlinks";
+import Footer from "../../Components/Footer";
 import Link from "next/link";
 
 const page = () => {
