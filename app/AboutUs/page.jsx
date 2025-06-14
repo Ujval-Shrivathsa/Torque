@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Navlinks from "../Navlinks/Navlinks";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer";
 
 const Page = () => {
   const images = [

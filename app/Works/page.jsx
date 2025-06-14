@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 

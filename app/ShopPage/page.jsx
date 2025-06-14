@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { MdShoppingCart } from "react-icons/md";
 import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer";
 
 // Global Cart Notification Component
 const CartNotification = ({ message, isVisible, onHide }) => {

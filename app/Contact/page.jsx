@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import emailjs from "@emailjs/browser";
 import Navlinks from "../Navlinks/Navlinks";
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer";
 
 const Contact = () => {
   const router = useRouter();

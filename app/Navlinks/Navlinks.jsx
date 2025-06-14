@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import GlitchLogo from '../components/GlitchLogo';
-import Footer from '../components/Footer';
-import Menu from '../components/Menu';
+import GlitchLogo from '../Components/GlitchLogo';
+import Footer from '../Components/Footer';
+import Menu from '../Components/Menu';
 
 
 const Navlinks = ({ isComplete }) => {
