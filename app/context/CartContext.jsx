@@ -1,19 +1,18 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storedCart = localStorage.getItem("cart");
+    if (typeof window !== 'undefined') {
+      const storedCart = localStorage.getItem('cart');
       return storedCart ? JSON.parse(storedCart) : [];
     }
     return [];
   });
 
-  // ✅ Add to cart
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingProductIndex = prevCart.findIndex(
@@ -41,15 +40,12 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // ✅ Remove from cart by index
   const removeFromCart = (index) => {
     setCart((prevCart) => {
-      const updatedCart = prevCart.filter((_, i) => i !== index);
-      return updatedCart;
+      return prevCart.filter((_, i) => i !== index);
     });
   };
 
-  // ✅ Update quantity by index (IMMUTABLE)
   const updateQuantity = (index, amount) => {
     setCart((prevCart) =>
       prevCart.map((item, i) => {
@@ -64,10 +60,9 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Persist to localStorage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("cart", JSON.stringify(cart));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
   }, [cart]);
 

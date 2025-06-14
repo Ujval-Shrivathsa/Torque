@@ -1,4 +1,3 @@
-// app/layout.js
 import './globals.css';
 import Script from 'next/script';
 import ChatBox from './Chat_Bot/ChatBox';
@@ -13,7 +12,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager Script */}
         <Script
           id="gtm-head"
           strategy="afterInteractive"
@@ -29,7 +27,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {/* Google Tag Manager noscript */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-K9VLQJBZ"
