@@ -9,7 +9,7 @@ const Footer = () => {
   const pathname = usePathname();
 
   const quickLinks = [
-    { name: "Services", link: "/services/home" },
+    { name: "Services", link: "/services" },
     { name: "Contact", link: "/contact" },
     { name: "About Us", link: "/aboutus" },
   ];

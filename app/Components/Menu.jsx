@@ -13,7 +13,7 @@ const Menu = ({ onClose }) => {
   const menuItems = [
     { name: "Home", link: "/" },
     { name: "Work", link: "/works" },
-    { name: "Service", link: "/services/home" },
+    { name: "Service", link: "/services" },
     { name: "Shop", link: "/shoppage" },
     { name: "About", link: "/aboutus" },
     { name: "Contact", link: "/contact" },
