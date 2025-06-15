@@ -9,15 +9,16 @@ const Menu = ({ onClose }) => {
     setAnimateIn(true);
     return () => setAnimateIn(false);
   }, []);
-  
-  const menuItems = [
-    { name: "Home", link: "/" },
-    { name: "Work", link: "/works" },
-    { name: "Service", link: "/services" },
-    { name: "Shop", link: "/shoppage" },
-    { name: "About", link: "/aboutus" },
-    { name: "Contact", link: "/contact" },
-  ];
+
+const menuItems = [
+  { name: "Home", link: "/" },
+  { name: "Work", link: "/works" },
+  { name: "Service", link: "/services" },
+  { name: "Shop", link: "/shoppage" },
+  { name: "About", link: "/aboutUs" },
+  { name: "Contact", link: "/contact" },
+];
+
 
   return (
     <div 
