@@ -81,7 +81,7 @@ const onSubmit = async (data) => {
     
     // Reset form and redirect to Thank You page
     reset();
-    router.push("/ThankYouPage");
+    router.push("/thankyoupage");
 
   } catch (error) {
     console.error("Appointment email send failed:", error);

@@ -21,8 +21,7 @@ const Menu = ({ onClose }) => {
 
   return (
     <div 
-      className={`fixed top-0 right-0 h-full z-99999999 bg-[#1d1d1d] text-white flex flex-col overflow-y-auto ${animateIn ? 'opacity-100' : 'opacity-0'} 
-                 w-full sm:w-2/3 md:w-1/2 lg:w-1/3`} 
+      className={`fixed top-0 right-0 h-full z-99999999 bg-[#1d1d1d] text-white flex flex-col overflow-y-auto ${animateIn ? 'opacity-100' : 'opacity-0'} w-full sm:w-2/3 md:w-1/2 lg:w-1/3`} 
       style={{ transition: "opacity 0.4s ease" }}
     >
       {/* Header */}

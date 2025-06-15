@@ -87,7 +87,7 @@ const Contact = () => {
       console.log("Email sent successfully:", result);
       
       // Redirect to Thank You page instead of showing alert
-      router.push("/ThankYouPage");
+      router.push("/thankyoupage");
 
     } catch (error) {
       console.error("Email send failed:", error);
