@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
 import Footer from "../Components/Footer";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const Page = () => {
