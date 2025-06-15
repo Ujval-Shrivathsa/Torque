@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import emailjs from "@emailjs/browser";
 
-const AboutUs = () => {
+const Page = () => {
   const images = [
     "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896503/unnamed_tqnwac.jpg",
     "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ2_bunhsw.jpg",
@@ -116,4 +116,4 @@ Torque Detailing Studio, located in Koramangala, Bengaluru, is a premium vehicle
   );
 };
 
-export default AboutUs;
+export default Page;
