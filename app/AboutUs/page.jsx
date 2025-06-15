@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Footer from "../Components/Footer";
 
 const Page = () => {
