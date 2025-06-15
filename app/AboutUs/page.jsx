@@ -4,10 +4,6 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
 import Footer from "../Components/Footer";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import emailjs from "@emailjs/browser";
 
 const Page = () => {
   const images = [
