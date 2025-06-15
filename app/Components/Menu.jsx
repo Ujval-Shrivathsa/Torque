@@ -15,7 +15,7 @@ const menuItems = [
   { name: "Work", link: "/works" },
   { name: "Service", link: "/services" },
   { name: "Shop", link: "/shoppage" },
-  { name: "About", link: "/aboutUs" },
+  { name: "About", link: "/aboutus" },
   { name: "Contact", link: "/contact" },
 ];
 
