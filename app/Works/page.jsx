@@ -1,156 +1,173 @@
 "use client";
 
 import React from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Navlinks from "../Navlinks/Navlinks";
 import Footer from "../Components/Footer";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const WorkItem = ({ title, description, image, serviceUrl, delay = 0 }) => {
-  const router = useRouter();
-
-  const handleViewDetails = () => {
-    router.push(serviceUrl);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      className="bg-gray-900 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 cursor-pointer"
-      onClick={handleViewDetails}
-    >
-      <div className="h-64 bg-gray-800 bg-cover bg-center"
-           style={{backgroundImage: `url('${image}')`}}>
-      </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-400 text-sm mb-4">
-          {description}
-        </p>
-        <span className="text-cyan-600 text-sm font-medium">View Details →</span>
-      </div>
-    </motion.div>
-  );
-};
-
 const Page = () => {
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [mainCar, setMainCar] = useState({
+    id: "main",
+    title: "Porsche 911",
+    url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg",
+  });
 
-  const handleServiceNavigation = () => {
-    router.push("/services");
-  };
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const dotRef = useRef(null);
+  const cursorTarget = useRef({ x: 0, y: 0 });
+  const clickableElements = useRef([]);
 
-  const handleContactNavigation = () => {
-    router.push("/contact");
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 3000); // Loading animation for 3 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
-  const workItems = [
-    {
-      title: "Paint Protection Film",
-      description: "Premium PPF installation on luxury vehicle providing ultimate protection.",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg",
-      serviceUrl: "/services/ppf"
-    },
-    {
-      title: "Ceramic Coating",
-      description: "9H ceramic coating application for long-lasting protection and shine.",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg",
-      serviceUrl: "/services/cc"
-    },
-    {
-      title: "Vinyl Wrap",
-      description: "Complete vehicle transformation with premium vinyl wrap installation.",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823939/V_W_u9lzhn.jpg",
-      serviceUrl: "/services/vx"
-    },
-    {
-      title: "Interior Detailing",
-      description: "Complete interior restoration bringing back that new car feel.",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/IN_D_dlrscu.jpg",
-      serviceUrl: "/services/id"
-    },
-    {
-      title: "Exterior Detailing",
-      description: "Show-quality exterior detailing with paint correction and protection.",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823070/EDD_ufzxn4.jpg",
-      serviceUrl: "/services/ed"
-    },
-    {
-      title: "Window Tinting",
-      description: "Professional window tinting for privacy, comfort, and style.",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/WT_hj84sr.jpg",
-      serviceUrl: "/services/wt"
-    }
+  const carouselImages = [
+    mainCar.url,
+    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894424/TQ1_kgbzwa.jpg",
+    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ2_bunhsw.jpg",
+    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ3_l4jnla.jpg",
+    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg",
   ];
+
+  const [otherCars, setOtherCars] = useState([
+    {
+      id: "1",
+      title: "BMW X5",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ2_bunhsw.jpg",
+    },
+    {
+      id: "2",
+      title: "Mini Cooper",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ3_l4jnla.jpg",
+    },
+    {
+      id: "3",
+      title: "MG Hector",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896651/u_bnybbp.jpg",
+    },
+    {
+      id: "4",
+      title: "Royal Enfield",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894424/TQ1_kgbzwa.jpg",
+    },
+    {
+      id: "5",
+      title: "Mercedes Benz",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823189/Mercedez_Benz_n2hhz2.jpg",
+    },
+    {
+      id: "6",
+      title: "KTM Duke",
+      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896548/unname_gpl2g2.jpg",
+    },
+  ]);
+
+  const swapCar = (clickedCar) => {
+    setMainCar(clickedCar);
+    setCarouselIndex(0);
+    setOtherCars((prevCars) =>
+      prevCars.map((car) => (car.id === clickedCar.id ? mainCar : car))
+    );
+  };
 
   return (
     <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth relative">
-      <Navlinks isComplete={true} />
-      
-      <div className="w-full m-auto overflow-x-hidden h-full mt-32">
-        <div className="w-full min-h-fit py-8 bg-black">
-          
-          {/* Hero Section */}
-          <div className="relative w-full overflow-x-hidden px-6 md:px-16 lg:px-20 pt-8">
-            <div className="max-w-7xl mx-auto">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white anton tracking-wide mb-6">
-                Our Work
-              </h1>
-              <p className="text-gray-300 text-lg max-w-2xl mb-12">
-                Explore our portfolio of exceptional automotive detailing and protection services. 
-                Each project represents our commitment to excellence and attention to detail.
-              </p>
-            </div>
-          </div>
+        <>
+          <div className="w-full min-h-full bg-black overflow-hidden scroll-smooth relative ">
+            <Navlinks isComplete={true} />
+            <div className="w-full m-auto overflow-x-hidden h-full mt-32">
+              <div
+                className="w-full min-h-fit py-8 bg-black"
+                id="main-carousel-section"
+              >
+                {/* Top Section: Carousel + 4 Cars */}
+                <div className="w-full flex flex-col lg:flex-row h-auto lg:h-[50%] bg-gray-100">
+                  {/* Carousel Image */}
+                  <motion.div
+                    initial={{ opacity: 0.5 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative w-full lg:w-[45%] h-[300px] sm:h-[400px] lg:h-[400px] bg-black/0 bg-no-repeat bg-cover bg-center bg-blend-multiply transition-all duration-700 ease-in-out"
+                    style={{
+                      backgroundImage: `url(${carouselImages[carouselIndex]})`,
+                    }}
+                  >
 
-          {/* Portfolio Grid */}
-          <div className="px-6 md:px-16 lg:px-20 py-12">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {workItems.map((item, index) => (
-                <WorkItem
-                  key={index}
-                  title={item.title}
-                  description={item.description}
-                  image={item.image}
-                  serviceUrl={item.serviceUrl}
-                  delay={index * 0.1}
-                />
-              ))}
-            </div>
-          </div>
 
-          {/* Call to Action */}
-          <div className="px-6 md:px-16 lg:px-20 py-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Transform Your Vehicle?
-              </h2>
-              <p className="text-gray-300 text-lg mb-8">
-                Contact us today to discuss your automotive detailing needs and get a custom quote.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button 
-                  onClick={handleServiceNavigation}
-                  className="bg-cyan-600 text-white px-8 py-3 rounded-full hover:bg-cyan-700 transition-colors"
-                >
-                  View All Services
-                </button>
-                <button 
-                  onClick={handleContactNavigation}
-                  className="border-2 border-cyan-600 text-cyan-600 px-8 py-3 rounded-full hover:bg-cyan-600 hover:text-white transition-all"
-                >
-                  Get Quote
-                </button>
+                    {/* </motion.div> */}
+
+                  </motion.div>
+
+                  {/* Top 4 Cars */}
+                  <div className="w-full lg:w-[55%] flex flex-wrap">
+                    {[0, 1, 2, 3].map((i) => (
+                      <motion.div
+                        key={otherCars[i].id}
+                        ref={(el) => clickableElements.current.push(el)}
+                        onClick={() => swapCar(otherCars[i])}
+                        className="hover-target w-1/2 h-[150px] sm:h-[200px] bg-black/60 bg-cover bg-center bg-blend-multiply bg-no-repeat transition-all duration-300"
+                        style={{ backgroundImage: `url(${otherCars[i].url})` }}
+                      >
+                        <h1 className="text-white text-base sm:text-lg lg:text-2xl ml-4 pt-4 font-medium">
+                          {otherCars[i].title}
+                        </h1>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom Section: 2 Cars + Text Block */}
+                <div className="w-full flex flex-col lg:flex-row h-auto lg:h-[40%] bg-gray-800">
+                  {/* Bottom 2 Cars */}
+                  <div className="w-full lg:w-[45%] flex flex-wrap">
+                    {otherCars.slice(4).map((car) => (
+                      <motion.div
+                        key={car.id}
+                        ref={(el) => clickableElements.current.push(el)}
+                        onClick={() => swapCar(car)}
+                        className="hover-target w-1/2 h-[150px] sm:h-[200px] bg-black/60 bg-cover bg-center bg-blend-multiply bg-no-repeat"
+                        style={{ backgroundImage: `url(${car.url})` }}
+                      >
+                        <h1 className="text-white text-base sm:text-lg lg:text-2xl ml-4 pt-4 font-medium">
+                          {car.title}
+                        </h1>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Text Block */}
+                  <motion.div
+                    initial={{ opacity: 0.5, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full lg:w-[55%] h-auto lg:h-full pb-7 bg-black p-6"
+                  >
+                    <h1 className="text-white text-xl sm:text-2xl lg:text-3xl font-medium uppercase">
+                      Welcome!
+                    </h1>
+                    <p className="text-white text-sm sm:text-base mt-2 max-w-2xl">
+                      For more than 35 years, we have been bringing ambitious
+                      projects to life. The pride of our work, the rigor in the
+                      execution, the spirit of team, and integrity are the
+                      values that animate us on a daily basis.
+                    </p>
+                      <button className="hover-target cursor-pointer bg-cyan-600 mt-4 px-6 py-2 border border-cyan-600 text-white rounded-full uppercase">
+                        <Link href="/aboutus">Read More</Link>
+                      </button>
+                  </motion.div>
+                </div>
               </div>
             </div>
+            <Footer />
           </div>
-        </div>
-      </div>
-      
-      <Footer />
+        </>
     </div>
   );
 };
