@@ -24,6 +24,8 @@ const Hero = () => {
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [formError, setFormError] = useState("");
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   
   // Video ref for manual control
   const videoRef = useRef(null);
@@ -48,47 +50,174 @@ const Hero = () => {
     }
   };
 
-  // Force video play on iOS
-  useEffect(() => {
-    const playVideo = async () => {
-      if (videoRef.current) {
-        try {
-          // Set video properties for iOS compatibility
-          videoRef.current.defaultMuted = true;
-          videoRef.current.muted = true;
-          videoRef.current.setAttribute('webkit-playsinline', 'true');
-          videoRef.current.setAttribute('playsinline', 'true');
-          
-          // Force play
-          await videoRef.current.play();
-        } catch (error) {
-          console.log('Video autoplay failed:', error);
-          
-          // Fallback: try to play on first user interaction
-          const handleFirstInteraction = async () => {
-            try {
-              if (videoRef.current) {
-                await videoRef.current.play();
-              }
-            } catch (err) {
-              console.log('Manual video play failed:', err);
-            }
-            // Remove listeners after first attempt
-            document.removeEventListener('touchstart', handleFirstInteraction);
-            document.removeEventListener('click', handleFirstInteraction);
-          };
-          
-          document.addEventListener('touchstart', handleFirstInteraction);
-          document.addEventListener('click', handleFirstInteraction);
+  // Enhanced video play function for iOS
+  const playVideo = async () => {
+    if (videoRef.current && videoLoaded) {
+      try {
+        // Ensure video is properly configured
+        const video = videoRef.current;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        
+        // Wait a moment for the video to be ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log('Video playing successfully');
         }
+      } catch (error) {
+        console.log('Video autoplay failed:', error);
+        
+        // If autoplay fails, set up interaction listeners
+        if (!hasInteracted) {
+          setupInteractionListeners();
+        }
+      }
+    }
+  };
+
+  // Setup interaction listeners for iOS
+  const setupInteractionListeners = () => {
+    const handleFirstInteraction = async (event) => {
+      if (!hasInteracted) {
+        setHasInteracted(true);
+        console.log('First interaction detected:', event.type);
+        
+        try {
+          if (videoRef.current) {
+            const video = videoRef.current;
+            video.muted = true;
+            video.volume = 0;
+            await video.play();
+            console.log('Video started playing after interaction');
+          }
+        } catch (err) {
+          console.log('Manual video play failed:', err);
+        }
+        
+        // Remove listeners after successful play
+        removeInteractionListeners();
       }
     };
 
-    // Small delay to ensure video element is ready
-    const timer = setTimeout(playVideo, 100);
+    const events = ['touchstart', 'touchend', 'click', 'scroll', 'mousemove', 'keydown'];
+    events.forEach(event => {
+      document.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    });
+
+    // Store the cleanup function
+    window.removeVideoInteractionListeners = () => {
+      events.forEach(event => {
+        document.removeEventListener(event, handleFirstInteraction);
+      });
+    };
+  };
+
+  const removeInteractionListeners = () => {
+    if (window.removeVideoInteractionListeners) {
+      window.removeVideoInteractionListeners();
+    }
+  };
+
+  // Enhanced video setup effect
+  useEffect(() => {
+    const setupVideo = async () => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      console.log('Setting up video...');
+
+      // Configure video properties for maximum iOS compatibility
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.autoplay = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.controls = false;
+      video.disablePictureInPicture = true;
+      video.preload = 'auto';
+      
+      // Set attributes for iOS
+      video.setAttribute('webkit-playsinline', 'true');
+      video.setAttribute('playsinline', 'true');
+      video.setAttribute('muted', 'true');
+      video.setAttribute('autoplay', 'true');
+
+      // Add load event listener
+      const handleVideoLoad = () => {
+        console.log('Video loaded and ready');
+        setVideoLoaded(true);
+      };
+
+      const handleCanPlay = () => {
+        console.log('Video can play');
+        setVideoLoaded(true);
+        // Try to play immediately when video is ready
+        playVideo();
+      };
+
+      const handleError = (e) => {
+        console.error('Video error:', e);
+        console.error('Video error details:', video.error);
+      };
+
+      video.addEventListener('loadeddata', handleVideoLoad);
+      video.addEventListener('canplay', handleCanPlay);
+      video.addEventListener('canplaythrough', handleCanPlay);
+      video.addEventListener('error', handleError);
+
+      // Force load the video
+      video.load();
+
+      // Cleanup function
+      return () => {
+        video.removeEventListener('loadeddata', handleVideoLoad);
+        video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('canplaythrough', handleCanPlay);
+        video.removeEventListener('error', handleError);
+        removeInteractionListeners();
+      };
+    };
+
+    const timer = setTimeout(setupVideo, 100);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      removeInteractionListeners();
+    };
   }, []);
+
+  // Play video when loaded
+  useEffect(() => {
+    if (videoLoaded) {
+      playVideo();
+    }
+  }, [videoLoaded]);
+
+  // Visibility change handler to restart video on iOS
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && videoRef.current && videoLoaded) {
+        // Small delay to ensure page is fully visible
+        setTimeout(() => {
+          playVideo();
+        }, 200);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleVisibilityChange);
+    };
+  }, [videoLoaded]);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -245,7 +374,7 @@ const Hero = () => {
         <Navlinks isComplete={isComplete} />
       </motion.div>
 
-      {/* Enhanced video element with iOS-specific attributes */}
+      {/* Enhanced video element with maximum iOS compatibility */}
       <video
         ref={videoRef}
         loop
@@ -254,34 +383,81 @@ const Hero = () => {
         playsInline
         webkit-playsinline="true"
         preload="auto"
-        poster="" // Remove poster to avoid showing static image
+        poster=""
         controls={false}
         disablePictureInPicture
+        crossOrigin="anonymous"
         src="https://res.cloudinary.com/dycm7vkuq/video/upload/v1744367852/100_MB_skq4tw.mp4"
         className="absolute inset-0 w-full h-full object-cover"
         style={{
           // Force hardware acceleration
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
-          perspective: '1000px'
+          perspective: '1000px',
         }}
         onLoadStart={() => {
           console.log('Video load started');
         }}
+        onLoadedData={() => {
+          console.log('Video data loaded');
+          setVideoLoaded(true);
+        }}
         onCanPlay={() => {
           console.log('Video can play');
-          // Try to play again when video is ready
-          if (videoRef.current) {
-            videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+          setVideoLoaded(true);
+        }}
+        onCanPlayThrough={() => {
+          console.log('Video can play through');
+          setVideoLoaded(true);
+        }}
+        onPlay={() => {
+          console.log('Video started playing');
+        }}
+        onPause={() => {
+          console.log('Video paused');
+          // Auto-restart if paused unexpectedly
+          if (videoRef.current && videoLoaded) {
+            setTimeout(() => {
+              playVideo();
+            }, 100);
           }
         }}
         onError={(e) => {
           console.error('Video error:', e);
+          console.error('Video error details:', e.target.error);
+        }}
+        onStalled={() => {
+          console.log('Video stalled, attempting to restart');
+          if (videoRef.current) {
+            videoRef.current.load();
+          }
+        }}
+        onWaiting={() => {
+          console.log('Video waiting for data');
         }}
       >
         {/* Fallback for browsers that don't support the video format */}
         Your browser does not support the video tag.
       </video>
+
+      {/* Interaction overlay for iOS - invisible but helps trigger video play */}
+      {!hasInteracted && (
+        <div 
+          className="absolute inset-0 z-10 bg-transparent cursor-pointer"
+          onClick={() => {
+            if (!hasInteracted) {
+              setHasInteracted(true);
+              playVideo();
+            }
+          }}
+          onTouchStart={() => {
+            if (!hasInteracted) {
+              setHasInteracted(true);
+              playVideo();
+            }
+          }}
+        />
+      )}
 
       {/* Heading & Subtitle */}
       <motion.div
