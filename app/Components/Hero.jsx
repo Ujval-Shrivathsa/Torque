@@ -26,33 +26,15 @@ const Hero = () => {
   const [formError, setFormError] = useState("");
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
   
   // Video ref for manual control
   const videoRef = useRef(null);
-  const playAttemptRef = useRef(0);
-  const maxPlayAttempts = 5;
   
   // Characters for the hacking effect
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
   const finalCodeLength = 8;
   const hackingInterval = useRef(null);
   const hackingDuration = 1500;
-
-  // Detect iOS device
-  useEffect(() => {
-    const detectIOS = () => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isIOSDevice = /iphone|ipad|ipod/.test(userAgent) || 
-                         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      setIsIOS(isIOSDevice);
-      console.log('iOS detected:', isIOSDevice);
-      return isIOSDevice;
-    };
-    
-    detectIOS();
-  }, []);
 
   // Fixed popup tracking with proper sessionStorage usage
   const hasPopupBeenShown = () => {
@@ -68,134 +50,88 @@ const Hero = () => {
     }
   };
 
-  // Enhanced video play function with multiple strategies
+  // Enhanced video play function for iOS
   const playVideo = async () => {
-    const video = videoRef.current;
-    if (!video || !videoLoaded) {
-      console.log('Video not ready for playback');
-      return false;
-    }
-
-    try {
-      playAttemptRef.current += 1;
-      console.log(`Play attempt ${playAttemptRef.current}/${maxPlayAttempts}`);
-
-      // Reset video to beginning
-      video.currentTime = 0;
-      
-      // Ensure all properties are set correctly
-      video.muted = true;
-      video.defaultMuted = true;
-      video.volume = 0;
-      video.loop = true;
-      video.playsInline = true;
-      
-      // For iOS, sometimes we need to load again
-      if (isIOS && video.readyState < 2) {
-        console.log('iOS: Reloading video...');
-        video.load();
-        await new Promise(resolve => setTimeout(resolve, 500));
+    if (videoRef.current && videoLoaded) {
+      try {
+        // Ensure video is properly configured
+        const video = videoRef.current;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        
+        // Wait a moment for the video to be ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log('Video playing successfully');
+        }
+      } catch (error) {
+        console.log('Video autoplay failed:', error);
+        
+        // If autoplay fails, set up interaction listeners
+        if (!hasInteracted) {
+          setupInteractionListeners();
+        }
       }
-
-      const playPromise = video.play();
-      
-      if (playPromise !== undefined) {
-        await playPromise;
-        console.log('✅ Video playing successfully');
-        setVideoPlaying(true);
-        playAttemptRef.current = 0; // Reset counter on success
-        return true;
-      }
-    } catch (error) {
-      console.log(`❌ Play attempt ${playAttemptRef.current} failed:`, error);
-      
-      // If we haven't exceeded max attempts, try again with delay
-      if (playAttemptRef.current < maxPlayAttempts) {
-        setTimeout(() => {
-          playVideo();
-        }, 1000 * playAttemptRef.current); // Increasing delay
-      } else {
-        console.log('Max play attempts reached, setting up interaction listeners');
-        setupInteractionListeners();
-      }
-      
-      return false;
     }
   };
 
-  // Setup interaction listeners for iOS with multiple event types
+  // Setup interaction listeners for iOS
   const setupInteractionListeners = () => {
-    if (hasInteracted) return;
-
-    console.log('Setting up interaction listeners for video play...');
-    
     const handleFirstInteraction = async (event) => {
-      if (hasInteracted) return;
-      
-      console.log('🎯 First interaction detected:', event.type);
-      setHasInteracted(true);
-      
-      // Remove all listeners immediately
-      removeInteractionListeners();
-      
-      // Wait a moment then try to play
-      setTimeout(async () => {
-        const success = await playVideo();
-        if (!success) {
-          console.log('Play failed after interaction, will retry on next interaction');
-          setHasInteracted(false); // Allow another attempt
-          setTimeout(setupInteractionListeners, 1000);
+      if (!hasInteracted) {
+        setHasInteracted(true);
+        console.log('First interaction detected:', event.type);
+        
+        try {
+          if (videoRef.current) {
+            const video = videoRef.current;
+            video.muted = true;
+            video.volume = 0;
+            await video.play();
+            console.log('Video started playing after interaction');
+          }
+        } catch (err) {
+          console.log('Manual video play failed:', err);
         }
-      }, 100);
+        
+        // Remove listeners after successful play
+        removeInteractionListeners();
+      }
     };
 
-    // More comprehensive event list for iOS
-    const events = [
-      'touchstart', 'touchend', 'touchmove',
-      'click', 'mousedown', 'mouseup',
-      'scroll', 'wheel',
-      'keydown', 'keyup',
-      'focus', 'blur'
-    ];
-
+    const events = ['touchstart', 'touchend', 'click', 'scroll', 'mousemove', 'keydown'];
     events.forEach(event => {
-      document.addEventListener(event, handleFirstInteraction, { 
-        once: true, 
-        passive: event.includes('touch') || event === 'scroll' || event === 'wheel'
-      });
+      document.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
     });
 
-    // Store cleanup function
+    // Store the cleanup function
     window.removeVideoInteractionListeners = () => {
       events.forEach(event => {
         document.removeEventListener(event, handleFirstInteraction);
       });
     };
-
-    // Auto-cleanup after 30 seconds to prevent memory leaks
-    setTimeout(() => {
-      if (!hasInteracted) {
-        removeInteractionListeners();
-      }
-    }, 30000);
   };
 
   const removeInteractionListeners = () => {
     if (window.removeVideoInteractionListeners) {
       window.removeVideoInteractionListeners();
-      delete window.removeVideoInteractionListeners;
     }
   };
 
   // Enhanced video setup effect
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const setupVideo = async () => {
+      const video = videoRef.current;
+      if (!video) return;
 
-    console.log('🎬 Initializing video setup...');
+      console.log('Setting up video...');
 
-    // Set all video properties immediately
-    const configureVideo = () => {
+      // Configure video properties for maximum iOS compatibility
       video.muted = true;
       video.defaultMuted = true;
       video.volume = 0;
@@ -204,139 +140,70 @@ const Hero = () => {
       video.playsInline = true;
       video.controls = false;
       video.disablePictureInPicture = true;
-      video.preload = 'metadata'; // Changed from 'auto' for better iOS compatibility
+      video.preload = 'auto';
       
-      // Set multiple attributes for maximum iOS compatibility
+      // Set attributes for iOS
       video.setAttribute('webkit-playsinline', 'true');
       video.setAttribute('playsinline', 'true');
       video.setAttribute('muted', 'true');
       video.setAttribute('autoplay', 'true');
-      video.setAttribute('loop', 'true');
-      
-      // iOS specific attributes
-      video.setAttribute('x-webkit-airplay', 'allow');
-      video.setAttribute('webkit-playsinline', '');
-      video.setAttribute('playsinline', '');
+
+      // Add load event listener
+      const handleVideoLoad = () => {
+        console.log('Video loaded and ready');
+        setVideoLoaded(true);
+      };
+
+      const handleCanPlay = () => {
+        console.log('Video can play');
+        setVideoLoaded(true);
+        // Try to play immediately when video is ready
+        playVideo();
+      };
+
+      const handleError = (e) => {
+        console.error('Video error:', e);
+        console.error('Video error details:', video.error);
+      };
+
+      video.addEventListener('loadeddata', handleVideoLoad);
+      video.addEventListener('canplay', handleCanPlay);
+      video.addEventListener('canplaythrough', handleCanPlay);
+      video.addEventListener('error', handleError);
+
+      // Force load the video
+      video.load();
+
+      // Cleanup function
+      return () => {
+        video.removeEventListener('loadeddata', handleVideoLoad);
+        video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('canplaythrough', handleCanPlay);
+        video.removeEventListener('error', handleError);
+        removeInteractionListeners();
+      };
     };
 
-    configureVideo();
-
-    let loadAttempts = 0;
-    const maxLoadAttempts = 3;
-
-    const handleVideoLoad = () => {
-      console.log('📹 Video loaded and ready');
-      setVideoLoaded(true);
-    };
-
-    const handleCanPlay = async () => {
-      console.log('▶️ Video can play');
-      setVideoLoaded(true);
-      
-      // Small delay for iOS stability
-      await new Promise(resolve => setTimeout(resolve, 200));
-      
-      const success = await playVideo();
-      if (!success && !hasInteracted) {
-        setupInteractionListeners();
-      }
-    };
-
-    const handlePlay = () => {
-      console.log('🎵 Video started playing');
-      setVideoPlaying(true);
-    };
-
-    const handlePause = () => {
-      console.log('⏸️ Video paused');
-      setVideoPlaying(false);
-      
-      // Auto-restart if paused unexpectedly (not by user)
-      if (videoLoaded && !document.hidden) {
-        setTimeout(() => {
-          if (!videoPlaying) {
-            playVideo();
-          }
-        }, 500);
-      }
-    };
-
-    const handleError = (e) => {
-      console.error('❌ Video error:', e);
-      console.error('Video error details:', video.error);
-      
-      // Try to reload the video
-      if (loadAttempts < maxLoadAttempts) {
-        loadAttempts++;
-        console.log(`Attempting to reload video (attempt ${loadAttempts}/${maxLoadAttempts})`);
-        setTimeout(() => {
-          video.load();
-        }, 1000 * loadAttempts);
-      }
-    };
-
-    const handleStalled = () => {
-      console.log('📶 Video stalled, attempting restart...');
-      setTimeout(() => {
-        if (video.readyState < 2) {
-          video.load();
-        }
-      }, 1000);
-    };
-
-    const handleWaiting = () => {
-      console.log('⏳ Video waiting for data...');
-    };
-
-    const handleLoadStart = () => {
-      console.log('🔄 Video load started');
-    };
-
-    // Add all event listeners
-    video.addEventListener('loadstart', handleLoadStart);
-    video.addEventListener('loadeddata', handleVideoLoad);
-    video.addEventListener('loadedmetadata', handleVideoLoad);
-    video.addEventListener('canplay', handleCanPlay);
-    video.addEventListener('canplaythrough', handleCanPlay);
-    video.addEventListener('play', handlePlay);
-    video.addEventListener('pause', handlePause);
-    video.addEventListener('error', handleError);
-    video.addEventListener('stalled', handleStalled);
-    video.addEventListener('waiting', handleWaiting);
-
-    // Force load the video
-    video.load();
-
-    // Cleanup function
+    const timer = setTimeout(setupVideo, 100);
+    
     return () => {
-      video.removeEventListener('loadstart', handleLoadStart);
-      video.removeEventListener('loadeddata', handleVideoLoad);
-      video.removeEventListener('loadedmetadata', handleVideoLoad);
-      video.removeEventListener('canplay', handleCanPlay);
-      video.removeEventListener('canplaythrough', handleCanPlay);
-      video.removeEventListener('play', handlePlay);
-      video.removeEventListener('pause', handlePause);
-      video.removeEventListener('error', handleError);
-      video.removeEventListener('stalled', handleStalled);
-      video.removeEventListener('waiting', handleWaiting);
+      clearTimeout(timer);
       removeInteractionListeners();
     };
-  }, [isIOS]);
+  }, []);
 
-  // Visibility change handler to restart video
+  // Play video when loaded
+  useEffect(() => {
+    if (videoLoaded) {
+      playVideo();
+    }
+  }, [videoLoaded]);
+
+  // Visibility change handler to restart video on iOS
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && videoRef.current && videoLoaded) {
-        console.log('👁️ Page became visible, restarting video...');
-        setTimeout(() => {
-          playVideo();
-        }, 300);
-      }
-    };
-
-    const handleFocus = () => {
-      if (videoRef.current && videoLoaded && !videoPlaying) {
-        console.log('🎯 Window focused, restarting video...');
+        // Small delay to ensure page is fully visible
         setTimeout(() => {
           playVideo();
         }, 200);
@@ -344,17 +211,14 @@ const Hero = () => {
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('pageshow', handleFocus);
+    window.addEventListener('focus', handleVisibilityChange);
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('pageshow', handleFocus);
+      window.removeEventListener('focus', handleVisibilityChange);
     };
-  }, [videoLoaded, videoPlaying]);
+  }, [videoLoaded]);
 
-  // Progress bar effect
   useEffect(() => {
     let interval = setInterval(() => {
       setProgress((prev) => {
@@ -518,7 +382,7 @@ const Hero = () => {
         muted
         playsInline
         webkit-playsinline="true"
-        preload="metadata"
+        preload="auto"
         poster=""
         controls={false}
         disablePictureInPicture
@@ -530,58 +394,69 @@ const Hero = () => {
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
           perspective: '1000px',
-          // Additional iOS-specific styles
-          WebkitTransform: 'translateZ(0)',
-          WebkitBackfaceVisibility: 'hidden',
+        }}
+        onLoadStart={() => {
+          console.log('Video load started');
+        }}
+        onLoadedData={() => {
+          console.log('Video data loaded');
+          setVideoLoaded(true);
+        }}
+        onCanPlay={() => {
+          console.log('Video can play');
+          setVideoLoaded(true);
+        }}
+        onCanPlayThrough={() => {
+          console.log('Video can play through');
+          setVideoLoaded(true);
+        }}
+        onPlay={() => {
+          console.log('Video started playing');
+        }}
+        onPause={() => {
+          console.log('Video paused');
+          // Auto-restart if paused unexpectedly
+          if (videoRef.current && videoLoaded) {
+            setTimeout(() => {
+              playVideo();
+            }, 100);
+          }
+        }}
+        onError={(e) => {
+          console.error('Video error:', e);
+          console.error('Video error details:', e.target.error);
+        }}
+        onStalled={() => {
+          console.log('Video stalled, attempting to restart');
+          if (videoRef.current) {
+            videoRef.current.load();
+          }
+        }}
+        onWaiting={() => {
+          console.log('Video waiting for data');
         }}
       >
-        {/* Multiple source formats for better compatibility */}
-        <source 
-          src="https://res.cloudinary.com/dycm7vkuq/video/upload/v1744367852/100_MB_skq4tw.mp4" 
-          type="video/mp4" 
-        />
+        {/* Fallback for browsers that don't support the video format */}
         Your browser does not support the video tag.
       </video>
 
-      {/* Interaction overlay for iOS - more prominent for debugging */}
-      {!hasInteracted && isIOS && (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          className="absolute inset-0 z-20 bg-black cursor-pointer flex items-center justify-center"
+      {/* Interaction overlay for iOS - invisible but helps trigger video play */}
+      {!hasInteracted && (
+        <div 
+          className="absolute inset-0 z-10 bg-transparent cursor-pointer"
           onClick={() => {
-            console.log('🎯 Overlay clicked');
             if (!hasInteracted) {
               setHasInteracted(true);
               playVideo();
             }
           }}
-          onTouchStart={(e) => {
-            console.log('👆 Overlay touched');
-            e.preventDefault();
+          onTouchStart={() => {
             if (!hasInteracted) {
               setHasInteracted(true);
               playVideo();
             }
           }}
-        >
-          {/* Optional: Add a subtle play button for iOS users */}
-          <div className="text-white text-center opacity-50">
-            <div className="text-4xl mb-2">▶️</div>
-            <div className="text-sm">Tap to play video</div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Video status indicator (for debugging - remove in production) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-20 left-4 z-50 bg-black bg-opacity-50 text-white p-2 rounded text-xs">
-          <div>iOS: {isIOS ? '✅' : '❌'}</div>
-          <div>Loaded: {videoLoaded ? '✅' : '❌'}</div>
-          <div>Playing: {videoPlaying ? '✅' : '❌'}</div>
-          <div>Interacted: {hasInteracted ? '✅' : '❌'}</div>
-          <div>Attempts: {playAttemptRef.current}</div>
-        </div>
+        />
       )}
 
       {/* Heading & Subtitle */}

@@ -6,7 +6,7 @@ export async function GET() {
 
   try {
     const response = await fetch(
-      `https://graph.facebook.com/v18.0/17841470271684652/media?fields=id,caption,media_type,media_url,permalink,timestamp,like_count,comments_count&access_token=EAAPHZBijhj30BO2GZCeNmwHLnmOw3d70WXZBlNVCb5HqksjyeZAAmJ0mJPqR2rjS46CSwNZCh38YlZB02ADtZBqBEv7ZBzV7OQ9uSOHfU0XHf2JdBbWNnULsXzwF0ntjTIq8jMl1KUqqookGRc7aZC7xTIWBY79U97m3Q1WGWTTK9chDxx5lAxdWHIZBrefsS1lQjve0YtECdWlZA2RUPM2`
+      `https://graph.facebook.com/v18.0/17841470271684652/media?fields=id,caption,media_type,media_url,permalink,timestamp,like_count,comments_count&access_token=EAAPHZBijhj30BO9eh808vQYzFpdyZBUXzbGviQ9RZBnXgrhkXi6B47KZBEzBMdLwUUc5WysXyERltDQZARRGGZB4XGkXVN7ZBa0Gohe2MsrsovwREwXCeLuklP67uS8K4oCkYkDyZCaPAWVIQH3bVgdd48dSzbrMABZBaG2oM27neijFtHh5R5Gg2j7nxBrLeLnMOVeZCVpBdmuCgxuBtK`
     );
 
     if (!response.ok) {

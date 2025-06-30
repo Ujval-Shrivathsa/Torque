@@ -1,546 +1,516 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { Check, ChevronDown, Send, X, RotateCcw } from "lucide-react";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaArrowDown, FaTimes, FaCopy } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import Navlinks from "../Navlinks/Navlinks";
+import { useRouter } from "next/navigation";
 
-const OptionCard = ({ option, selected, onClick }) => (
-  <label className="cursor-pointer">
-    <motion.div
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2, delay: 0.3 }}
-      onClick={onClick}
-      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full tracking-[0.3px] text-[11px] sm:text-[13px] font-medium transition-all border flex items-center gap-1.5 sm:gap-2 mt-0 ${
-        selected
-          ? "border-transparent bg-[black] text-white"
-          : "bg-[black] text-white border-transparent"
-      }`}
-    >
-      <div
-        className={`w-3 h-3 rounded-sm transition-all ${
-          selected
-            ? "border-transparent text-white bg-[black] flex justify-center items-center"
-            : "bg-[white]"
-        }`}
-      >
-        {selected && (
-          <Check className="text-white w-3 h-3" />
-        )}
-      </div>
-      {option}
-    </motion.div>
-  </label>
-);
-
-const TypingDots = () => (
-  <div className="flex space-x-1 pl-1 items-center h-4">
-    {[0, 1, 2].map((i) => (
-      <motion.span
-        key={i}
-        className="w-1.5 h-1.5 bg-black rounded-full"
-        animate={{
-          opacity: [0.3, 1, 0.3],
-          y: [0, -2, 0],
-        }}
-        transition={{
-          duration: 0.6,
-          repeat: Infinity,
-          repeatType: "loop",
-          delay: i * 0.2,
-        }}
-      />
-    ))}
-  </div>
-);
-
-const ChatBox = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [hasBeenClicked, setHasBeenClicked] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [userInput, setUserInput] = useState("");
-  const [step, setStep] = useState(-1);
-  const [chatData, setChatData] = useState({
-    name: "",
-    service: [],
-    vehicleType: [],
-    model: "",
-    mobile: "",
-  });
+const Hero = () => {
+  const [progress, setProgress] = useState(1);
+  const [isComplete, setIsComplete] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupClosed, setPopupClosed] = useState(false);
+  const [discountCode, setDiscountCode] = useState("");
+  const [showCode, setShowCode] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [hackText, setHackText] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [isMobileNumberValid, setIsMobileNumberValid] = useState(true);
-  const [isChatEnded, setIsChatEnded] = useState(false);
-  const messagesEndRef = useRef(null);
+  const [userName, setUserName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [formError, setFormError] = useState("");
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  
+  // Video ref for manual control
+  const videoRef = useRef(null);
+  
+  // Characters for the hacking effect
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
+  const finalCodeLength = 8;
+  const hackingInterval = useRef(null);
+  const hackingDuration = 1500;
 
-  const controls = useAnimation();
-
+  // Force autoplay video setup
   useEffect(() => {
-    const sequence = async () => {
-      await controls.start({ opacity: 1, transition: { duration: 3 } });
-      await new Promise((res) => setTimeout(res, 3000));
-      await controls.start({ opacity: 0, transition: { duration: 1 } });
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Force all autoplay properties
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.controls = false;
+    video.preload = "auto";
+    video.autoplay = true;
+    video.defaultMuted = true;
+    
+    // Set all possible attributes for autoplay
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('muted', 'true');
+    video.setAttribute('autoplay', 'true');
+    video.setAttribute('loop', 'true');
+
+    const forcePlay = async () => {
+      try {
+        video.muted = true;
+        video.currentTime = 0;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log("Video is playing automatically");
+        }
+      } catch (error) {
+        console.log("Autoplay blocked, trying alternative:", error);
+        // Multiple retry attempts
+        setTimeout(() => forcePlay(), 100);
+      }
     };
-    sequence();
-  }, [controls]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+    // Try to play as soon as possible
+    const handleLoadStart = () => forcePlay();
+    const handleLoadedMetadata = () => forcePlay();
+    const handleLoadedData = () => {
+      setVideoLoaded(true);
+      forcePlay();
+    };
+    const handleCanPlay = () => forcePlay();
+    const handleCanPlayThrough = () => forcePlay();
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    // Add all possible event listeners
+    video.addEventListener('loadstart', handleLoadStart);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('canplaythrough', handleCanPlayThrough);
 
-  const options = [
-    ["Ceramic Coating", "PPF", "Car Detailing", "Sunfilms"],
-    ["Car", "Bike"],
-  ];
-
-  useEffect(() => {
-    if (isChatOpen && messages.length === 0) {
-      setMessages([
-        { sender: "bot", text: null }
-      ]);
-      const timer1 = setTimeout(() => {
-        setMessages([
-          { sender: "bot", text: "Hello, I am Saanvi" }
-        ]);
-      }, 800);
-      
-      const timer2 = setTimeout(() => {
-        setMessages(prev => [...prev, { sender: "bot", text: "May I know your name?" }]);
-      }, 1500);
-      
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
+    // Try immediate play if video is ready
+    if (video.readyState > 0) {
+      forcePlay();
     }
-  }, [isChatOpen]);
 
-  const resetChat = () => {
-    setMessages([{ sender: "bot", text: null }]);
-    setTimeout(() => {
-      setMessages([
-        { sender: "bot", text: "Hello, I am Saanvi" },
-        { sender: "bot", text: "May I know your name?", style: { marginTop: "-80px" } }
-      ]);
-    }, 800);
-    setStep(-1);
-    setChatData({ name: "", service: [], vehicleType: [], model: "", mobile: "" });
-    setSelectedOptions([]);
-    setUserInput("");
+    // Cleanup
+    return () => {
+      video.removeEventListener('loadstart', handleLoadStart);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('canplaythrough', handleCanPlayThrough);
+    };
+  }, []);
+
+  // Additional autoplay attempts on any user interaction
+  useEffect(() => {
+    const attemptAutoplay = () => {
+      const video = videoRef.current;
+      if (video && video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+    };
+
+    // Try on any interaction
+    const events = ['click', 'touchstart', 'touchend', 'mousedown', 'keydown'];
+    events.forEach(event => {
+      document.addEventListener(event, attemptAutoplay, { once: true, passive: true });
+    });
+
+    return () => {
+      events.forEach(event => {
+        document.removeEventListener(event, attemptAutoplay);
+      });
+    };
+  }, []);
+
+  // Keep video playing when page visibility changes
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const video = videoRef.current;
+      if (document.visibilityState === 'visible' && video && video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
+  // Fixed popup tracking
+  const hasPopupBeenShown = () => {
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('popupShown') === 'true';
+    }
+    return false;
+  };
+
+  const markPopupAsShown = () => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('popupShown', 'true');
+    }
+  };
+
+  // Progress bar effect
+  useEffect(() => {
+    let interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setIsComplete(true);
+        }
+        return prev + 1;
+      });
+    }, 20);
+
+    return () => {
+      clearInterval(interval);
+      if (hackingInterval.current) {
+        clearInterval(hackingInterval.current);
+      }
+    };
+  }, []);
+
+  // Popup timer
+  useEffect(() => {
+    if (!hasPopupBeenShown()) {
+      const popupTimer = setTimeout(() => {
+        setShowPopup(true);
+        markPopupAsShown();
+      }, 15000);
+
+      return () => clearTimeout(popupTimer);
+    }
+  }, []);
+
+  const scrollToSection = () => {
+    const section = document.getElementById("second");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setPopupClosed(true);
+    setShowCode(false);
+    setDiscountCode("");
+    setCopied(false);
+    setIsGenerating(false);
     setShowForm(false);
-    setIsChatEnded(false);
+    setUserName("");
+    setUserPhone("");
+    setFormError("");
+    if (hackingInterval.current) {
+      clearInterval(hackingInterval.current);
+    }
   };
 
-  const handleOpenChat = () => {
-    setIsChatOpen(true);
-    setHasBeenClicked(true);
+  const handleShowForm = () => {
+    setShowForm(true);
   };
 
-  const handleCloseChat = () => {
-    setIsChatOpen(false);
-  };
-
-  const handleWhatsApp = () => {
-    const phoneNumber = "9686968315";
-    const message = "Hello! I'm interested in your automotive services.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-  };
-
-  const handlePhone = () => {
-    window.location.href = "tel:9686968315";
-  };
-
-  const handleSend = () => {
-    if (step === -1) {
-      if (!userInput.trim()) return;
-      const name = userInput.trim();
-      const userMessage = { sender: "user", text: name };
-      
-      setChatData(prev => ({ ...prev, name }));
-      setMessages(prev => [...prev, userMessage, { sender: "bot", text: null }]);
-      
-      setTimeout(() => {
-        setMessages(prev => [
-          ...prev.slice(0, -1),
-          { sender: "bot", text: `Nice to meet you, ${name}! Please select a service.` }
-        ]);
-        setStep(0);
-      }, 800);
-      
-      setUserInput("");
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!userName.trim() || !userPhone.trim()) {
+      setFormError("Please fill in all fields");
       return;
     }
-
-    if (step === 0 || step === 1) {
-      if (selectedOptions.length === 0) return;
-      const userMessage = {
-        sender: "user",
-        text: selectedOptions.join(", "),
-      };
-
-      let botReply = "";
-      let nextStep = step;
-
-      if (step === 0) {
-        setChatData((prev) => ({ ...prev, service: selectedOptions }));
-        botReply = "Is it for a Car or Bike?";
-        nextStep = 1;
-      } else if (step === 1) {
-        setChatData((prev) => ({ ...prev, vehicleType: selectedOptions }));
-        botReply = `Great! What is your ${selectedOptions.join("/")} model?`;
-        nextStep = 2;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        userMessage,
-        { sender: "bot", text: null },
-      ]);
-      setTimeout(() => {
-        setMessages((prev) => [
-          ...prev.slice(0, -1),
-          { sender: "bot", text: botReply },
-        ]);
-        setStep(nextStep);
-        setSelectedOptions([]);
-      }, 800);
-    } else if (step === 2) {
-      if (!userInput.trim()) return;
-      const userMessage = { sender: "user", text: userInput };
-      const botReply = "Sure, That's a great choice";
-
-      setChatData((prev) => ({ ...prev, model: userInput }));
-      setShowForm(true);
-
-      setMessages((prev) => [
-        ...prev,
-        userMessage,
-        { sender: "bot", text: null },
-      ]);
-      setTimeout(() => {
-        setMessages((prev) => [
-          ...prev.slice(0, -1),
-          { sender: "bot", text: botReply },
-        ]);
-      }, 800);
-
-      setTimeout(() => {
-        setMessages((prev) => [
-          ...prev,
-          {
-            sender: "bot",
-            text: "I will call you soon to discuss details. Can I have your mobile number?",
-          },
-          { sender: "bot", text: "Please type your phone number 😊" },
-        ]);
-      }, 1200);
-
-      setUserInput("");
-      setStep(3);
+    
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(userPhone.trim())) {
+      setFormError("Please enter a valid 10-digit phone number");
+      return;
     }
+    
+    setFormError("");
+    setShowForm(false);
+    generateDiscountCode();
   };
 
-  const handleSubmitForm = () => {
-    if (!chatData.mobile.trim()) return;
-    const userReply = {
-      sender: "user",
-      text: `Phone: ${chatData.mobile}`,
-    };
+  const generateDiscountCode = () => {
+    if (isGenerating) return;
+    
+    setIsGenerating(true);
+    setShowCode(true);
+    setHackText("");
+    
+    let startTime = Date.now();
+    let finalCode = "";
+    
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    for (let i = 0; i < finalCodeLength; i++) {
+      finalCode += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    
+    hackingInterval.current = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / hackingDuration, 1);
+      
+      let currentText = "";
+      for (let i = 0; i < finalCodeLength; i++) {
+        if (i < Math.floor(progress * finalCodeLength)) {
+          currentText += finalCode[i];
+        } else {
+          currentText += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+      }
+      
+      setHackText(currentText);
+      
+      if (progress >= 1) {
+        clearInterval(hackingInterval.current);
+        setDiscountCode(finalCode);
+        setIsGenerating(false);
+        redirectToWhatsApp(finalCode);
+      }
+    }, 50);
+  };
 
-    const botReply = {
-      sender: "bot",
-      text: "Thanks for contacting us! We'll connect with you soon.",
-    };
-
-    setMessages((prev) => [...prev, userReply, { sender: "bot", text: null }]);
+  const redirectToWhatsApp = (code) => {
+    const message = `Hi, I'm ${userName}. I'd like to claim my 30% discount (code: ${code}) for Torque Detailing Studio services.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/919998899789?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+    
     setTimeout(() => {
-      setMessages((prev) => [...prev.slice(0, -1), botReply]);
-      setShowForm(false);
-      setIsChatEnded(true);
-    }, 800);
+      closePopup();
+    }, 4000);
   };
 
-  const validatePhoneNumber = (number) => /^[0-9]{10}$/.test(number);
-
-  useEffect(() => {
-    if (chatData.mobile && !validatePhoneNumber(chatData.mobile)) {
-      setIsMobileNumberValid(false);
-    } else {
-      setIsMobileNumberValid(true);
-    }
-  }, [chatData.mobile]);
-
-  const bounceVariants = {
-    bounce: {
-      y: [0, -8, 0],
-      transition: {
-        duration: 1,
-        repeat: Infinity,
-        repeatType: "loop",
-      }
-    },
-    still: {
-      y: 0,
-      transition: {
-        duration: 0.2
-      }
-    }
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(discountCode).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
-      
-      {/* Chat Interface */}
+    <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Navbar */}
+      <motion.div className="absolute top-0 left-0 w-full px-4 md:px-10 z-50">
+        <Navlinks isComplete={isComplete} />
+      </motion.div>
+
+      {/* Video Background - Force Autoplay */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        muted
+        loop
+        autoPlay
+        playsInline
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
+        disableRemotePlayback
+        style={{
+          objectFit: 'cover',
+          width: '100%',
+          height: '100%'
+        }}
+      >
+        <source 
+          src="https://res.cloudinary.com/dycm7vkuq/video/upload/v1744367852/100_MB_skq4tw.mp4" 
+          type="video/mp4" 
+        />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Simple loading indicator only */}
+      {!videoLoaded && (
+        <div className="absolute inset-0 z-20 bg-black flex items-center justify-center">
+          <div className="text-white text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <p>Loading...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Your existing heading content */}
+      <motion.div
+        className="absolute mx-5 top-[45%] hidden md:top-[58%] my-20 md:my-0 md:flex flex-col items-start md:items-center md:text-center z-10"
+        initial="hidden"
+        animate={isComplete ? "visible" : "hidden"}
+        variants={{
+          visible: { transition: { staggerChildren: 0.5 } },
+        }}
+      >
+        {/* Add your heading content here */}
+      </motion.div>
+
+      {/* Discount Popup */}
       <AnimatePresence>
-        {isChatOpen && (
+        {showPopup && (
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.3 }}
-            className="fixed z-999999999999 lg:bottom-25 right-3 md:bottom-25 md:w-[40%] bottom-15 lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-[99999999999999999999999] flex items-center justify-center px-4"
           >
-            {/* Header */}
-            <div className="relative flex items-center w-[full] h-[8%] sm:h-[10%] bg-white rounded-t-xl px-2 sm:px-4 overflow-hidden">
-              <div className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden z-20 bg-white p-1">
-                <img
-                  src='https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg'
-                  alt="Chat Icon"
-                  className="w-full object-top h-full object-cover rounded-full"
-                />
-              </div>
-              <div className="flex-1 ml-10 sm:ml-12 relative z-10">
-                <h1 className="text-black font-semibold tracking-wide text-sm">
-                  Hi, Saanvi Here!
-                </h1>
-                <p className="text-gray-400 mt-[-3px] text-xs">
-                  How may I assist you today?
+            <div 
+              className="fixed inset-0 bg-black bg-opacity-50" 
+              onClick={closePopup}
+            />
+            
+            <motion.div 
+              className="relative bg-black border-2 border-[#00DAFF] rounded-lg p-6 w-full max-w-md shadow-2xl z-[101]"
+              whileHover={{ scale: 1.02 }}
+            >
+              <button 
+                onClick={closePopup}
+                className="absolute top-3 right-3 text-white hover:text-[#00DAFF] transition-colors"
+              >
+                <FaTimes size={20} />
+              </button>
+              
+              <div className="text-center">
+                <h2 className="text-3xl font-bold mb-2 text-white">
+                  SPECIAL OFFER
+                </h2>
+                
+                <motion.div 
+                  className="text-5xl font-extrabold my-4 text-[#00DAFF]"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                >
+                  30% OFF
+                </motion.div>
+                
+                <p className="text-white mb-2">
+                  Limited time offer on all premium services!
+                </p>
+                
+                <div className="text-white mb-6">
+                  <p className="font-semibold text-[#00DAFF]">Torque Detailing Studio</p>
+                  <p className="text-sm">Call us: <a href="tel:9998899789" className="hover:text-[#00DAFF] transition-colors">9998899789</a></p>
+                </div>
+                
+                {!showForm && !showCode && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-gradient-to-r from-[#00DAFF] to-blue-600 text-white py-3 px-8 rounded-lg font-bold tracking-wide"
+                    onClick={handleShowForm}
+                  >
+                    CLAIM NOW
+                  </motion.button>
+                )}
+                
+                {showForm && (
+                  <motion.form 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 mb-4"
+                    onSubmit={handleFormSubmit}
+                  >
+                    <div className="mb-3">
+                      <input 
+                        type="text" 
+                        placeholder="Your Name" 
+                        className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-[#00DAFF]"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <input 
+                        type="tel" 
+                        placeholder="Your Phone Number" 
+                        className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:border-[#00DAFF]"
+                        value={userPhone}
+                        onChange={(e) => setUserPhone(e.target.value)}
+                      />
+                    </div>
+                    {formError && (
+                      <p className="text-red-400 text-sm mb-3">{formError}</p>
+                    )}
+                    <motion.button
+                      type="submit"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-gradient-to-r from-[#00DAFF] to-blue-600 text-white py-2 px-8 rounded-lg font-bold tracking-wide"
+                    >
+                      SUBMIT
+                    </motion.button>
+                  </motion.form>
+                )}
+                
+                {showCode && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-6 bg-gray-900 rounded-lg p-4 border border-[#00DAFF]"
+                  >
+                    <p className="text-gray-300 text-sm mb-2">Your discount code:</p>
+                    <div className="flex items-center justify-center bg-gray-800 rounded px-4 py-2">
+                      <span className="text-[#00DAFF] font-mono text-xl font-bold mr-3">
+                        {isGenerating ? hackText : discountCode}
+                      </span>
+                      {!isGenerating && (
+                        <motion.button
+                          onClick={copyToClipboard}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="text-white hover:text-[#00DAFF]"
+                          title="Copy to clipboard"
+                        >
+                          <FaCopy size={18} />
+                        </motion.button>
+                      )}
+                    </div>
+                    {copied && !isGenerating && (
+                      <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="text-green-400 text-xs mt-1"
+                      >
+                        Copied to clipboard!
+                      </motion.p>
+                    )}
+                    {isGenerating ? (
+                      <p className="text-gray-400 text-xs mt-3 animate-pulse">
+                        Generating secure discount code...
+                      </p>
+                    ) : (
+                      <div>
+                        <p className="text-gray-400 text-xs mt-2">
+                          Your discount has been applied to your account
+                        </p>
+                        <p className="text-gray-300 text-xs mt-1">
+                          Thank you <span className="font-semibold">{userName}</span> for choosing Torque Detailing Studio!
+                        </p>
+                        <motion.p 
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="text-green-400 font-semibold text-sm mt-3"
+                        >
+                          Thank you for your submission!
+                        </motion.p>
+                        <p className="text-gray-300 text-xs mt-1">
+                          Redirecting you to WhatsApp...
+                        </p>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+                
+                <p className="text-gray-400 text-sm mt-4">
+                  *Offer valid until August 31, 2025
                 </p>
               </div>
-              <div className="flex gap-1 items-center z-10">
-                <button
-                  onClick={resetChat}
-                  className="text-black p-1 rounded-full"
-                >
-                  <RotateCcw className="w-4 h-4 hover:text-cyan-700" />
-                </button>
-                <button
-                  onClick={handleCloseChat}
-                  className="p-1.5 sm:p-2 flex justify-center items-center rounded-full"
-                >
-                  <X className="text-black w-5 h-5 hover:text-cyan-700" />
-                </button>
-              </div>  
-            </div>
-
-            {/* Chat Area */}
-            <div className="flex-1 bg-[#f5f5f5] rounded-lg p-2 sm:p-3 mt-1 sm:mt-2 overflow-y-auto scroll-smooth text-xs">
-              <style jsx>{`
-                div::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
-              <div className="flex flex-col gap-2">
-                {messages.map((msg, index) => (
-                  <div key={index} className="flex flex-col gap-1">
-                    <div
-                      className={`max-w-[85%] flex items-start gap-1.5 ${
-                        msg.sender === "user"
-                          ? "self-end justify-end"
-                          : "self-start justify-start"
-                      }`}
-                    >
-                      {msg.sender === "bot" && (
-                        <img
-                          src='https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg'
-                          alt="Bot"
-                          className="w-6 h-6 rounded-full object-top object-cover"
-                        />
-                      )}
-                      <div
-                        className={`p-2 pl-3 pr-3 rounded-xl text-sm ${
-                          msg.sender === "user"
-                            ? "bg-[#131313] text-white"
-                            : "bg-[#ececec] text-[#272727] tracking-wide"
-                        }`}
-                      >
-                        {msg.text !== null ? msg.text : <TypingDots />}
-                      </div>
-                    </div>
-
-                    {step <= 1 && step >= 0 &&
-                      ((step === 0 &&
-                        msg.text?.includes("Please select a service")) ||
-                        (step === 1 &&
-                          msg.text === "Is it for a Car or Bike?")) && (
-                        <div className="flex flex-wrap ml-7 gap-1.5 self-start">
-                          {options[step].map((opt) => (
-                            <OptionCard
-                              key={opt}
-                              option={opt}
-                              selected={selectedOptions.includes(opt)}
-                              onClick={() =>
-                                setSelectedOptions((prev) =>
-                                  prev.includes(opt)
-                                    ? prev.filter((o) => o !== opt)
-                                    : [...prev, opt]
-                                )
-                              }
-                            />
-                          ))}
-                        </div>
-                      )}
-                  </div>
-                ))}
-                <div ref={messagesEndRef} />
-              </div>
-            </div>
-
-            {/* Footer Input */}
-            {!isChatEnded && (
-              <div className="p-2 sm:p-3 border-t border-gray-200">
-                {showForm ? (
-                  <div className="flex gap-2">
-                    <div className="flex items-center justify-center border border-gray-300 rounded-xl h-9 w-20">
-                      <img
-                        src="data:image/png;base64,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"
-                        alt="Indian Flag"
-                        className="w-3 h-2 mr-1"
-                      />
-                      <span className="text-gray-600 text-xs">+91</span>
-                    </div>
-                    <div className="relative w-full flex justify-center items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter your phone number"
-                        value={chatData.mobile}
-                        onChange={(e) =>
-                          setChatData({ ...chatData, mobile: e.target.value })
-                        }
-                        className="w-full px-3 py-1.5 text-sm rounded-xl text-gray-800"
-                      />
-                      <button
-                        onClick={handleSubmitForm}
-                        className={`absolute right-3 text-black rounded-full flex items-center ${
-                          !isMobileNumberValid ? "opacity-50 cursor-not-allowed" : ""
-                        }`}
-                        disabled={!isMobileNumberValid}
-                      >
-                        <Send className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={userInput}
-                      onChange={(e) => setUserInput(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                      className={`flex-1 px-3 py-1.5 border rounded-xl text-sm ${
-                        step > -1 && step <= 1
-                          ? "bg-gray-200 cursor-not-allowed text-gray-500"
-                          : "focus:outline-none focus:border-black"
-                      }`}
-                      placeholder={
-                        step === -1
-                          ? "Enter your name..."
-                          : step <= 1
-                          ? "Select an option above..."
-                          : "Enter vehicle model..."
-                      }
-                      disabled={step > -1 && step <= 1}
-                    />
-                    <button
-                      onClick={handleSend}
-                      className="p-2 rounded-full hover:opacity-90 transition-opacity"
-                    >
-                      <Send className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Left Bottom Buttons - WhatsApp and Call (Always Visible) */}
-      <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
-        {/* WhatsApp Button */}
-        <motion.button
-          onClick={handleWhatsApp}
-          className="bg-green-700 hover:bg-green-700 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <img 
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655227/whatsapp_llcxl2.png" 
-            alt="WhatsApp" 
-            className="w-6 h-6" 
-          />
-          
-          {/* Tooltip */}
-          <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            WhatsApp
-          </div>
-        </motion.button>
-
-        {/* Call Button */}
-        <motion.button
-          onClick={handlePhone}
-          className="bg-cyan-600 hover:bg-cyan-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <img 
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/telephone_x4qcsy.png"
-            alt="WhatsApp" 
-            className="w-6 h-6" 
-          />
-          
-          {/* Tooltip */}
-          <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            Call
-          </div>
-        </motion.button>
-      </div>
-
-      {/* Right Bottom Chat Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <motion.button
-          onClick={handleOpenChat}
-          animate={!hasBeenClicked ? "bounce" : "still"}
-          variants={bounceVariants}
-          className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-transparent text-white flex justify-center items-center shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 relative"
-        >
-          {/* Tooltip */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={controls}
-            className="absolute right-16 bg-cyan-600 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap"
-          >
-            Hello, how may I help you?
-          </motion.div>
-
-          <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center">
-            <img
-              src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1746711803/istockphoto-1180568095-612x612_urmmqy.jpg"
-              alt="Chat Assistant"
-              className="w-10 h-10 lg:w-14 lg:h-14 object-cover object-top rounded-full"
-            />
-          </div>
-        </motion.button>
-      </div>
     </div>
   );
 };
 
-export default ChatBox;
+export default Hero;
