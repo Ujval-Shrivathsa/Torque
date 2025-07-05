@@ -2,157 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowDown, FaTimes, FaCopy, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import { FaArrowDown, FaTimes, FaCopy } from "react-icons/fa";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Navlinks from "../Navlinks/Navlinks";
 import { useRouter } from "next/navigation";
 import GlitchText from "./GlitchText";
 import Link from "next/link";
 import Glitch from "./Glitchtext1";
-
-// Global audio manager to persist across page changes
-class AudioManager {
-  constructor() {
-    this.audio = null;
-    this.isPlaying = false;
-    this.volume = 0.5;
-    this.muted = false;
-    this.listeners = new Set();
-    this.hasUserInteracted = false;
-    this.playAttempted = false;
-  }
-
-  static getInstance() {
-    if (!AudioManager.instance) {
-      AudioManager.instance = new AudioManager();
-    }
-    return AudioManager.instance;
-  }
-
-  addListener(callback) {
-    this.listeners.add(callback);
-  }
-
-  removeListener(callback) {
-    this.listeners.delete(callback);
-  }
-
-  notifyListeners() {
-    this.listeners.forEach(callback => callback({
-      isPlaying: this.isPlaying,
-      muted: this.muted,
-      volume: this.volume
-    }));
-  }
-
-  init() {
-    if (this.audio) return;
-
-    // Updated path to use relative import from components folder
-    this.audio = new Audio("/kusamification-smoke-of-life_limp-bizkit-take-a-look-around.mp3");
-    this.audio.loop = true;
-    this.audio.volume = this.volume;
-    this.audio.muted = this.muted;
-    this.audio.preload = "auto";
-
-    this.audio.addEventListener('play', () => {
-      this.isPlaying = true;
-      this.notifyListeners();
-    });
-
-    this.audio.addEventListener('pause', () => {
-      this.isPlaying = false;
-      this.notifyListeners();
-    });
-
-    this.audio.addEventListener('ended', () => {
-      this.isPlaying = false;
-      this.notifyListeners();
-    });
-
-    this.audio.addEventListener('error', (e) => {
-      console.error('Audio error:', e);
-      this.isPlaying = false;
-      this.notifyListeners();
-    });
-
-    this.audio.addEventListener('canplaythrough', () => {
-      if (this.hasUserInteracted && !this.playAttempted) {
-        this.play();
-      }
-    });
-
-    // Try to autoplay immediately (will be blocked by most browsers)
-    this.play();
-  }
-
-  async play() {
-    if (!this.audio) this.init();
-
-    this.playAttempted = true;
-
-    try {
-      await this.audio.play();
-      console.log('Background music started');
-    } catch (error) {
-      console.log('Audio autoplay blocked:', error);
-      this.setupUserInteractionListener();
-    }
-  }
-
-  pause() {
-    if (this.audio) {
-      this.audio.pause();
-    }
-  }
-
-  setVolume(volume) {
-    this.volume = Math.max(0, Math.min(1, volume));
-    if (this.audio) {
-      this.audio.volume = this.volume;
-    }
-    this.notifyListeners();
-  }
-
-  toggleMute() {
-    this.muted = !this.muted;
-    if (this.audio) {
-      this.audio.muted = this.muted;
-    }
-    this.notifyListeners();
-  }
-
-  setUserInteracted() {
-    this.hasUserInteracted = true;
-    this.removeUserInteractionListener();
-    if (!this.playAttempted) {
-      this.play();
-    }
-  }
-
-  setupUserInteractionListener() {
-    if (this.userInteractionHandler) return;
-
-    this.userInteractionHandler = () => {
-      this.setUserInteracted();
-    };
-
-    const events = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
-    events.forEach(event => {
-      document.addEventListener(event, this.userInteractionHandler, { once: true, passive: true });
-    });
-  }
-
-  removeUserInteractionListener() {
-    if (this.userInteractionHandler) {
-      const events = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
-      events.forEach(event => {
-        document.removeEventListener(event, this.userInteractionHandler);
-      });
-      this.userInteractionHandler = null;
-    }
-  }
-}
 
 const Hero = () => {
   const [progress, setProgress] = useState(1);
@@ -171,70 +27,16 @@ const Hero = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
-
-  // Audio state
-  const [audioState, setAudioState] = useState({
-    isPlaying: false,
-    muted: false,
-    volume: 0.5
-  });
-  const [showAudioControl, setShowAudioControl] = useState(false);
-
+  
   // Video ref for manual control
   const videoRef = useRef(null);
   const interactionListenerRef = useRef(null);
-  const audioManagerRef = useRef(null);
-
+  
   // Characters for the hacking effect
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
   const finalCodeLength = 8;
   const hackingInterval = useRef(null);
   const hackingDuration = 1500;
-
-  // Initialize audio manager
-  useEffect(() => {
-    audioManagerRef.current = AudioManager.getInstance();
-
-    const handleAudioStateChange = (state) => {
-      setAudioState(state);
-    };
-
-    audioManagerRef.current.addListener(handleAudioStateChange);
-    audioManagerRef.current.init();
-
-    // Show audio control after 3 seconds
-    const controlTimer = setTimeout(() => {
-      setShowAudioControl(true);
-    }, 3000);
-
-    return () => {
-      audioManagerRef.current.removeListener(handleAudioStateChange);
-      clearTimeout(controlTimer);
-    };
-  }, []);
-
-  // Auto-start music when user interacts
-  useEffect(() => {
-    const handleFirstInteraction = () => {
-      if (audioManagerRef.current) {
-        audioManagerRef.current.setUserInteracted();
-      }
-      setHasUserInteracted(true);
-    };
-
-    if (!hasUserInteracted) {
-      const events = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
-      events.forEach(event => {
-        document.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
-      });
-
-      return () => {
-        events.forEach(event => {
-          document.removeEventListener(event, handleFirstInteraction);
-        });
-      };
-    }
-  }, [hasUserInteracted]);
 
   // Detect device type
   const isMobile = () => {
@@ -244,8 +46,8 @@ const Hero = () => {
 
   const isIOS = () => {
     if (typeof window === 'undefined') return false;
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   };
 
   // Fixed popup tracking with proper sessionStorage usage
@@ -265,9 +67,9 @@ const Hero = () => {
   // Universal video play function
   const playVideo = async () => {
     if (!videoRef.current) return;
-
+    
     const video = videoRef.current;
-
+    
     try {
       // Ensure video is properly configured
       video.muted = true;
@@ -312,7 +114,7 @@ const Hero = () => {
   // Setup user interaction listener for devices that block autoplay
   const setupUserInteractionListener = () => {
     if (interactionListenerRef.current) return; // Already set up
-
+    
     const handleUserInteraction = async () => {
       setHasUserInteracted(true);
       
@@ -367,7 +169,7 @@ const Hero = () => {
     video.controls = false;
     video.preload = 'auto';
     video.crossOrigin = 'anonymous';
-
+    
     // Set attributes for mobile compatibility
     video.setAttribute('webkit-playsinline', 'true');
     video.setAttribute('playsinline', 'true');
@@ -474,7 +276,7 @@ const Hero = () => {
   // Popup timer effect
   useEffect(() => {
     console.log("Checking if popup should show...");
-
+    
     if (!hasPopupBeenShown()) {
       console.log("Setting up popup timer...");
       
@@ -521,18 +323,18 @@ const Hero = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    
     if (!userName.trim() || !userPhone.trim()) {
       setFormError("Please fill in all fields");
       return;
     }
-
+    
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(userPhone.trim())) {
       setFormError("Please enter a valid 10-digit phone number");
       return;
     }
-
+    
     setFormError("");
     setShowForm(false);
     generateDiscountCode();
@@ -540,19 +342,19 @@ const Hero = () => {
 
   const generateDiscountCode = () => {
     if (isGenerating) return;
-
+    
     setIsGenerating(true);
     setShowCode(true);
     setHackText("");
-
+    
     let startTime = Date.now();
     let finalCode = "";
-
+    
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     for (let i = 0; i < finalCodeLength; i++) {
       finalCode += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-
+    
     hackingInterval.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / hackingDuration, 1);
@@ -581,9 +383,9 @@ const Hero = () => {
     const message = `Hi, I'm ${userName}. I'd like to claim my 30% discount (code: ${code}) for Torque Detailing Studio services.`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/919686968315?text=${encodedMessage}`;
-
+    
     window.open(whatsappURL, '_blank');
-
+    
     setTimeout(() => {
       closePopup();
     }, 4000);
@@ -596,69 +398,12 @@ const Hero = () => {
     });
   };
 
-  // Audio control functions
-  const toggleAudio = () => {
-    if (audioManagerRef.current) {
-      if (audioState.isPlaying) {
-        audioManagerRef.current.pause();
-      } else {
-        audioManagerRef.current.play();
-      }
-    }
-  };
-
-  const toggleMute = () => {
-    if (audioManagerRef.current) {
-      audioManagerRef.current.toggleMute();
-    }
-  };
-
   return (
     <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
       {/* Navbar */}
       <motion.div className="absolute top-0 left-0 w-full px-4 md:px-10 z-50">
         <Navlinks isComplete={isComplete} />
       </motion.div>
-
-      {/* Audio Control Button - Hidden by default since autoplay is enabled */}
-      {showAudioControl && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="fixed top-20 right-4 md:right-6 z-50 bg-black bg-opacity-80 rounded-full p-3 border border-[#00DAFF] backdrop-blur-sm"
-        >
-          <div className="flex items-center gap-2">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleAudio}
-              className="text-white hover:text-[#00DAFF] transition-colors"
-              title={audioState.isPlaying ? "Pause Music" : "Play Music"}
-            >
-              {audioState.isPlaying ? (
-                <div className="w-5 h-5 flex items-center justify-center">
-                  <div className="w-1 h-3 bg-current mr-1"></div>
-                  <div className="w-1 h-3 bg-current"></div>
-                </div>
-              ) : (
-                <div className="w-5 h-5 flex items-center justify-center">
-                  <div className="w-0 h-0 border-l-[6px] border-l-current border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent"></div>
-                </div>
-              )}
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleMute}
-              className="text-white hover:text-[#00DAFF] transition-colors"
-              title={audioState.muted ? "Unmute" : "Mute"}
-            >
-              {audioState.muted ? <FaVolumeMute size={16} /> : <FaVolumeUp size={16} />}
-            </motion.button>
-          </div>
-        </motion.div>
-      )}
 
       {/* Fixed video element with corrected URL and universal autoplay */}
       <video

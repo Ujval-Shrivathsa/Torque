@@ -34,11 +34,11 @@ const SliderPage = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2 }}
-                        className="w-full max-w-[93%] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[950px] rounded-2xl overflow-hidden"
+                        className="w-full max-w-[100%] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[950px] rounded-2xl overflow-hidden"
                     >
                         <ImageSlider
-                            beforeImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1748435180/cosy_gdc42f.png"
-                            afterImage="https://res.cloudinary.com/dycm7vkuq/image/upload/v1748435180/cosy-01_jgnpvw.png"
+                            beforeImage="https://lakdfs.sirv.com/Images/cosy-01.png"
+                            afterImage="https://lakdfs.sirv.com/Images/cosy.png"
                         />
                     </motion.div>
                 </motion.div>

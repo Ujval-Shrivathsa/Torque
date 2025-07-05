@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
 import Hero from "./Components/Hero";
 import SlidingPage from "./Components/SlidingPage";
 import Testimonials from "./Components/Details";
@@ -11,18 +13,60 @@ import Gallery from "./Components/Gallery";
 import Instagrampost from "./Components/Instagrampost";
 
 const Main = () => {
-  return (
-    <div className="w-full min-h-screen bg-black overflow-hidden">
+  const audioRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
 
-        <Toaster position="top-right" reverseOrder={false} />
-        <Hero />
-        <SlidingPage />
-        <ProductPage />
-        <Testimonials />
-        <SliderPage/>
-        <Gallery />
-        <Instagrampost/>
-        <Footer />
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = true;
+      audioRef.current.play().catch(() => {
+        console.log("Autoplay blocked — waiting for user interaction");
+      });
+    }
+  }, []);
+
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isMuted) {
+        audioRef.current.muted = false;
+        audioRef.current.play().catch((err) => {
+          console.log("Music failed to start on unmute:", err);
+        });
+      } else {
+        audioRef.current.muted = true;
+      }
+      setIsMuted(!isMuted);
+    }
+  };
+
+  return (
+    <div className="w-full min-h-screen bg-black overflow-hidden relative">
+      <Toaster position="top-right" reverseOrder={false} />
+
+      <audio
+        ref={audioRef}
+        src="/kusamification-smoke-of-life_limp-bizkit-take-a-look-around.mp3"
+        loop
+        hidden
+        muted
+        playsInline
+      />
+
+      <button
+        onClick={toggleAudio}
+        className="fixed right-10 bottom-120 bg-gray-800 text-white rounded-full p-3 shadow-lg hover:bg-gray-700 z-50"
+      >
+        {isMuted ? "🔇" : "🔊"}
+      </button>
+
+      <Hero />
+      <SlidingPage />
+      <ProductPage />
+      <Testimonials />
+      <SliderPage />
+      <Gallery />
+      <Instagrampost />
+      <Footer />
     </div>
   );
 };
