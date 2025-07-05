@@ -305,7 +305,7 @@ const ChatBox = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.3 }}
-            className="fixed lg:bottom-25 right-3 md:bottom-25 md:w-[40%] bottom-15 lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
+            className="fixed lg:bottom-25 bottom-29 z-9999999999999999999999999999999999999999999999999999 right-3 md:bottom-25 md:w-[40%] lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
           >
             {/* Header */}
             <div className="relative flex items-center w-[full] h-[8%] sm:h-[10%] bg-white rounded-t-xl px-2 sm:px-4 overflow-hidden">
@@ -510,12 +510,12 @@ const ChatBox = () => {
       </div>
 
       {/* Right Bottom Chat Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-5 right-6 z-50">
         <motion.button
           onClick={handleOpenChat}
           animate={!hasBeenClicked ? "bounce" : "still"}
           variants={bounceVariants}
-          className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-transparent text-white flex justify-center items-center shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 relative"
+          className="w-14 h-14 lg:w-20 lg:h-20 rounded-full  text-white flex justify-center items-center shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 relative"
         >
           {/* Tooltip */}
           <motion.div
@@ -526,7 +526,7 @@ const ChatBox = () => {
             Hello, how may I help you?
           </motion.div>
 
-          <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center">
+          <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center">
             <img
               src="https://lakdfs.sirv.com/Images/istockphoto-1180568095-1024x1024.jpg"
               alt="Chat Assistant"

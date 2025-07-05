@@ -54,7 +54,7 @@ const Main = () => {
 
       <button
         onClick={toggleAudio}
-        className="fixed right-10 bottom-120 bg-gray-800 text-white rounded-full p-3 shadow-lg hover:bg-gray-700 z-50"
+        className="fixed lg:right-10 right-6 lg:bottom-30 bottom-20 bg-gray-800 text-white rounded-full p-3 shadow-lg hover:bg-gray-700 z-50"
       >
         {isMuted ? "🔇" : "🔊"}
       </button>
