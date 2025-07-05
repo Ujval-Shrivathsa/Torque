@@ -14,7 +14,7 @@ const Page = () => {
   const [mainCar, setMainCar] = useState({
     id: "main",
     title: "Porsche 911",
-    url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ4_dppgdh.jpg",
+    url: "https://lakdfs.sirv.com/Images/TQ4.JPG",
   });
 
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -40,12 +40,12 @@ const Page = () => {
     {
       id: "1",
       title: "BMW X5",
-      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ2_bunhsw.jpg",
+      url: "https://lakdfs.sirv.com/Images/TQ2.JPG",
     },
     {
       id: "2",
       title: "Mini Cooper",
-      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ3_l4jnla.jpg",
+      url: "https://lakdfs.sirv.com/Images/TQ3.JPG",
     },
     {
       id: "3",
@@ -55,7 +55,7 @@ const Page = () => {
     {
       id: "4",
       title: "Royal Enfield",
-      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894424/TQ1_kgbzwa.jpg",
+      url: "https://lakdfs.sirv.com/Images/TQ1.JPG",
     },
     {
       id: "5",

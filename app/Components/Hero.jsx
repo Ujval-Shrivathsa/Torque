@@ -2,13 +2,157 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowDown, FaTimes, FaCopy } from "react-icons/fa";
+import { FaArrowDown, FaTimes, FaCopy, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Navlinks from "../Navlinks/Navlinks";
 import { useRouter } from "next/navigation";
 import GlitchText from "./GlitchText";
 import Link from "next/link";
 import Glitch from "./Glitchtext1";
+
+// Global audio manager to persist across page changes
+class AudioManager {
+  constructor() {
+    this.audio = null;
+    this.isPlaying = false;
+    this.volume = 0.5;
+    this.muted = false;
+    this.listeners = new Set();
+    this.hasUserInteracted = false;
+    this.playAttempted = false;
+  }
+
+  static getInstance() {
+    if (!AudioManager.instance) {
+      AudioManager.instance = new AudioManager();
+    }
+    return AudioManager.instance;
+  }
+
+  addListener(callback) {
+    this.listeners.add(callback);
+  }
+
+  removeListener(callback) {
+    this.listeners.delete(callback);
+  }
+
+  notifyListeners() {
+    this.listeners.forEach(callback => callback({
+      isPlaying: this.isPlaying,
+      muted: this.muted,
+      volume: this.volume
+    }));
+  }
+
+  init() {
+    if (this.audio) return;
+
+    // Updated path to use relative import from components folder
+    this.audio = new Audio("/kusamification-smoke-of-life_limp-bizkit-take-a-look-around.mp3");
+    this.audio.loop = true;
+    this.audio.volume = this.volume;
+    this.audio.muted = this.muted;
+    this.audio.preload = "auto";
+
+    this.audio.addEventListener('play', () => {
+      this.isPlaying = true;
+      this.notifyListeners();
+    });
+
+    this.audio.addEventListener('pause', () => {
+      this.isPlaying = false;
+      this.notifyListeners();
+    });
+
+    this.audio.addEventListener('ended', () => {
+      this.isPlaying = false;
+      this.notifyListeners();
+    });
+
+    this.audio.addEventListener('error', (e) => {
+      console.error('Audio error:', e);
+      this.isPlaying = false;
+      this.notifyListeners();
+    });
+
+    this.audio.addEventListener('canplaythrough', () => {
+      if (this.hasUserInteracted && !this.playAttempted) {
+        this.play();
+      }
+    });
+
+    // Try to autoplay immediately (will be blocked by most browsers)
+    this.play();
+  }
+
+  async play() {
+    if (!this.audio) this.init();
+
+    this.playAttempted = true;
+
+    try {
+      await this.audio.play();
+      console.log('Background music started');
+    } catch (error) {
+      console.log('Audio autoplay blocked:', error);
+      this.setupUserInteractionListener();
+    }
+  }
+
+  pause() {
+    if (this.audio) {
+      this.audio.pause();
+    }
+  }
+
+  setVolume(volume) {
+    this.volume = Math.max(0, Math.min(1, volume));
+    if (this.audio) {
+      this.audio.volume = this.volume;
+    }
+    this.notifyListeners();
+  }
+
+  toggleMute() {
+    this.muted = !this.muted;
+    if (this.audio) {
+      this.audio.muted = this.muted;
+    }
+    this.notifyListeners();
+  }
+
+  setUserInteracted() {
+    this.hasUserInteracted = true;
+    this.removeUserInteractionListener();
+    if (!this.playAttempted) {
+      this.play();
+    }
+  }
+
+  setupUserInteractionListener() {
+    if (this.userInteractionHandler) return;
+
+    this.userInteractionHandler = () => {
+      this.setUserInteracted();
+    };
+
+    const events = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
+    events.forEach(event => {
+      document.addEventListener(event, this.userInteractionHandler, { once: true, passive: true });
+    });
+  }
+
+  removeUserInteractionListener() {
+    if (this.userInteractionHandler) {
+      const events = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
+      events.forEach(event => {
+        document.removeEventListener(event, this.userInteractionHandler);
+      });
+      this.userInteractionHandler = null;
+    }
+  }
+}
 
 const Hero = () => {
   const [progress, setProgress] = useState(1);
@@ -25,16 +169,84 @@ const Hero = () => {
   const [userPhone, setUserPhone] = useState("");
   const [formError, setFormError] = useState("");
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  
+  const [videoError, setVideoError] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
+
+  // Audio state
+  const [audioState, setAudioState] = useState({
+    isPlaying: false,
+    muted: false,
+    volume: 0.5
+  });
+  const [showAudioControl, setShowAudioControl] = useState(false);
+
   // Video ref for manual control
   const videoRef = useRef(null);
-  
+  const interactionListenerRef = useRef(null);
+  const audioManagerRef = useRef(null);
+
   // Characters for the hacking effect
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
   const finalCodeLength = 8;
   const hackingInterval = useRef(null);
   const hackingDuration = 1500;
+
+  // Initialize audio manager
+  useEffect(() => {
+    audioManagerRef.current = AudioManager.getInstance();
+
+    const handleAudioStateChange = (state) => {
+      setAudioState(state);
+    };
+
+    audioManagerRef.current.addListener(handleAudioStateChange);
+    audioManagerRef.current.init();
+
+    // Show audio control after 3 seconds
+    const controlTimer = setTimeout(() => {
+      setShowAudioControl(true);
+    }, 3000);
+
+    return () => {
+      audioManagerRef.current.removeListener(handleAudioStateChange);
+      clearTimeout(controlTimer);
+    };
+  }, []);
+
+  // Auto-start music when user interacts
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (audioManagerRef.current) {
+        audioManagerRef.current.setUserInteracted();
+      }
+      setHasUserInteracted(true);
+    };
+
+    if (!hasUserInteracted) {
+      const events = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
+      events.forEach(event => {
+        document.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+      });
+
+      return () => {
+        events.forEach(event => {
+          document.removeEventListener(event, handleFirstInteraction);
+        });
+      };
+    }
+  }, [hasUserInteracted]);
+
+  // Detect device type
+  const isMobile = () => {
+    if (typeof window === 'undefined') return false;
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
+  const isIOS = () => {
+    if (typeof window === 'undefined') return false;
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  };
 
   // Fixed popup tracking with proper sessionStorage usage
   const hasPopupBeenShown = () => {
@@ -50,175 +262,196 @@ const Hero = () => {
     }
   };
 
-  // Enhanced video play function for iOS
+  // Universal video play function
   const playVideo = async () => {
-    if (videoRef.current && videoLoaded) {
-      try {
-        // Ensure video is properly configured
-        const video = videoRef.current;
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
-        
-        // Wait a moment for the video to be ready
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-          await playPromise;
-          console.log('Video playing successfully');
-        }
-      } catch (error) {
-        console.log('Video autoplay failed:', error);
-        
-        // If autoplay fails, set up interaction listeners
-        if (!hasInteracted) {
-          setupInteractionListeners();
-        }
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+
+    try {
+      // Ensure video is properly configured
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.playsInline = true;
+      video.loop = true;
+      
+      // For mobile devices, especially iOS
+      if (isMobile()) {
+        video.setAttribute('webkit-playsinline', 'true');
+        video.setAttribute('playsinline', 'true');
+      }
+      
+      // Wait for video to be ready if needed
+      if (video.readyState < 2) {
+        await new Promise((resolve) => {
+          const onLoadedData = () => {
+            video.removeEventListener('loadeddata', onLoadedData);
+            resolve();
+          };
+          video.addEventListener('loadeddata', onLoadedData);
+        });
+      }
+      
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        await playPromise;
+        console.log('Video playing successfully');
+      }
+    } catch (error) {
+      console.log('Video play failed:', error);
+      
+      // If autoplay fails, set up user interaction listener
+      if (!hasUserInteracted) {
+        setupUserInteractionListener();
       }
     }
   };
 
-  // Setup interaction listeners for iOS
-  const setupInteractionListeners = () => {
-    const handleFirstInteraction = async (event) => {
-      if (!hasInteracted) {
-        setHasInteracted(true);
-        console.log('First interaction detected:', event.type);
-        
+  // Setup user interaction listener for devices that block autoplay
+  const setupUserInteractionListener = () => {
+    if (interactionListenerRef.current) return; // Already set up
+
+    const handleUserInteraction = async () => {
+      setHasUserInteracted(true);
+      
+      if (videoRef.current) {
         try {
-          if (videoRef.current) {
-            const video = videoRef.current;
-            video.muted = true;
-            video.volume = 0;
-            await video.play();
-            console.log('Video started playing after interaction');
-          }
-        } catch (err) {
-          console.log('Manual video play failed:', err);
+          const video = videoRef.current;
+          video.muted = true;
+          video.volume = 0;
+          video.playsInline = true;
+          
+          await video.play();
+          console.log('Video started after user interaction');
+        } catch (error) {
+          console.log('Video play failed even after interaction:', error);
         }
-        
-        // Remove listeners after successful play
-        removeInteractionListeners();
       }
+      
+      // Remove listeners after first interaction
+      removeUserInteractionListener();
     };
 
-    const events = ['touchstart', 'touchend', 'click', 'scroll', 'mousemove', 'keydown'];
+    const events = ['touchstart', 'touchend', 'click', 'scroll', 'keydown', 'mousemove'];
     events.forEach(event => {
-      document.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+      document.addEventListener(event, handleUserInteraction, { once: true, passive: true });
     });
 
-    // Store the cleanup function
-    window.removeVideoInteractionListeners = () => {
+    interactionListenerRef.current = () => {
       events.forEach(event => {
-        document.removeEventListener(event, handleFirstInteraction);
+        document.removeEventListener(event, handleUserInteraction);
       });
     };
   };
 
-  const removeInteractionListeners = () => {
-    if (window.removeVideoInteractionListeners) {
-      window.removeVideoInteractionListeners();
+  const removeUserInteractionListener = () => {
+    if (interactionListenerRef.current) {
+      interactionListenerRef.current();
+      interactionListenerRef.current = null;
     }
   };
 
-  // Enhanced video setup effect
+  // Video setup effect
   useEffect(() => {
-    const setupVideo = async () => {
-      const video = videoRef.current;
-      if (!video) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-      console.log('Setting up video...');
+    // Configure video for maximum compatibility
+    video.muted = true;
+    video.defaultMuted = true;
+    video.volume = 0;
+    video.loop = true;
+    video.playsInline = true;
+    video.controls = false;
+    video.preload = 'auto';
+    video.crossOrigin = 'anonymous';
 
-      // Configure video properties for maximum iOS compatibility
-      video.muted = true;
-      video.defaultMuted = true;
-      video.volume = 0;
-      video.autoplay = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.controls = false;
-      video.disablePictureInPicture = true;
-      video.preload = 'auto';
-      
-      // Set attributes for iOS
-      video.setAttribute('webkit-playsinline', 'true');
-      video.setAttribute('playsinline', 'true');
-      video.setAttribute('muted', 'true');
-      video.setAttribute('autoplay', 'true');
+    // Set attributes for mobile compatibility
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('muted', 'true');
+    video.setAttribute('autoplay', 'true');
 
-      // Add load event listener
-      const handleVideoLoad = () => {
-        console.log('Video loaded and ready');
-        setVideoLoaded(true);
-      };
-
-      const handleCanPlay = () => {
-        console.log('Video can play');
-        setVideoLoaded(true);
-        // Try to play immediately when video is ready
-        playVideo();
-      };
-
-      const handleError = (e) => {
-        console.error('Video error:', e);
-        console.error('Video error details:', video.error);
-      };
-
-      video.addEventListener('loadeddata', handleVideoLoad);
-      video.addEventListener('canplay', handleCanPlay);
-      video.addEventListener('canplaythrough', handleCanPlay);
-      video.addEventListener('error', handleError);
-
-      // Force load the video
-      video.load();
-
-      // Cleanup function
-      return () => {
-        video.removeEventListener('loadeddata', handleVideoLoad);
-        video.removeEventListener('canplay', handleCanPlay);
-        video.removeEventListener('canplaythrough', handleCanPlay);
-        video.removeEventListener('error', handleError);
-        removeInteractionListeners();
-      };
+    // Event handlers
+    const handleCanPlay = () => {
+      setVideoLoaded(true);
+      setVideoError(false);
+      // Try to play immediately when video is ready
+      playVideo();
     };
 
-    const timer = setTimeout(setupVideo, 100);
-    
+    const handleLoadedData = () => {
+      setVideoLoaded(true);
+      setVideoError(false);
+      // Try to play as soon as we have data
+      playVideo();
+    };
+
+    const handleError = (e) => {
+      console.error('Video error:', e);
+      setVideoError(true);
+      setVideoLoaded(false);
+    };
+
+    const handlePlay = () => {
+      console.log('Video is playing');
+    };
+
+    const handlePause = () => {
+      console.log('Video paused');
+      // Try to restart if paused unexpectedly
+      if (videoLoaded && !videoError) {
+        setTimeout(() => playVideo(), 100);
+      }
+    };
+
+    // Add event listeners
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+    video.addEventListener('play', handlePlay);
+    video.addEventListener('pause', handlePause);
+
+    // Load the video
+    video.load();
+
+    // Cleanup
     return () => {
-      clearTimeout(timer);
-      removeInteractionListeners();
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+      video.removeEventListener('play', handlePlay);
+      video.removeEventListener('pause', handlePause);
+      removeUserInteractionListener();
     };
   }, []);
 
-  // Play video when loaded
-  useEffect(() => {
-    if (videoLoaded) {
-      playVideo();
-    }
-  }, [videoLoaded]);
-
-  // Visibility change handler to restart video on iOS
+  // Handle visibility change to restart video
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && videoRef.current && videoLoaded) {
-        // Small delay to ensure page is fully visible
-        setTimeout(() => {
-          playVideo();
-        }, 200);
+        setTimeout(() => playVideo(), 300);
+      }
+    };
+
+    const handleFocus = () => {
+      if (videoRef.current && videoLoaded) {
+        setTimeout(() => playVideo(), 300);
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
     };
   }, [videoLoaded]);
 
+  // Progress bar effect
   useEffect(() => {
     let interval = setInterval(() => {
       setProgress((prev) => {
@@ -238,25 +471,24 @@ const Hero = () => {
     };
   }, []);
 
-  // Fixed popup timer - only show if not shown before
+  // Popup timer effect
   useEffect(() => {
-    console.log("Checking if popup should show..."); // Debug log
-    
-    // Only set the timer if popup hasn't been shown before
+    console.log("Checking if popup should show...");
+
     if (!hasPopupBeenShown()) {
-      console.log("Setting up popup timer..."); // Debug log
+      console.log("Setting up popup timer...");
       
       const popupTimer = setTimeout(() => {
-        console.log("Popup timer triggered, showing popup"); // Debug log
+        console.log("Popup timer triggered, showing popup");
         setShowPopup(true);
         markPopupAsShown();
-      }, 15000); // 15 seconds
+      }, 15000);
 
       return () => {
         clearTimeout(popupTimer);
       };
     } else {
-      console.log("Popup already shown, skipping..."); // Debug log
+      console.log("Popup already shown, skipping...");
     }
   }, []);
 
@@ -289,18 +521,18 @@ const Hero = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!userName.trim() || !userPhone.trim()) {
       setFormError("Please fill in all fields");
       return;
     }
-    
+
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(userPhone.trim())) {
       setFormError("Please enter a valid 10-digit phone number");
       return;
     }
-    
+
     setFormError("");
     setShowForm(false);
     generateDiscountCode();
@@ -308,19 +540,19 @@ const Hero = () => {
 
   const generateDiscountCode = () => {
     if (isGenerating) return;
-    
+
     setIsGenerating(true);
     setShowCode(true);
     setHackText("");
-    
+
     let startTime = Date.now();
     let finalCode = "";
-    
+
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     for (let i = 0; i < finalCodeLength; i++) {
       finalCode += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    
+
     hackingInterval.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / hackingDuration, 1);
@@ -348,10 +580,10 @@ const Hero = () => {
   const redirectToWhatsApp = (code) => {
     const message = `Hi, I'm ${userName}. I'd like to claim my 30% discount (code: ${code}) for Torque Detailing Studio services.`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/919998899789?text=${encodedMessage}`;
-    
+    const whatsappURL = `https://wa.me/919686968315?text=${encodedMessage}`;
+
     window.open(whatsappURL, '_blank');
-    
+
     setTimeout(() => {
       closePopup();
     }, 4000);
@@ -364,9 +596,23 @@ const Hero = () => {
     });
   };
 
-  // Debug log to check popup state
-  console.log("Popup state:", { showPopup, popupClosed, isComplete, hasBeenShown: hasPopupBeenShown() });
- 
+  // Audio control functions
+  const toggleAudio = () => {
+    if (audioManagerRef.current) {
+      if (audioState.isPlaying) {
+        audioManagerRef.current.pause();
+      } else {
+        audioManagerRef.current.play();
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (audioManagerRef.current) {
+      audioManagerRef.current.toggleMute();
+    }
+  };
+
   return (
     <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
       {/* Navbar */}
@@ -374,87 +620,94 @@ const Hero = () => {
         <Navlinks isComplete={isComplete} />
       </motion.div>
 
-      {/* Enhanced video element with maximum iOS compatibility */}
+      {/* Audio Control Button - Hidden by default since autoplay is enabled */}
+      {showAudioControl && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="fixed top-20 right-4 md:right-6 z-50 bg-black bg-opacity-80 rounded-full p-3 border border-[#00DAFF] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleAudio}
+              className="text-white hover:text-[#00DAFF] transition-colors"
+              title={audioState.isPlaying ? "Pause Music" : "Play Music"}
+            >
+              {audioState.isPlaying ? (
+                <div className="w-5 h-5 flex items-center justify-center">
+                  <div className="w-1 h-3 bg-current mr-1"></div>
+                  <div className="w-1 h-3 bg-current"></div>
+                </div>
+              ) : (
+                <div className="w-5 h-5 flex items-center justify-center">
+                  <div className="w-0 h-0 border-l-[6px] border-l-current border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent"></div>
+                </div>
+              )}
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleMute}
+              className="text-white hover:text-[#00DAFF] transition-colors"
+              title={audioState.muted ? "Unmute" : "Mute"}
+            >
+              {audioState.muted ? <FaVolumeMute size={16} /> : <FaVolumeUp size={16} />}
+            </motion.button>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Fixed video element with corrected URL and universal autoplay */}
       <video
         ref={videoRef}
         loop
-        autoPlay
         muted
         playsInline
-        webkit-playsinline="true"
+        autoPlay
         preload="auto"
-        poster=""
         controls={false}
         disablePictureInPicture
         crossOrigin="anonymous"
-        src="https://res.cloudinary.com/dycm7vkuq/video/upload/v1744367852/100_MB_skq4tw.mp4"
+        webkit-playsinline="true"
+        src="https://lakdfs.sirv.com/Images/Website%20Video-_1.mp4"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          // Force hardware acceleration
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-          perspective: '1000px',
-        }}
-        onLoadStart={() => {
-          console.log('Video load started');
-        }}
-        onLoadedData={() => {
-          console.log('Video data loaded');
-          setVideoLoaded(true);
-        }}
-        onCanPlay={() => {
-          console.log('Video can play');
-          setVideoLoaded(true);
-        }}
-        onCanPlayThrough={() => {
-          console.log('Video can play through');
-          setVideoLoaded(true);
-        }}
-        onPlay={() => {
-          console.log('Video started playing');
-        }}
-        onPause={() => {
-          console.log('Video paused');
-          // Auto-restart if paused unexpectedly
-          if (videoRef.current && videoLoaded) {
-            setTimeout(() => {
-              playVideo();
-            }, 100);
-          }
-        }}
-        onError={(e) => {
-          console.error('Video error:', e);
-          console.error('Video error details:', e.target.error);
-        }}
-        onStalled={() => {
-          console.log('Video stalled, attempting to restart');
-          if (videoRef.current) {
-            videoRef.current.load();
-          }
-        }}
-        onWaiting={() => {
-          console.log('Video waiting for data');
-        }}
+        onContextMenu={(e) => e.preventDefault()} // Prevent right-click
       >
-        {/* Fallback for browsers that don't support the video format */}
         Your browser does not support the video tag.
       </video>
 
-      {/* Interaction overlay for iOS - invisible but helps trigger video play */}
-      {!hasInteracted && (
+      {/* Fallback overlay for video loading */}
+      {videoError && (
+        <div className="absolute inset-0 bg-black flex items-center justify-center z-10">
+          <div className="text-white text-center">
+            <p className="text-lg mb-4">Video failed to load</p>
+            <button 
+              onClick={() => {
+                setVideoError(false);
+                videoRef.current?.load();
+              }}
+              className="px-4 py-2 bg-[#00DAFF] rounded hover:bg-opacity-80 transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Interaction overlay to ensure video plays on first user interaction */}
+      {!hasUserInteracted && !videoError && (
         <div 
-          className="absolute inset-0 z-10 bg-transparent cursor-pointer"
+          className="absolute inset-0 z-5 bg-transparent cursor-pointer"
           onClick={() => {
-            if (!hasInteracted) {
-              setHasInteracted(true);
-              playVideo();
-            }
+            setHasUserInteracted(true);
+            playVideo();
           }}
           onTouchStart={() => {
-            if (!hasInteracted) {
-              setHasInteracted(true);
-              playVideo();
-            }
+            setHasUserInteracted(true);
+            playVideo();
           }}
         />
       )}
@@ -517,7 +770,7 @@ const Hero = () => {
                 
                 <div className="text-white mb-6">
                   <p className="font-semibold text-[#00DAFF]">Torque Detailing Studio</p>
-                  <p className="text-sm">Call us: <a href="tel:9998899789" className="hover:text-[#00DAFF] transition-colors">9998899789</a></p>
+                  <p className="text-sm">Call us: <a href="tel:9686968315" className="hover:text-[#00DAFF] transition-colors">9686968315</a></p>
                 </div>
                 
                 {!showForm && !showCode && (
@@ -643,5 +896,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-/*Elha mensagem*/

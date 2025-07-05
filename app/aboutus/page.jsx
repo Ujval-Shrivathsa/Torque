@@ -7,9 +7,9 @@ import Footer from "../Components/Footer";
 
 const Page = () => {
   const images = [
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896503/unnamed_tqnwac.jpg",
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ2_bunhsw.jpg",
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894420/TQ3_l4jnla.jpg",
+    "https://lakdfs.sirv.com/Images/TQ2.JPG",
+    "https://lakdfs.sirv.com/Images/TQ3.JPG",
+    "https://lakdfs.sirv.com/Images/TQ1.JPG",
   ];
 
   const img = [
@@ -49,7 +49,7 @@ const Page = () => {
         <div
           className="relative w-full max-w-[1200px] h-[600px] top-20 rounded-[30px] overflow-hidden bg-cover bg-center shadow-2xl transition-all duration-500"
           style={{
-            backgroundImage: `url(https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823559/aboutuspageherobg_yoyu3s.jpg)`,
+            backgroundImage: `url(https://lakdfs.sirv.com/Images/TQ4.JPG)`,
           }}
         >
           {/* Overlay */}

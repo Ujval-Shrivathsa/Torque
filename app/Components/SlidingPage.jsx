@@ -94,7 +94,7 @@ const SlidingPage = () => {
           <Link href="/services/ppf" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822076/PPF_i70du0.jpg')] bg-cover bg-center cursor-pointer relative"
+              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://lakdfs.sirv.com/Images/PPF.jpg')] bg-cover bg-center cursor-pointer relative"
             >
               <motion.div className="absolute bottom-0 left-0 right-0 h-[30%] lg:mt-10 flex-col flex justify-center items-center bg-black bg-opacity-80 px-4">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">Paint Protection Film</h1>
@@ -107,7 +107,7 @@ const SlidingPage = () => {
           <Link href="/services/gc" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/ED_zhw6nc.jpg')] bg-cover bg-center cursor-pointer relative"
+              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://img.freepik.com/premium-photo/applying-nanoceramics-cars-car-paint-protection-concept_153608-1180.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740')] bg-cover bg-center cursor-pointer relative"
             >
               <motion.div className="absolute bottom-0 left-0 right-0 h-[30%] lg:mt-10 flex-col flex justify-center items-center bg-black bg-opacity-80 px-4">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">Graphene Coating</h1>
@@ -120,7 +120,7 @@ const SlidingPage = () => {
           <Link href="/services/cc" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg')] bg-cover bg-center cursor-pointer relative"
+              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://lakdfs.sirv.com/Images/C%20C.jpg')] bg-cover bg-center cursor-pointer relative"
             >
               <motion.div className="absolute bottom-0 left-0 right-0 h-[30%] lg:mt-10 flex-col flex justify-center items-center bg-black bg-opacity-80 px-4">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ceramic Coating</h1>

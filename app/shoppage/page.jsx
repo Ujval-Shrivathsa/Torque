@@ -379,7 +379,7 @@ const Page = () => {
     {
       id: 1,
       title: "Engine Coating",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR2_az9js5.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
       mrp: 760,
       discountedPrice: 500,
       discountPercentage: 35,
@@ -388,7 +388,7 @@ const Page = () => {
     {
       id: 2,
       title: "Tar & Adhesive Remover",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR4_d5yk2s.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR4.JPG",
       mrp: 540,
       discountedPrice: 399,
       discountPercentage: 25,
@@ -397,7 +397,7 @@ const Page = () => {
     {
       id: 3,
       title: "Upholstery Cleaner",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746692461/HK100789_tum8gk.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
       mrp: 590,
       discountedPrice: 390,
       discountPercentage: 35,
@@ -406,7 +406,7 @@ const Page = () => {
     {
       id: 4,
       title: "Glass Cleaner",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746692474/HK100799_bl413u.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
       mrp: 290,
       discountedPrice: 190,
       discountPercentage: 35,
@@ -415,7 +415,7 @@ const Page = () => {
     {
       id: 5,
       title: "Odur Remover & Cabin Sanitizer",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746692454/HK100791_q4eyio.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR3.JPG",
       mrp: 630,
       discountedPrice: 410,
       discountPercentage: 40,
@@ -424,7 +424,7 @@ const Page = () => {
     {
       id: 6,
       title: "Herbal Rat Repellent",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746694412/HK100800_szbf0n.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR1.JPG",
       mrp: 990,
       discountedPrice: 640,
       discountPercentage: 35,
@@ -433,7 +433,7 @@ const Page = () => {
     {
       id: 7,
       title: "Wind Shield Wash",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746692454/HK100791_q4eyio.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
       mrp: 90,
       discountedPrice: 59,
       discountPercentage: 35,
@@ -442,7 +442,7 @@ const Page = () => {
     {
       id: 8,
       title: "Plastic & Rubber Care",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744975254/TR5_kzonyn.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR5.JPG",
       mrp: 540,
       discountedPrice: 410,
       discountPercentage: 35,
@@ -451,7 +451,7 @@ const Page = () => {
     {
       id: 9,
       title: "Car Care KIT",
-      image: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1746692461/HK100789_tum8gk.jpg",
+      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
       mrp: 1199,
       discountedPrice: 720,
       discountPercentage: 40,

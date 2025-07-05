@@ -96,7 +96,7 @@ const onSubmit = async (data) => {
       description:
         "A paint protection film, also known as a clear bra, is a transparent layer that is applied to the exterior of a vehicle to safeguard the paint from scratches, chips, and other damage.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822076/PPF_i70du0.jpg",
+        "https://lakdfs.sirv.com/Images/PPF.jpg",
       linkUrl: "/services/ppf"
     },
     {
@@ -104,7 +104,7 @@ const onSubmit = async (data) => {
       description:
         "Graphene coating is a cutting-edge protective layer that enhances the durability and shine of your vehicle's paint. It provides superior resistance to scratches, UV rays, and environmental contaminants.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/ED_zhw6nc.jpg",
+        "https://img.freepik.com/premium-photo/applying-nanoceramics-cars-car-paint-protection-concept_153608-1180.jpg?ga=GA1.1.1515336155.1743059816&semt=ais_hybrid&w=740",
       linkUrl: "/services/gc"
     },
     {
@@ -112,7 +112,7 @@ const onSubmit = async (data) => {
       description:
         "Ceramic coating is a liquid polymer applied to the exterior of a vehicle, creating a protective layer that enhances shine and provides resistance against scratches, UV rays, and chemical stains.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/C_C_gu0ywy.jpg",
+        "https://lakdfs.sirv.com/Images/C%20C.jpg",
       linkUrl: "/services/cc"
     },
     {
@@ -120,7 +120,7 @@ const onSubmit = async (data) => {
       description:
         "Deep cleaning and protection of all interior surfaces including seats, carpets, and dashboard. Keeps your ride looking brand new inside.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/IN_D_dlrscu.jpg",
+        "https://lakdfs.sirv.com/Images/IN%20D.jpg",
       linkUrl: "/services/id"
     },
     {
@@ -128,7 +128,7 @@ const onSubmit = async (data) => {
       description:
         "Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823070/EDD_ufzxn4.jpg",
+        "https://lakdfs.sirv.com/Images/ED.jpg",
       linkUrl: "/services/ed"
     },
     {
@@ -136,7 +136,7 @@ const onSubmit = async (data) => {
       description:
         "Give your vehicle a complete makeover, inside and out. Experience a sparkling exterior and a refreshed interior with our meticulous cleaning and restoration service.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/AD_newgqk.jpg",
+        "https://lakdfs.sirv.com/Images/AD.jpg",
       linkUrl: "/services/ad"
     },
     {
@@ -144,7 +144,7 @@ const onSubmit = async (data) => {
       description:
         "Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749823939/V_W_u9lzhn.jpg",
+        "https://lakdfs.sirv.com/Images/V%20W.jpg",
       linkUrl: "/services/vx"
     },
     {
@@ -152,7 +152,7 @@ const onSubmit = async (data) => {
       description:
         " It enhances privacy, reduces glare, blocks UV rays, and protects your interior from fading and heat damage. Customizable options offer the perfect blend of style and function.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822075/WT_hj84sr.jpg",
+        "https://lakdfs.sirv.com/Images/WT.jpg",
       linkUrl: "/services/wt"
     },
     {
@@ -160,7 +160,7 @@ const onSubmit = async (data) => {
       description:
         "Enhance visibility and safety with an advanced hydrophobic coating that keeps your windshield clean, providing clearer vision during heavy rains and reducing hard water spots.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/WC_pripys.jpg",
+        "https://lakdfs.sirv.com/Images/WC.jpg",
       linkUrl: "/services/wc"
     },
     {
@@ -168,7 +168,7 @@ const onSubmit = async (data) => {
       description:
         "Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/HR_gemq1v.jpg",
+        "https://lakdfs.sirv.com/Images/HR.jpg",
       linkUrl: "/services/hr"
     },
     {
@@ -176,7 +176,7 @@ const onSubmit = async (data) => {
       description:
         "Eliminate odours and harmful bacteria with our thorough interior disinfection service.",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/ID_cvrf2r.jpg",
+        "https://lakdfs.sirv.com/Images/ID.jpg",
       linkUrl: "/services/idi"
     },
     {
@@ -184,7 +184,7 @@ const onSubmit = async (data) => {
       description:
         "Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/TR_ntkjqg.jpg",
+        "https://lakdfs.sirv.com/Images/TR.jpg",
       linkUrl: "/services/tr"
     },
     {
@@ -192,7 +192,7 @@ const onSubmit = async (data) => {
       description:
         "With a deep clean and sanitization of your A/C ducts and filters. You can be rest assured, with clean and fresh air inside your car",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822077/AC_ooer2g.jpg",
+        "https://lakdfs.sirv.com/Images/AC.jpg",
       linkUrl: "/services/acs"
     },
     {
@@ -200,7 +200,7 @@ const onSubmit = async (data) => {
       description:
         "From windshield wiper changes to fitting dashcams, we handle small but essential repairs. ",
       image:
-        "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749822078/ME_pkvmqo.jpg",
+        "https://lakdfs.sirv.com/Images/ME.jpg",
       linkUrl: "/services/mem"
     },
   ];

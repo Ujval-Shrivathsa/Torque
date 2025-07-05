@@ -6,12 +6,12 @@ import ImageSlider from "./ImageSlider";
 
 const SliderPage = () => {
     const features = [
-        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/uv_zzyt83.png", text: "UV & SUNSHINE" },
-        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655229/water-drops_zcbuwq.png", text: "WEATHER EROSION" },
-        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655225/acid-rain_zps4gg.png", text: "ACID RAIN" },
-        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/scratches_tp6rfq.png", text: "GRAFFITI & SCRATCHES" },
-        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655227/bird_wf807b.png", text: "BIRD DROPPING" },
-        { img: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1749655226/natural-gum_ifk1zb.png", text: "TREE GUM" },
+        { img: "https://lakdfs.sirv.com/Images/uv.png", text: "UV & SUNSHINE" },
+        { img: "https://lakdfs.sirv.com/Images/water-drops.png", text: "WEATHER EROSION" },
+        { img: "https://lakdfs.sirv.com/Images/acid-rain.png", text: "ACID RAIN" },
+        { img: "https://lakdfs.sirv.com/Images/scratches.png", text: "GRAFFITI & SCRATCHES" },
+        { img: "https://lakdfs.sirv.com/Images/bird.png", text: "BIRD DROPPING" },
+        { img: "https://lakdfs.sirv.com/Images/natural-gum.png", text: "TREE GUM" },
     ];
 
     return (
