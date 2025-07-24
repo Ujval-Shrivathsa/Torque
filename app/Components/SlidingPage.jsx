@@ -138,7 +138,7 @@ const SlidingPage = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mt-11 z-99 px-6 py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-base sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white transition-all duration-300"
+          className="mt-11 px-6 py-3 border-2 border-[#00DAFF] text-[#00DAFF] text-base sm:text-lg font-medium rounded-full flex items-center gap-2 hover:bg-[#00DAFF] hover:text-white transition-all duration-300"
         >
           <Link href="/services">Our services →</Link>
         </motion.button>

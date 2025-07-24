@@ -212,7 +212,7 @@ const onSubmit = async (data) => {
 
         <div className="relative w-full overflow-x- px-6 md:px-16 lg:px-20 pt-28">
           <img
-            src="https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823189/servicesherobg_szthae.jpg"
+            src="https://lakdfs.sirv.com/Images/top-view-steel-hammer-with-other-construction-elements-tools.jpg"
             alt="Our Services"
             className="w-full h-[500px] object-cover rounded-3xl"
           />

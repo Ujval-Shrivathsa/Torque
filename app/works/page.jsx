@@ -60,12 +60,12 @@ const Page = () => {
     {
       id: "5",
       title: "Mercedes Benz",
-      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1745823189/Mercedez_Benz_n2hhz2.jpg",
+      url: "https://lakdfs.sirv.com/Images/2025-05-07.jpg",
     },
     {
       id: "6",
       title: "KTM Duke",
-      url: "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896548/unname_gpl2g2.jpg",
+      url: "https://lakdfs.sirv.com/Images/unnamed.jpg",
     },
   ]);
 

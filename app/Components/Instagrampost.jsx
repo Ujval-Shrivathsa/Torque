@@ -153,12 +153,13 @@ const InstagramFeed = () => {
           href="https://www.instagram.com/torquedetailingstudio/"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-cyan-600 text-white font-bold text-lg flex items-center px-10 py-5 rounded-2xl shadow-xl transform hover:scale-105 transition-all"
+          className="bg-cyan-600 text-white font-bold text-base flex items-center px-4 py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all"
         >
-          <Instagram className="mr-3 text-xl" />
+          <Instagram className="mr-2 text-lg" />
           Follow @torquedetailingstudio
         </a>
       </div>
+
     </div>
   );
 };

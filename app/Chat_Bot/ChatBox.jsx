@@ -305,7 +305,7 @@ const ChatBox = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.3 }}
-            className="fixed lg:bottom-25 bottom-29 z-9999999999999999999999999999999999999999999999999999 right-3 md:bottom-25 md:w-[40%] lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col z-50"
+            className="fixed lg:bottom-25 bottom-29 z-999 right-3 md:bottom-25 md:w-[40%] lg:w-[30%] w-[90%] mt-[-100px] sm:mt-0 md:mt-0 lg:mt-[-200px] md:right-6 h-[60vh] sm:h-[65vh] rounded-t-xl sm:rounded-xl shadow-lg bg-white flex flex-col"
           >
             {/* Header */}
             <div className="relative flex items-center w-[full] h-[8%] sm:h-[10%] bg-white rounded-t-xl px-2 sm:px-4 overflow-hidden">
