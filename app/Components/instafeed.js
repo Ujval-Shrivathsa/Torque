@@ -1,12 +1,12 @@
 // pages/api/instagram-feed.js
 
 export default async function handler(req, res) {
-  const INSTAGRAM_ACCESS_TOKEN = 'EAAPHZBijhj30BO92QhEaFeXrInJwD28VJ3iJnmyP3pF1KBxVAaZAQS1uQFeesnDgWqp95ikv9cSaCfHdZBkmVpgbcfjSYrVYSZC0ZAyfPLppXc7rO7TBTJYKmPUD9asByUtgY48HDaqXkTha4TXneLZCXr9OHapi8GdaofRpUiL2mJkUZAsx2pNZBzWqfcMBYZCeNQEQXsNgVHK4vhF9MVZCJZBWXJVVjlLQwVGtMjgY2bYO5oMRIRTa1Jw';
+  const INSTAGRAM_ACCESS_TOKEN = 'EAAPHZBijhj30BPdtKmTJTI2qXkLohHkRbKtZAIYOcXHtYKypcmyZBcigoytv0ZBGQZCsVesTfY0zOZCtFS70AZA8HY2z3l2f6oa2ZAxZBqJdgTZCZAZCOBtxDugEfrtZCIHqjEV0W3puZAiVdqr1dgIHPgYaOBhbLTGFOzonl5BZA8wZBkZBqyCeusDOVC8UunaIeqBSKjJKSoG1QmY1Vi4ZBvfoZBm';
   const INSTAGRAM_USER_ID = '17841470271684652';
 
   try {
     const response = await fetch(
-      `https://graph.instagram.com/${INSTAGRAM_USER_ID}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,like_count,comments_count&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=12`
+      `https://graph.facebook.com/v23.0/17841470271684652/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,like_count,comments_count&access_token=EAAPHZBijhj30BPYVfYa9Smdjrx39WMuEN5dRZB3invhxZCgItZBt4aZAO4ZC6TwhEwFFvxtEJk1x5HwMgIOAzBe8Q5bUsEFFRTfDAMGjZBlmdJzxg4X9LM9zVoo1n624X7ctdZCPnJ7k39227TZCCHkO7v1Fteyx1haV3Jq2biL8ZCFlBWJfsp4FwgbFgl782g0mxX4xutCkVLPEltg6ur&limit=12`
     );
 
     if (!response.ok) {

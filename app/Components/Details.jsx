@@ -46,9 +46,9 @@ const Testimonials = () => {
             transition={{ duration: 1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
           >
-            Over 35 years {" "}
+            The Difference {" "}
             <br className="hidden md:block" />
-            <span className="text-[#00DAFF]">trust worthy</span>
+            <span className="text-[#00DAFF]">we make</span>
           </motion.h2>
         </div>
 
