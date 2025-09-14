@@ -13,9 +13,9 @@ const Page = () => {
   ];
 
   const img = [
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744894424/TQ1_kgbzwa.jpg",
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896651/u_bnybbp.jpg",
-    "https://res.cloudinary.com/dycm7vkuq/image/upload/v1744896548/unname_gpl2g2.jpg",
+    "https://lakdfs.sirv.com/Images/2025-05-07.jpg",
+    "https://lakdfs.sirv.com/Images/TQ4.JPG",
+    "https://lakdfs.sirv.com/Images/unnamed.jpg",
   ];
 
   const scrollRef1 = useRef(null);
