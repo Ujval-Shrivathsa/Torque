@@ -1,12 +1,12 @@
 // app/api/instagram-posts/route.js
 
 export async function GET() {
-  const INSTAGRAM_ACCESS_TOKEN = 'EAAPHZBijhj30BO92QhEaFeXrInJwD28VJ3iJnmyP3pF1KBxVAaZAQS1uQFeesnDgWqp95ikv9cSaCfHdZBkmVpgbcfjSYrVYSZC0ZAyfPLppXc7rO7TBTJYKmPUD9asByUtgY48HDaqXkTha4TXneLZCXr9OHapi8GdaofRpUiL2mJkUZAsx2pNZBzWqfcMBYZCeNQEQXsNgVHK4vhF9MVZCJZBWXJVVjlLQwVGtMjgY2bYO5oMRIRTa1Jw';
+  const INSTAGRAM_ACCESS_TOKEN = 'EAAPHZBijhj30BPYVfYa9Smdjrx39WMuEN5dRZB3invhxZCgItZBt4aZAO4ZC6TwhEwFFvxtEJk1x5HwMgIOAzBe8Q5bUsEFFRTfDAMGjZBlmdJzxg4X9LM9zVoo1n624X7ctdZCPnJ7k39227TZCCHkO7v1Fteyx1haV3Jq2biL8ZCFlBWJfsp4FwgbFgl782g0mxX4xutCkVLPEltg6ur';
   const INSTAGRAM_USER_ID = '17841470271684652';
 
   try {
     const response = await fetch(
-      `https://graph.facebook.com/v18.0/17841470271684652/media?fields=id,caption,media_type,media_url,permalink,timestamp,like_count,comments_count&access_token=EAAPHZBijhj30BO9eh808vQYzFpdyZBUXzbGviQ9RZBnXgrhkXi6B47KZBEzBMdLwUUc5WysXyERltDQZARRGGZB4XGkXVN7ZBa0Gohe2MsrsovwREwXCeLuklP67uS8K4oCkYkDyZCaPAWVIQH3bVgdd48dSzbrMABZBaG2oM27neijFtHh5R5Gg2j7nxBrLeLnMOVeZCVpBdmuCgxuBtK`
+      `https://graph.facebook.com/v18.0/17841470271684652/media?fields=id,caption,media_type,media_url,permalink,timestamp,like_count,comments_count&access_token=EAAPHZBijhj30BPYVfYa9Smdjrx39WMuEN5dRZB3invhxZCgItZBt4aZAO4ZC6TwhEwFFvxtEJk1x5HwMgIOAzBe8Q5bUsEFFRTfDAMGjZBlmdJzxg4X9LM9zVoo1n624X7ctdZCPnJ7k39227TZCCHkO7v1Fteyx1haV3Jq2biL8ZCFlBWJfsp4FwgbFgl782g0mxX4xutCkVLPEltg6ur`
     );
 
     if (!response.ok) {
