@@ -7,15 +7,15 @@ import Footer from "../Components/Footer";
 
 const Page = () => {
   const images = [
-    "https://lakdfs.sirv.com/Images/TQ2.JPG",
-    "https://lakdfs.sirv.com/Images/TQ3.JPG",
-    "https://lakdfs.sirv.com/Images/TQ1.JPG",
+    "https://i.ibb.co/WNxHZYT6/TQ2.jpg",
+    "https://i.ibb.co/NgNcFj5p/TQ3.jpg",
+    "https://i.ibb.co/xKPFrKDJ/TQ1.jpg",
   ];
 
   const img = [
-    "https://lakdfs.sirv.com/Images/2025-05-07.jpg",
-    "https://lakdfs.sirv.com/Images/TQ4.JPG",
-    "https://lakdfs.sirv.com/Images/unnamed.jpg",
+    "https://i.ibb.co/6RT7j6Nr/2025-05-07.jpg",
+    "https://i.ibb.co/84SL0b6S/TQ4.jpg",
+    "https://i.ibb.co/wh1wKb02/unnamed.jpg",
   ];
 
   const scrollRef1 = useRef(null);
@@ -49,7 +49,7 @@ const Page = () => {
         <div
           className="relative w-full max-w-[1200px] h-[600px] top-20 rounded-[30px] overflow-hidden bg-cover bg-center shadow-2xl transition-all duration-500"
           style={{
-            backgroundImage: `url(https://lakdfs.sirv.com/Images/TQ4.JPG)`,
+            backgroundImage: `url(https://i.ibb.co/84SL0b6S/TQ4.jpg)`,
           }}
         >
           {/* Overlay */}

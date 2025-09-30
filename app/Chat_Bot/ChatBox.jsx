@@ -480,7 +480,7 @@ const ChatBox = () => {
           className="bg-green-600 hover:bg-green-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
         >
           <img 
-            src="https://lakdfs.sirv.com/Images/download-removebg-preview.png"
+            src="https://i.ibb.co/ZpLZpP8q/download-removebg-preview.png"
             alt="WhatsApp" 
             className="" 
           />
@@ -497,7 +497,7 @@ const ChatBox = () => {
           className="bg-blue-500 hover:bg-blue-600 w-12 h-12 rounded-full text-white flex items-center justify-center shadow-lg transform transition-all duration-200 hover:scale-110 group"
         >
           <img 
-            src="https://lakdfs.sirv.com/Images/telephone.png"
+            src="https://i.ibb.co/4yRGTZH/telephone.png"
             alt="WhatsApp" 
             className="w-6 h-6" 
           />
@@ -528,7 +528,7 @@ const ChatBox = () => {
 
           <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center">
             <img
-              src="https://lakdfs.sirv.com/Images/istockphoto-1180568095-1024x1024.jpg"
+              src="https://i.ibb.co/wr8NL9nd/istockphoto-1180568095-1024x1024.jpg"
               alt="Chat Assistant"
               className="w-10 h-10 lg:w-14 lg:h-14 object-cover object-top rounded-full"
             />

@@ -379,7 +379,7 @@ const Page = () => {
     {
       id: 1,
       title: "Engine Coating",
-      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
+      image: "https://i.ibb.co/SwVrQ885/TR2.jpg",
       mrp: 760,
       discountedPrice: 500,
       discountPercentage: 35,
@@ -388,7 +388,7 @@ const Page = () => {
     {
       id: 2,
       title: "Tar & Adhesive Remover",
-      image: "https://lakdfs.sirv.com/Images/TR4.JPG",
+      image: "https://i.ibb.co/pvp7nzsb/TR4.jpg",
       mrp: 540,
       discountedPrice: 399,
       discountPercentage: 25,
@@ -397,7 +397,7 @@ const Page = () => {
     {
       id: 3,
       title: "Upholstery Cleaner",
-      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
+      image: "https://i.ibb.co/SwVrQ885/TR2.jpg",
       mrp: 590,
       discountedPrice: 390,
       discountPercentage: 35,
@@ -406,7 +406,7 @@ const Page = () => {
     {
       id: 4,
       title: "Glass Cleaner",
-      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
+      image: "https://i.ibb.co/SwVrQ885/TR2.jpg",
       mrp: 290,
       discountedPrice: 190,
       discountPercentage: 35,
@@ -415,7 +415,7 @@ const Page = () => {
     {
       id: 5,
       title: "Odur Remover & Cabin Sanitizer",
-      image: "https://lakdfs.sirv.com/Images/TR3.JPG",
+      image: "https://i.ibb.co/bjXwx3tC/TR3.jpg",
       mrp: 630,
       discountedPrice: 410,
       discountPercentage: 40,
@@ -424,7 +424,7 @@ const Page = () => {
     {
       id: 6,
       title: "Herbal Rat Repellent",
-      image: "https://lakdfs.sirv.com/Images/TR1.JPG",
+      image: "https://i.ibb.co/bjXwx3tC/TR3.jpg",
       mrp: 990,
       discountedPrice: 640,
       discountPercentage: 35,
@@ -433,7 +433,7 @@ const Page = () => {
     {
       id: 7,
       title: "Wind Shield Wash",
-      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
+      image: "https://i.ibb.co/SwVrQ885/TR2.jpg",
       mrp: 90,
       discountedPrice: 59,
       discountPercentage: 35,
@@ -442,7 +442,7 @@ const Page = () => {
     {
       id: 8,
       title: "Plastic & Rubber Care",
-      image: "https://lakdfs.sirv.com/Images/TR5.JPG",
+      image: "https://i.ibb.co/xS9xJPxZ/TR5.jpg",
       mrp: 540,
       discountedPrice: 410,
       discountPercentage: 35,
@@ -451,7 +451,7 @@ const Page = () => {
     {
       id: 9,
       title: "Car Care KIT",
-      image: "https://lakdfs.sirv.com/Images/TR2.JPG",
+      image: "https://i.ibb.co/SwVrQ885/TR2.jpg",
       mrp: 1199,
       discountedPrice: 720,
       discountPercentage: 40,

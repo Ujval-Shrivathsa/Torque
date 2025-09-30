@@ -417,7 +417,7 @@ const Hero = () => {
         disablePictureInPicture
         crossOrigin="anonymous"
         webkit-playsinline="true"
-        src="https://lakdfs.sirv.com/Images/Website%20Video-_1.mp4"
+        src="https://ik.imagekit.io/kd1rkvapo/Website%20Video-_1%20(1).mp4?updatedAt=1759230344103"
         className="absolute inset-0 w-full h-full object-cover"
         onContextMenu={(e) => e.preventDefault()} // Prevent right-click
       >

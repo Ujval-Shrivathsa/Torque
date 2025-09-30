@@ -6,12 +6,12 @@ import ImageSlider from "./ImageSlider";
 
 const SliderPage = () => {
     const features = [
-        { img: "https://lakdfs.sirv.com/Images/uv.png", text: "UV & SUNSHINE" },
-        { img: "https://lakdfs.sirv.com/Images/water-drops.png", text: "WEATHER EROSION" },
-        { img: "https://lakdfs.sirv.com/Images/acid-rain.png", text: "ACID RAIN" },
-        { img: "https://lakdfs.sirv.com/Images/scratches.png", text: "GRAFFITI & SCRATCHES" },
-        { img: "https://lakdfs.sirv.com/Images/bird.png", text: "BIRD DROPPING" },
-        { img: "https://lakdfs.sirv.com/Images/natural-gum.png", text: "TREE GUM" },
+        { img: "https://i.ibb.co/V0Nhcd5s/uv.png", text: "UV & SUNSHINE" },
+        { img: "https://i.ibb.co/WvkvkB2T/water-drops.png", text: "WEATHER EROSION" },
+        { img: "https://i.ibb.co/Rprj8LQF/acid-rain.png", text: "ACID RAIN" },
+        { img: "https://i.ibb.co/yFQjQZ4y/scratches.png", text: "GRAFFITI & SCRATCHES" },
+        { img: "https://i.ibb.co/gb5Mt2Rc/bird.png", text: "BIRD DROPPING" },
+        { img: "https://i.ibb.co/7tb34sMx/natural-gum.png", text: "TREE GUM" },
     ];
 
     return (
@@ -37,8 +37,8 @@ const SliderPage = () => {
                         className="w-full max-w-[100%] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[950px] rounded-2xl overflow-hidden"
                     >
                         <ImageSlider
-                            beforeImage="https://lakdfs.sirv.com/Images/cosy-01.png"
-                            afterImage="https://lakdfs.sirv.com/Images/cosy.png"
+                            beforeImage="https://i.ibb.co/SwdBjWhD/cosy-01.png"
+                            afterImage="https://i.ibb.co/DPFfG53v/cosy.png"
                         />
                     </motion.div>
                 </motion.div>

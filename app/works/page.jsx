@@ -14,7 +14,7 @@ const Page = () => {
   const [mainCar, setMainCar] = useState({
     id: "main",
     title: "Porsche 911",
-    url: "https://lakdfs.sirv.com/Images/TQ4.JPG",
+    url: "https://i.ibb.co/84SL0b6S/TQ4.jpg",
   });
 
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -40,12 +40,12 @@ const Page = () => {
     {
       id: "1",
       title: "BMW X5",
-      url: "https://lakdfs.sirv.com/Images/TQ2.JPG",
+      url: "https://i.ibb.co/WNxHZYT6/TQ2.jpg",
     },
     {
       id: "2",
       title: "Mini Cooper",
-      url: "https://lakdfs.sirv.com/Images/TQ3.JPG",
+      url: "https://i.ibb.co/NgNcFj5p/TQ3.jpg",
     },
     {
       id: "3",
@@ -55,17 +55,17 @@ const Page = () => {
     {
       id: "4",
       title: "Royal Enfield",
-      url: "https://lakdfs.sirv.com/Images/TQ1.JPG",
+      url: "https://i.ibb.co/xKPFrKDJ/TQ1.jpg",
     },
     {
       id: "5",
       title: "Mercedes Benz",
-      url: "https://lakdfs.sirv.com/Images/2025-05-07.jpg",
+      url: "https://i.ibb.co/6RT7j6Nr/2025-05-07.jpg",
     },
     {
       id: "6",
       title: "KTM Duke",
-      url: "https://lakdfs.sirv.com/Images/unnamed.jpg",
+      url: "https://i.ibb.co/wh1wKb02/unnamed.jpg",
     },
   ]);
 

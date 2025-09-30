@@ -13,7 +13,7 @@ import Link from "next/link";
 
 const products = [
   {
-    img: "https://lakdfs.sirv.com/Images/TR2.JPG",
+    img: "https://i.ibb.co/SwVrQ885/TR2.jpg",
     name: "Engine Coating",
     mrp: 500,
     discountedPrice: 760,
@@ -21,7 +21,7 @@ const products = [
     Link: "/product",
   },
   {
-    img: "https://lakdfs.sirv.com/Images/TR4.JPG",
+    img: "https://i.ibb.co/pvp7nzsb/TR4.jpg",
     name: "Tar & Adhesive Remover",
     mrp: 399,
     discountedPrice: 540,
@@ -29,7 +29,7 @@ const products = [
     Link: "/taradhesiveremover",
   },
   {
-    img: "https://lakdfs.sirv.com/Images/TR5.JPG",
+    img: "https://i.ibb.co/xS9xJPxZ/TR5.jpg",
     name: "Plastic & Rubber Care",
     mrp: 410,
     discountedPrice: 540,
@@ -37,7 +37,7 @@ const products = [
     Link: "/plasticrubbercare",
   },
   {
-    img: "https://lakdfs.sirv.com/Images/TR3.JPG",
+    img: "https://i.ibb.co/bjXwx3tC/TR3.jpg",
     name: "Upholstery Cleaner",
     mrp: 390,
     discountedPrice: 590,

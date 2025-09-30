@@ -96,7 +96,7 @@ const onSubmit = async (data) => {
       description:
         "A paint protection film, also known as a clear bra, is a transparent layer that is applied to the exterior of a vehicle to safeguard the paint from scratches, chips, and other damage.",
       image:
-        "https://lakdfs.sirv.com/Images/PPF.jpg",
+        "https://i.ibb.co/RkZp6xV1/PPF.jpg",
       linkUrl: "/services/ppf"
     },
     {
@@ -112,7 +112,7 @@ const onSubmit = async (data) => {
       description:
         "Ceramic coating is a liquid polymer applied to the exterior of a vehicle, creating a protective layer that enhances shine and provides resistance against scratches, UV rays, and chemical stains.",
       image:
-        "https://lakdfs.sirv.com/Images/C%20C.jpg",
+        "https://i.ibb.co/fzzgjpFr/C-C.jpg",
       linkUrl: "/services/cc"
     },
     {
@@ -120,7 +120,7 @@ const onSubmit = async (data) => {
       description:
         "Deep cleaning and protection of all interior surfaces including seats, carpets, and dashboard. Keeps your ride looking brand new inside.",
       image:
-        "https://lakdfs.sirv.com/Images/IN%20D.jpg",
+        "https://i.ibb.co/HT235nHs/IN-D.jpg",
       linkUrl: "/services/id"
     },
     {
@@ -128,7 +128,7 @@ const onSubmit = async (data) => {
       description:
         "Thorough cleaning, restoration, and finishing of a vehicle's exterior to produce a show-quality level of detail.",
       image:
-        "https://lakdfs.sirv.com/Images/ED.jpg",
+        "https://i.ibb.co/qYyKdKr2/ED.jpg",
       linkUrl: "/services/ed"
     },
     {
@@ -136,7 +136,7 @@ const onSubmit = async (data) => {
       description:
         "Give your vehicle a complete makeover, inside and out. Experience a sparkling exterior and a refreshed interior with our meticulous cleaning and restoration service.",
       image:
-        "https://lakdfs.sirv.com/Images/AD.jpg",
+        "https://i.ibb.co/Myf1pM4d/AD.jpg",
       linkUrl: "/services/ad"
     },
     {
@@ -144,7 +144,7 @@ const onSubmit = async (data) => {
       description:
         "Transform your vehicle with high-quality vinyl wraps. Choose from a variety of colors and custom designs for endless personalization.",
       image:
-        "https://lakdfs.sirv.com/Images/V%20W.jpg",
+        "https://i.ibb.co/Gv3ZYJ9j/V-W.jpg",
       linkUrl: "/services/vx"
     },
     {
@@ -152,7 +152,7 @@ const onSubmit = async (data) => {
       description:
         " It enhances privacy, reduces glare, blocks UV rays, and protects your interior from fading and heat damage. Customizable options offer the perfect blend of style and function.",
       image:
-        "https://lakdfs.sirv.com/Images/WT.jpg",
+        "https://i.ibb.co/WdN1tyr/WT.jpg",
       linkUrl: "/services/wt"
     },
     {
@@ -160,7 +160,7 @@ const onSubmit = async (data) => {
       description:
         "Enhance visibility and safety with an advanced hydrophobic coating that keeps your windshield clean, providing clearer vision during heavy rains and reducing hard water spots.",
       image:
-        "https://lakdfs.sirv.com/Images/WC.jpg",
+        "https://i.ibb.co/r2QbsNXP/WC.jpg",
       linkUrl: "/services/wc"
     },
     {
@@ -168,7 +168,7 @@ const onSubmit = async (data) => {
       description:
         "Improve night driving safety by restoring cloudy or yellowed headlights to their original clarity for brighter, clearer visibility.",
       image:
-        "https://lakdfs.sirv.com/Images/HR.jpg",
+        "https://i.ibb.co/0yX6Zc37/HR.jpg",
       linkUrl: "/services/hr"
     },
     {
@@ -176,7 +176,7 @@ const onSubmit = async (data) => {
       description:
         "Eliminate odours and harmful bacteria with our thorough interior disinfection service.",
       image:
-        "https://lakdfs.sirv.com/Images/ID.jpg",
+        "https://i.ibb.co/5XdjfN0V/ID.jpg",
       linkUrl: "/services/idi"
     },
     {
@@ -184,7 +184,7 @@ const onSubmit = async (data) => {
       description:
         "Revive dull and faded plastic trim, giving it a like-new appearance with a protective coating for a longer lasting shine!",
       image:
-        "https://lakdfs.sirv.com/Images/TR.jpg",
+        "https://i.ibb.co/ZbRNzqh/TR.jpg",
       linkUrl: "/services/tr"
     },
     {
@@ -192,7 +192,7 @@ const onSubmit = async (data) => {
       description:
         "With a deep clean and sanitization of your A/C ducts and filters. You can be rest assured, with clean and fresh air inside your car",
       image:
-        "https://lakdfs.sirv.com/Images/AC.jpg",
+        "https://i.ibb.co/wh2GWymL/AC.jpg",
       linkUrl: "/services/acs"
     },
     {
@@ -200,7 +200,7 @@ const onSubmit = async (data) => {
       description:
         "From windshield wiper changes to fitting dashcams, we handle small but essential repairs. ",
       image:
-        "https://lakdfs.sirv.com/Images/ME.jpg",
+        "https://i.ibb.co/9kRsQQf5/ME.jpg",
       linkUrl: "/services/mem"
     },
   ];
@@ -212,7 +212,7 @@ const onSubmit = async (data) => {
 
         <div className="relative w-full overflow-x- px-6 md:px-16 lg:px-20 pt-28">
           <img
-            src="https://lakdfs.sirv.com/Images/top-view-steel-hammer-with-other-construction-elements-tools.jpg"
+            src="https://i.ibb.co/YBVWy05j/top-view-steel-hammer-with-other-construction-elements-tools.jpg"
             alt="Our Services"
             className="w-full h-[500px] object-cover rounded-3xl"
           />

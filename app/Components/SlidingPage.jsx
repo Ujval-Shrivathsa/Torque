@@ -94,7 +94,7 @@ const SlidingPage = () => {
           <Link href="/services/ppf" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://lakdfs.sirv.com/Images/PPF.jpg')] bg-cover bg-center cursor-pointer relative"
+              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://i.ibb.co/RkZp6xV1/PPF.jpg')] bg-cover bg-center cursor-pointer relative"
             >
               <motion.div className="absolute bottom-0 left-0 right-0 h-[30%] lg:mt-10 flex-col flex justify-center items-center bg-black bg-opacity-80 px-4">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">Paint Protection Film</h1>
@@ -120,7 +120,7 @@ const SlidingPage = () => {
           <Link href="/services/cc" className="w-full md:w-[30%] overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://lakdfs.sirv.com/Images/C%20C.jpg')] bg-cover bg-center cursor-pointer relative"
+              className="w-full h-96 sm:h-[28rem] rounded-2xl bg-[url('https://i.ibb.co/fzzgjpFr/C-C.jpg')] bg-cover bg-center cursor-pointer relative"
             >
               <motion.div className="absolute bottom-0 left-0 right-0 h-[30%] lg:mt-10 flex-col flex justify-center items-center bg-black bg-opacity-80 px-4">
                 <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">Ceramic Coating</h1>
