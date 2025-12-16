@@ -9,7 +9,7 @@
     "lint": "next lint",
     "export": "next export",
     "sitemap": "next-sitemap",
-    "postbuild": "next-sitemap" 
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -20,10 +20,10 @@
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.513.0",
-    "next": "^15.2.4",
+    "next": "^16.0.10",
     "next-sitemap": "^4.2.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-hook-form": "^7.56.0",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
