@@ -380,7 +380,7 @@ const Hero = () => {
   };
 
   const redirectToWhatsApp = (code) => {
-    const message = `Hi, I'm ${userName}. I'd like to claim my 30% discount (code: ${code}) for Torque Detailing Studio services.`;
+    const message = `Hi, I'm ${userName}. I'd like to claim my ₹5000 OFF (code: ${code}) for Torque Detailing Studio services.`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/919686968315?text=${encodedMessage}`;
     
@@ -506,7 +506,7 @@ const Hero = () => {
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
                 >
-                  30% OFF
+                  ₹5000 OFF
                 </motion.div>
                 
                 <p className="text-white mb-2">
@@ -627,10 +627,6 @@ const Hero = () => {
                     )}
                   </motion.div>
                 )}
-                
-                <p className="text-gray-400 text-sm mt-4">
-                  *Offer valid until August 31, 2025
-                </p>
               </div>
             </motion.div>
           </motion.div>
