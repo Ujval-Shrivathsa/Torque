@@ -9,7 +9,7 @@
     "lint": "next lint",
     "export": "next export",
     "sitemap": "next-sitemap",
-    "postbuild": "next-sitemap" 
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -20,7 +20,7 @@
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.513.0",
-    "next": "^15.2.4",
+    "next": "15.2.8",
     "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
